@@ -11,11 +11,24 @@ The goal of InteractiveTradeR is to ...
 Installation
 ------------
 
-You can install the released version of InteractiveTradeR from [CRAN](https://CRAN.R-project.org) with:
+1. Download and install the latest version of R. Windows users should also install Rtools.
+
+2. Download and install the latest version of either Trader Workstation or IB Gateway from the Interactive Brokers website.
+
+3. Download and install the latest version of RStudio.
+
+3. Open RStudio and install the package `devtools` with:
 
 ``` r
-install.packages("InteractiveTradeR")
+install.packages("devtools")
 ```
+
+4. In RStudio, install the `InteractiveTradeR` package with:
+
+``` r
+install.packages("JakeVestal/InteractiveTradeR")
+```
+
 
 Example
 -------
