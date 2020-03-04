@@ -2,6 +2,7 @@
 #'
 #' Describe
 #'
+#' @aliases sock_drawer
 #'
 socks <- function(){
   if(length(ls(sock_drawer)) > 0){

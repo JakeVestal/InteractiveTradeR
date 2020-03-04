@@ -48,8 +48,6 @@ number_of_new_socks_param <- function(
 #'
 #' @seealso disconnect
 #'
-#' @aliases start_api
-#'
 #' @export
 #'
 create_new_connections <- function(

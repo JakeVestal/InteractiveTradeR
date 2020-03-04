@@ -2,6 +2,7 @@
 % Please edit documentation in R/socks.R
 \name{socks}
 \alias{socks}
+\alias{sock_drawer}
 \title{Socks}
 \usage{
 socks()

@@ -2,7 +2,6 @@
 % Please edit documentation in R/create_new_connections.R
 \name{create_new_connections}
 \alias{create_new_connections}
-\alias{start_api}
 \title{Create New Connections to Interactive Brokers}
 \usage{
 create_new_connections(

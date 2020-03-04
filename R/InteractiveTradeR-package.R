@@ -145,8 +145,8 @@ treasury      <- new.env(parent = emptyenv())
     )
   )
 
-  if(rprofile_exists && params_saved){return(invisible())}
-
+  if(!interactive() || (rprofile_exists && params_saved)){return(invisible())}
+  
   save_defaults <- usethis::ui_yeah(
     paste0(
       "Default API Connection parameters have not been set up yet.",

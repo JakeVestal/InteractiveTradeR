@@ -1,18 +1,29 @@
 Package: InteractiveTradeR
-Title: What the Package Does (One Line, Title Case)
-Version: 9.79.1
+Title: API
+Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Jake",
+           family = "Vestal",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "jmvestal@gmail.com",
+           comment = c(ORCID = "0000-0002-2970-4795"))
+Description: API for trading, data collection, and strategy testing.
+License: file LICENSE
+Depends: 
+    R (>= 3.5.0)
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.5.0)
 RoxygenNote: 7.0.2
 Imports: 
     magrittr,
-    rlang
+    rlang,
+    cli,
+    crayon,
+    dplyr,
+    lubridate,
+    pack,
+    purrr,
+    rprojroot,
+    shiny,
+    tibble,
+    usethis

@@ -354,7 +354,7 @@ format_contract <- function(){
 format_market_data_type <- function(){
 
   marketDataType <- if(
-    eval(expression(missing(mktDataType)), env = parent.frame())
+    eval(expression(missing(mktDataType)), envir = parent.frame())
   ){
     if(exists("sock", envir = parent.frame())){
       attr(get0("sock", envir = parent.frame()), "marketDataType")

@@ -6,7 +6,7 @@
 \alias{InteractiveTradeR-package}
 \title{InteractiveTradeR}
 \description{
-What the package does (one paragraph).
+API for trading, data collection, and strategy testing.
 }
 \section{Disclaimer and Waiver}{
 
@@ -118,6 +118,6 @@ connections to Trader Workstation (TWS) and IB Gateway (IBG):
 }
 
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Jake Vestal \email{jmvestal@gmail.com} (\href{https://orcid.org/0000-0002-2970-4795}{ORCID})
 
 }
