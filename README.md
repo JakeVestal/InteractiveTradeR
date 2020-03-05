@@ -50,7 +50,7 @@ install.packages("devtools")
 
 #### 5. In RStudio, install the `InteractiveTradeR` package with:
 ``` r
-install.packages("JakeVestal/InteractiveTradeR")
+devtools::install_github("JakeVestal/InteractiveTradeR")
 ```
 
 #### 6. In RStudio, create a new project (or open an existing one).
