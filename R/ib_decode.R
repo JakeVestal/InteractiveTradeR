@@ -6,9 +6,9 @@
 ib_decode <- function(ib_parsed_raw_list){
   # during operation, `ib_decode` SHOULD fail with error if any element of
   #   `ib_parsed_raw_list` is NULL, so don't bother checking for NULL.
-
+  
   if(length(ib_parsed_raw_list) == 0){NULL}
-
+  
   lapply(
     ib_parsed_raw_list,
     function(ib_vec_raw){
@@ -20,7 +20,9 @@ ib_decode <- function(ib_parsed_raw_list){
         vapply(., function(x){x[1]}, character(1)),
         InteractiveTradeR::functionary$incoming_msg_codes
       )]
-    ) %>%
+    ) %>% {
+      .[!is.na(names(.))]
+    } %>%
     Map(
       function(ibdc, ib_polish_index){
         InteractiveTradeR::functionary$ib_polish[[ib_polish_index]](ibdc)
@@ -35,5 +37,5 @@ ib_decode <- function(ib_parsed_raw_list){
       if(length(y) == 0) return(list("no data"))
       y
     }
-
+  
 }
