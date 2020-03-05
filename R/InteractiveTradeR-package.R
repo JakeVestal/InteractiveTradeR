@@ -132,7 +132,7 @@ treasury      <- new.env(parent = emptyenv())
 
 .onLoad <- function(libname, pkgname) {
 
-  if(!check_for_saved_params()){
+  if(interactive() && !check_for_saved_params()){
    
     save_defaults <- usethis::ui_yeah(
       paste0(
