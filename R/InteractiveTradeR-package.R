@@ -149,7 +149,7 @@ treasury      <- new.env(parent = emptyenv())
           usethis::ui_oops("No project detected.")
           usethis::ui_info(
             paste0(
-              "To load ",
+              "To store connection parameters, ",
               crayon::bold("InteractiveTradeR"),
               ", create a new project in RStudio and open it."
             )
@@ -185,6 +185,8 @@ treasury      <- new.env(parent = emptyenv())
         } %>%
           writeLines(., con = file.path(pkg_root, ".Rprofile"))
         
+        invisible()
+        
       }
       
       
@@ -197,8 +199,6 @@ treasury      <- new.env(parent = emptyenv())
     }
     
   }
-  
-  return(invisible())
   
 }
 
