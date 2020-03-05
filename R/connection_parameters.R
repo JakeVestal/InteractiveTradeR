@@ -2,6 +2,8 @@
 #'
 #' Describe
 #'
+#'
+#' @export
 connection_parameters <- function(conn_params = NULL){
 
   if(is.null(conn_params)){
@@ -213,6 +215,10 @@ use_ibg <- function(paper = TRUE, make_default = FALSE){
 
 }
 
+#' Retreive Active Connection Parameters
+#'
+#'
+#' @export
 active_connection_parameters <- function(){
   structure(
     tibble::tibble(
