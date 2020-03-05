@@ -1,5 +1,8 @@
 
-# InteractiveTradeR
+<link rel="stylesheet" type="text/css" media="all" href="extra.css"/>
+
+<h1 id="InteractiveTradeR-main-title">
+<code style = "padding: 2px 4px; font-size: 90%; background-color: inherit; color: #baf5d2; border-radius: 4px;">InteractiveTrade</code><span style = "color:White">R</span></h1>
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -15,7 +18,7 @@ website](https://www.r-project.org/).
 - If you're a **Mac User**, you'll probably want
 [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) at some point
 during your work with InteractiveTradeR or R in general, so you might as well
-goahead and install it now from the Apple Store.
+go ahead and install it now from the Apple Store.
 
 #### 2. Download and install the latest version of [Trader Workstation](https://www1.interactivebrokers.com/en/index.php?f=16040) (TWS).
 
