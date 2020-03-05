@@ -161,7 +161,7 @@ treasury      <- new.env(parent = emptyenv())
         }
       )
       
-      if(class(pkg_root) == "character"){
+      if(identical(class(pkg_root), "character")){
         
         usethis::ui_info(paste0("Creating .Rprofile: ", pkg_root))
         
