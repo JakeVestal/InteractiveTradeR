@@ -393,18 +393,12 @@ format_market_data_type <- function(){
 
 check_for_saved_params <- function(){
   
-  any(
-    grepl(
-      " InteractiveTradeR Options -- Do not edit by hand! ",
-      tryCatch(
-        suppressWarnings(
-          readLines(
-            file.path(rprojroot::find_package_root_file(), ".Rprofile")
-          )
-        ),
-        error = function(e){""}
-      )
-    )
-  )
+  names(options()) %>% {
+    .[grepl("interactivetrader", .)]
+  } %>% 
+    gsub("(.*)\\.", "", .) %>%
+    unique() %>%
+    sort() %>%
+    identical(., c("host", "master", "paper", "platform", "port"))
   
 }
