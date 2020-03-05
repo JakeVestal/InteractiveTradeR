@@ -16,7 +16,7 @@ LazyData: true
 RoxygenNote: 7.0.2
 Imports: 
     magrittr,
-    rlang,
+    rlang (>= 0.1.2),
     cli,
     crayon,
     dplyr,
@@ -27,3 +27,5 @@ Imports:
     shiny,
     tibble,
     usethis
+Suggests: 
+    roxygen2
