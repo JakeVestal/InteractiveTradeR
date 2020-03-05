@@ -149,7 +149,7 @@ treasury      <- new.env(parent = emptyenv())
           usethis::ui_oops("No project detected.")
           usethis::ui_info(
             paste0(
-              "To store connection parameters, ",
+              "To store connection parameters in ",
               crayon::bold("InteractiveTradeR"),
               ", create a new project in RStudio and open it."
             )
