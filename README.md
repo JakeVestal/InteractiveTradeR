@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="extra.css"/>
 
 <h1 id="InteractiveTradeR-main-title">
-<code style = "padding: 2px 4px; font-size: 90%; background-color: inherit; color: #baf5d2; border-radius: 4px;">InteractiveTrade</code><span style = "color:White">R</span></h1>
+<code style = "background-color: inherit; color: #baf5d2;">InteractiveTrade</code><span style = "color:White">R</span></h1>
 
 <!-- badges: start -->
 <!-- badges: end -->
