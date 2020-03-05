@@ -146,10 +146,13 @@ treasury      <- new.env(parent = emptyenv())
       pkg_root <- tryCatch( 
         file.path(rprojroot::find_rstudio_root_file()),
         error = function(e){
-          usethis::ui_oops(
-            "No project detected. To load ",
-            crayon::bold("InteractiveTradeR"),
-            " create a new project in RStudio and open it."
+          usethis::ui_oops("No project detected.")
+          usethis::ui_info(
+            paste0(
+              "To load ",
+              crayon::bold("InteractiveTradeR"),
+              ", create a new project in RStudio and open it."
+            )
           )
           e
         },
@@ -182,8 +185,6 @@ treasury      <- new.env(parent = emptyenv())
         } %>%
           writeLines(., con = file.path(pkg_root, ".Rprofile"))
         
-        invisible()
-        
       }
       
       
@@ -196,6 +197,8 @@ treasury      <- new.env(parent = emptyenv())
     }
     
   }
+  
+  return(invisible())
   
 }
 
