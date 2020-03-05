@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>API • InteractiveTradeR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cyborg/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -62,43 +62,91 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-<div id="interactivetrader-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#interactivetrader-" class="anchor"></a>InteractiveTradeR <img src="reference/figures/logo.png" align="right" height="140/">
-</h1></div>
-</div>
 <div id="interactivetrader" class="section level1">
-<h1 class="hasAnchor">
-<a href="#interactivetrader" class="anchor"></a>InteractiveTradeR</h1>
-<p>The goal of InteractiveTradeR is to …</p>
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#interactivetrader" class="anchor"></a>InteractiveTradeR</h1></div>
+<p>Connect R to the world’s markets.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of InteractiveTradeR from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"InteractiveTradeR"</span>)</a></code></pre></div>
+<div id="download-and-install-the-latest-version-of-r-from-the-official-cran-website-" class="section level4">
+<h4 class="hasAnchor">
+<a href="#download-and-install-the-latest-version-of-r-from-the-official-cran-website-" class="anchor"></a>1. Download and install the latest version of R from the <a href="https://www.r-project.org/">official CRAN website</a>.</h4>
+<ul>
+<li>
+<strong>Windows Users</strong> should also install <a href="https://cran.r-project.org/bin/windows/Rtools/installer.html">Rtools</a>.</li>
+<li>If you’re a <strong>Mac User</strong>, you’ll probably want <a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12">Xcode</a> at some point during your work with InteractiveTradeR or R in general, so you might as well goahead and install it now from the Apple Store.</li>
+</ul>
+</div>
+<div id="download-and-install-the-latest-version-of-trader-workstation-tws-" class="section level4">
+<h4 class="hasAnchor">
+<a href="#download-and-install-the-latest-version-of-trader-workstation-tws-" class="anchor"></a>2. Download and install the latest version of <a href="https://www1.interactivebrokers.com/en/index.php?f=16040">Trader Workstation</a> (TWS).</h4>
+<p>You may also choose to install <a href="https://www1.interactivebrokers.com/en/index.php?f=16457">IBGateway</a> (IBG). IB Gateway will not work with the free demo, provided by Interactive Brokers, but for paper and trading accounts it provides all of the functionality of Trader Workstation without the charting and graphical user interface.</p>
+<div id="optional-create-an-account-with-interactive-brokers-" class="section level5">
+<h5 class="hasAnchor">
+<a href="#optional-create-an-account-with-interactive-brokers-" class="anchor"></a>(OPTIONAL) Create an account with Interactive Brokers.</h5>
+<p>This can be done for free, and you do <strong>not</strong> have to fund the account with real money. The advantage of creating an account is that doing so allows you to create a <a href="https://www.interactivebrokers.com/en/software/omnibrokers/topics/papertrader.htm">paper trading account</a> that you may use to develop and test any trading system you develop.</p>
+<p>While you are free to use <code>InteractiveTradeR</code> on your paper account, note that <strong>using <code>InteractiveTradeR</code> to place trades on an actual trading account is a violation of the license</strong>, which does not allow for commercial use. To obtain a commercial license, please contact the author.</p>
+</div>
+<div id="download-and-install-the-latest-version-of-rstudio-" class="section level5">
+<h5 class="hasAnchor">
+<a href="#download-and-install-the-latest-version-of-rstudio-" class="anchor"></a>3. Download and install the <a href="https://rstudio.com/products/rstudio/download/#download">latest version of RStudio</a>.</h5>
+</div>
+<div id="open-rstudio-and-install-the-package-devtools-with" class="section level5">
+<h5 class="hasAnchor">
+<a href="#open-rstudio-and-install-the-package-devtools-with" class="anchor"></a>4. Open RStudio and install the package <code>devtools</code> with:</h5>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a></code></pre></div>
+</div>
+<div id="in-rstudio-install-the-interactivetrader-package-with" class="section level5">
+<h5 class="hasAnchor">
+<a href="#in-rstudio-install-the-interactivetrader-package-with" class="anchor"></a>5. In RStudio, install the <code>InteractiveTradeR</code> package with:</h5>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"JakeVestal/InteractiveTradeR"</span>)</a></code></pre></div>
+</div>
+<div id="load-interactivetrader-with" class="section level5">
+<h5 class="hasAnchor">
+<a href="#load-interactivetrader-with" class="anchor"></a>6. Load <code>InteractiveTradeR</code> with:</h5>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"InteractiveTradeR"</span>)</a></code></pre></div>
+<p>If this is the first time you’ve loaded <code>InteractiveTradeR</code> in the current RStudio project, you’ll be asked if you want to establish some default settings. Do so. This action will store default connection parameters (port number, host, master client ID) as R variables so that you don’t have to re-enter them. You may change these parameters at any later time.</p>
+</div>
+<div id="allow-api-connection-to-tws-ibg" class="section level5">
+<h5 class="hasAnchor">
+<a href="#allow-api-connection-to-tws-ibg" class="anchor"></a>6. Allow API connection to TWS / IBG</h5>
+<ol>
+<li><p>Open whichever program you installed and wish to use – TWS or IBG – and log in to your account, paper account, or the demo (TWS only).</p></li>
+<li><p>From the File menu, find File &gt; Global Configuration &gt; API &gt; Settings.</p></li>
+<li><p>Check the “Enable ActiveX and Socket Clients” box.</p></li>
+<li><p>Uncheck the “Read-Only API” box if you wish to allow <code>InteractiveTradeR</code> to write to the API, for example, to place orders.</p></li>
+<li><p>In RStudio, retreive your randomly generated Master Client ID by entering command <code>active_connection_parameters()</code>. Copy-paste this numeric ID into the “MASTER CLIENT ID” field in the API Settings window.</p></li>
+<li><p>Click “Apply and OK” to close the API Settings window.</p></li>
+</ol>
+</div>
+</div>
+<div id="test-your-connection" class="section level4">
+<h4 class="hasAnchor">
+<a href="#test-your-connection" class="anchor"></a>Test your connection</h4>
+<p>At this point, you should have an instance of TWS or IBG running and accepting connections from the API. Within RStudio, with <code>InteractiveTradeR</code> having been loaded, you can test your connection with command <code><a href="reference/req_current_time.html">req_current_time()</a></code>. If you get a timestamp response, all’s well and you’re set up!</p>
+</div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">## basic example code</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">## basic example code</span></a></code></pre></div>
 <p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(cars)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt;      speed           dist       </span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(cars)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;      speed           dist       </span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></a></code></pre></div>
 <p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date.</p>
 <p>You can also embed plots, for example:</p>
 <p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
 <p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub!</p>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

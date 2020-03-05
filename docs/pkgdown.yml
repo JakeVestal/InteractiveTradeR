@@ -1,5 +1,8 @@
-pandoc: 2.7.2
+pandoc: 2.3.1
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles: []
+urls:
+  reference: https://github.com/gothic-hedge-society/FinancieR/reference
+  article: https://github.com/gothic-hedge-society/FinancieR/articles
 

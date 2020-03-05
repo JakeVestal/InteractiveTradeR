@@ -34,10 +34,10 @@ simple_encode <- function(msg){
 
 # single low-level message llmsg
 ib_decode_low_level_msg <- function(llmsg){
-
+  
   to   <- which(llmsg == as.raw(0))
   from <- as.integer(c(1, (to + 1)[-length(to)]))
-
+  
   unlist(
     Map(
       function(to, from){
@@ -48,7 +48,7 @@ ib_decode_low_level_msg <- function(llmsg){
       from
     )
   )
-
+  
 }
 
 # Format an Outgoing IB Message
@@ -71,19 +71,19 @@ ib_read_incoming_message_size_bytes <- function(sock){
 }
 
 read_channel_raw <- function(channel){
-
+  
   if(inherits(channel, "sockconn")){
     channel <- list(channel)
   }
-
+  
   ready_to_read <- which(socketSelect(channel, timeout = 1))
-
+  
   if(identical(ready_to_read, integer(0))){
     return(invisible())
   }
-
+  
   response_list_raw <- NULL
-
+  
   while(!identical(ready_to_read, integer(0))){
     response_list_raw <- c(
       response_list_raw,
@@ -101,16 +101,16 @@ read_channel_raw <- function(channel){
         }
       )
     )
-
+    
     ready_to_read <- which(socketSelect(channel, timeout = 0.1))
   }
-
+  
   response_list_raw
-
+  
 }
 
 print_async <- function(sock){
-
+  
   cat(
     paste0(
       "A socket connection on ",
@@ -129,11 +129,11 @@ print_async <- function(sock){
       crayon::bold("\nSubscriptions:\n")
     )
   )
-
+  
   if(length(attr(sock, "subscriptions")) > 0){
-
+    
     subscriptions <- lapply(attr(sock, "subscriptions"), function(x){names(x)})
-
+    
     for(i in 1:length(subscriptions) ){
       cat(
         paste0(
@@ -145,7 +145,7 @@ print_async <- function(sock){
   } else {
     cat(crayon::italic("None\n"))
   }
-
+  
 }
 
 print.sock_drawer <- function(sock_drawer){
@@ -216,9 +216,9 @@ get_conId <- function(contract){
 }
 
 fetch_master_w_msg <- function(){
-
+  
   mcid <- active_itr_option("master")
-
+  
   if(is.null(mcid)){
     usethis::ui_oops(
       "You must set a Master Client ID before using a master socket."
@@ -231,9 +231,9 @@ fetch_master_w_msg <- function(){
       )
     )
   }
-
+  
   mcid
-
+  
 }
 
 print.active_conn_params <- function(x){
@@ -262,7 +262,7 @@ print.active_conn_params <- function(x){
       USE.NAMES = FALSE
     )
   }
-
+  
   cat(crayon::bold(pad(colnames(x))))
   cat("\n")
   cat(pad(unlist(x, use.names = FALSE)))
@@ -322,9 +322,9 @@ clear_cols <- function(x){
 }
 
 format_contract <- function(){
-
+  
   contract <- get0("contract", envir = parent.frame())
-
+  
   if(length(contract) == 1){
     c(conId = unlist(contract, use.names = FALSE))
   } else if(length(contract) == 2){
@@ -348,11 +348,11 @@ format_contract <- function(){
   } else {
     contract
   }
-
+  
 }
 
 format_market_data_type <- function(){
-
+  
   marketDataType <- if(
     eval(expression(missing(mktDataType)), envir = parent.frame())
   ){
@@ -362,7 +362,7 @@ format_market_data_type <- function(){
   } else {
     get0("mktDataType", envir = parent.frame())
   }
-
+  
   tryCatch(
     as.numeric(
       match.arg(
@@ -388,5 +388,23 @@ format_market_data_type <- function(){
       )
     }
   )
+  
+}
 
+check_for_saved_params <- function(){
+  
+  any(
+    grepl(
+      " InteractiveTradeR Options -- Do not edit by hand! ",
+      tryCatch(
+        suppressWarnings(
+          readLines(
+            file.path(rprojroot::find_package_root_file(), ".Rprofile")
+          )
+        ),
+        error = function(e){""}
+      )
+    )
+  )
+  
 }
