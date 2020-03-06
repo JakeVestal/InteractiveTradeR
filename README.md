@@ -1,9 +1,11 @@
 
 <link rel="stylesheet" type="text/css" media="all" href="extra.css"/>
 
-<h1 id="InteractiveTradeR-main-title">
-<code style = "background-color: inherit; color: #baf5d2;">InteractiveTrade</code><span style = "color:White">R</span></h1>
-
+<h1>
+  <code id = "InteractiveTradeR-main-title">
+    <span>InteractiveTrade</span><span id = "InteractiveTradeR-main-title-R">R</span>
+  </code>
+</h1>
 <!-- badges: start -->
 <!-- badges: end -->
 

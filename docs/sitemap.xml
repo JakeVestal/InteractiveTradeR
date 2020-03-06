@@ -1,75 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/index.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/InteractiveTradeR.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/InteractiveTradeR.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/cancellator.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/active_connection_parameters.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/client_id_0.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancellator.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/connection_parameters.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/client_id_0.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/contract_parameters.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/contract_parameters.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/create_new_connections.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/create_new_connections.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/disconnect.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/disconnect.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/functionary.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/functionary.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/ib_collate.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_collate.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/ib_connect.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_connect.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/ib_decode.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_decode.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/ib_sync_connect.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_sync_connect.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/launch_InteractiveTradeR_example_app.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/launch_InteractiveTradeR_example_app.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/master_client_id.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/master_client_id.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/order_obj.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/order_obj.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/pipe.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/read_sock_drawer.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/read_sock_drawer.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/req_current_time.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_contract_details.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/req_family_codes.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_current_time.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/socks.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_family_codes.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/start_api.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/socks.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/sync_timeout.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/start_api.html</loc>
   </url>
   <url>
-    <loc>https://github.com/gothic-hedge-society/FinancieR/reference/tidyeval.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/sync_timeout.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/test_contracts.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tidyeval.html</loc>
   </url>
 </urlset>

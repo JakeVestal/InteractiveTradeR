@@ -1,5 +1,13 @@
 destination: docs
+url: https://jakevestal.github.io/InteractiveTradeR/
 
 template:
   params:
     bootswatch: cyborg
+
+reference:
+- title: Quick Fetch
+  desc: Retreive a simple piece of data; e.g., a list of all tradable instruments that match a search string, the current time, list of news providers, etc.
+  contents:
+  - req_current_time
+  - req_family_codes
