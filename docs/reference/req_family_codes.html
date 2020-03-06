@@ -126,10 +126,10 @@
 the request and retrieve the response, and closes connection behind itself
 upon completion.</p>
 <p>* **The Name of a Sock**: Character vector, length 1. The name of an open,
-connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws", "sock_123"</p>
+connected socket in the sock_drawer; e.g., "master", "tws", "sock_123"</p>
 <p>* **Numeric Client ID**: Numeric, length 1. The client ID for which open
 orders are to be retrieved; e.g., 0, 874, 123. If a client ID is passed, and
-no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID, then a new
+no socket in the sock_drawer is connected on that ID, then a new
 socket will be opened using that ID, and closed upon function exit.</p>
 <p>* **A `sockconn` Connection**: An open connection object of class "sockconn",
 connected to the IB API; e.g., `sock_drawer$tws`</p></td>

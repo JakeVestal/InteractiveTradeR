@@ -123,7 +123,7 @@ found to match parameters supplied in the `contract` argument.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>contract</th>
-      <td><p>Named character vector of contract parameter(s). The name of each element identifies the parameter -- e.g., `secType` or `symbol` -- and each element itself gives the set value, e.g., `STK` or `IBM`. <br /> <br /> **The `contract` parameters that may be passed in to `req_contract_details`() are**:<br />`secId`, `tradingClass`, `primaryExchange`, `conId`, `symbol`, `secType`, `lastTradeDateOrContractMonth`, `strike`, `right`, `multiplier`, `exchange`, `currency`, `localSymbol`, `includeExpired`, `secIdType`<br /> <br /> See <a href='contract_parameters.html'>contract</a> for detailed information on all `contract` parameters.</p></td>
+      <td><p>Named character vector of contract parameter(s). The name of each element identifies the parameter -- e.g., `secType` or `symbol` -- and each element itself gives the set value, e.g., `STK` or `IBM`. <br /> <br /> **The `contract` parameters that may be passed in to `req_contract_details`() are**:<br />`secId`, `tradingClass`, `primaryExchange`, `conId`, `symbol`, `secType`, `lastTradeDateOrContractMonth`, `strike`, `right`, `multiplier`, `exchange`, `currency`, `localSymbol`, `includeExpired`, `secIdType`<br /> <br /> See contract for detailed information on all `contract` parameters.</p></td>
     </tr>
     <tr>
       <th>channel</th>
@@ -132,10 +132,10 @@ found to match parameters supplied in the `contract` argument.</p>
 the request and retrieve the response, and closes connection behind itself
 upon completion.</p>
 <p>* **The Name of a Sock**: Character vector, length 1. The name of an open,
-connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws", "sock_123"</p>
+connected socket in the sock_drawer; e.g., "master", "tws", "sock_123"</p>
 <p>* **Numeric Client ID**: Numeric, length 1. The client ID for which open
 orders are to be retrieved; e.g., 0, 874, 123. If a client ID is passed, and
-no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID, then a new
+no socket in the sock_drawer is connected on that ID, then a new
 socket will be opened using that ID, and closed upon function exit.</p>
 <p>* **A `sockconn` Connection**: An open connection object of class "sockconn",
 connected to the IB API; e.g., `sock_drawer$tws`</p></td>
@@ -176,7 +176,7 @@ rules governing pacing behavior, are not published. However, by following
 three general rules of thumb, pacing should not be a problem when using
 `req_contract_details`() in InteractiveTradeR:</p>
 <p>* **In SYNC mode (`channel` = NULL), bump up the timeout parameter for large
-queries with <a href='sync_timeout.html'>sync_timeout</a>()**. If a large number of contracts are
+queries with sync_timeout()**. If a large number of contracts are
 found to match the parameters in `contract`, then the function might return
 an error if called with the default timeout because it needs bit more time
 than the default 5 seconds in order to complete. Try using

@@ -20,8 +20,8 @@ website](https://www.r-project.org/).
 it'll take a few minutes.
 
 #### 2. Install Git
-Follow the instructions on {Git's
-webpage}(https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for your
+Follow the instructions on [Git's
+webpage](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for your
 particular OS.
 
 #### 3. Download and install the latest version of [Trader Workstation](https://www1.interactivebrokers.com/en/index.php?f=16040) (TWS).
