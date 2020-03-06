@@ -194,3 +194,9 @@ mcid_format <- function(
 #' @aliases contract
 #'
 NULL
+
+#' Test Contracts
+#' 
+#' A list of different types of example contracts.
+#' 
+"test_contracts"

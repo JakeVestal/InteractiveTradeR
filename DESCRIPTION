@@ -28,4 +28,5 @@ Imports:
     tibble,
     usethis
 Suggests: 
-    roxygen2
+    roxygen2,
+    testthat

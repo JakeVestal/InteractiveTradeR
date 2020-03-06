@@ -134,69 +134,7 @@ treasury      <- new.env(parent = emptyenv())
   
   if(interactive() && !check_for_saved_params()){
     
-    save_defaults <- usethis::ui_yeah(
-      paste0(
-        "Default API Connection parameters have not been set up yet.",
-        "\nDo this now?"
-      )
-    )
-    
-    if(save_defaults){
-      
-      pkg_root <- tryCatch( 
-        file.path(rprojroot::find_rstudio_root_file()),
-        error = function(e){
-          usethis::ui_oops("No project detected.")
-          usethis::ui_info(
-            paste0(
-              "To store connection parameters in ",
-              crayon::bold("InteractiveTradeR"),
-              ", create a new project in RStudio and open it."
-            )
-          )
-          e
-        },
-        warning = function(w){
-          w
-        }
-      )
-      
-      if(identical(class(pkg_root), "character")){
-        
-        usethis::ui_info(paste0("Creating .Rprofile: ", pkg_root))
-        
-        paste0(
-          "###############################################################################\n############## InteractiveTradeR Options -- Do not edit by hand! ##############\n###############################################################################\noptions(interactivetrader.paper            = TRUE)\noptions(interactivetrader.platform         = \"TWS\")\noptions(interactivetrader.tws.paper.host   = \"localhost\")\noptions(interactivetrader.tws.paper.port   = 7497)\noptions(interactivetrader.tws.paper.master = ",
-          sample(1:InteractiveTradeR::functionary$max_client_id, 1),
-          ")\noptions(interactivetrader.ibg.paper.host   = \"localhost\")\noptions(interactivetrader.ibg.paper.port   = 4002)\noptions(interactivetrader.ibg.paper.master = ",
-          sample(1:InteractiveTradeR::functionary$max_client_id, 1),
-          ")\noptions(interactivetrader.tws.live.host    = \"localhost\")\noptions(interactivetrader.tws.live.port    = 7496)\noptions(interactivetrader.tws.live.master  = ",
-          sample(1:InteractiveTradeR::functionary$max_client_id, 1),
-          ")\noptions(interactivetrader.ibg.live.host    = \"localhost\")\noptions(interactivetrader.ibg.live.port    = 4001)\noptions(interactivetrader.ibg.live.master  = ",
-          sample(1:InteractiveTradeR::functionary$max_client_id, 1),
-          ")\n###############################################################################\n######################## End InteractiveTradeR Options ########################\n###############################################################################\n"
-        ) %>% {
-          eval(parse(text = .))
-          if(file.exists(file.path(pkg_root, ".Rprofile"))){
-            c(readLines(file.path(pkg_root, ".Rprofile")), .)
-          } else {
-            .
-          }
-        } %>%
-          writeLines(., con = file.path(pkg_root, ".Rprofile"))
-        
-        invisible()
-        
-      }
-      
-      
-    } else {
-      
-      usethis::ui_info(
-        "You have chosen to not set up default connection parameters."
-      )
-      
-    }
+    save_default_params()
     
   }
   

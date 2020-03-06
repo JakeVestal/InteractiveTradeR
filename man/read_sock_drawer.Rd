@@ -6,6 +6,10 @@
 \usage{
 read_sock_drawer(verbose = FALSE)
 }
+\arguments{
+\item{verbose}{(Boolean, default FALSE): If set to TRUE, `read_sock_drawer`()
+will print informative messages to the terminal.}
+}
 \description{
-Read the whole sock drawer (NULL) or certain socks.
+Read the whole sock drawer.
 }

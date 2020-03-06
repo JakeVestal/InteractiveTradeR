@@ -15,12 +15,16 @@ Connect R to the world's markets.
 website](https://www.r-project.org/).
 - **Windows Users** should also install
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/installer.html).
-- If you're a **Mac User**, you'll probably want
-[Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) at some point
-during your work with InteractiveTradeR or R in general, so you might as well
-go ahead and install it now from the Apple Store.
+- If you're a **Mac User**, also install
+[Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12). Go get a coffee,
+it'll take a few minutes.
 
-#### 2. Download and install the latest version of [Trader Workstation](https://www1.interactivebrokers.com/en/index.php?f=16040) (TWS).
+#### 2. Install Git
+Follow the instructions on {Git's
+webpage}(https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for your
+particular OS.
+
+#### 3. Download and install the latest version of [Trader Workstation](https://www1.interactivebrokers.com/en/index.php?f=16040) (TWS).
 
 You may also choose to install
 [IBGateway](https://www1.interactivebrokers.com/en/index.php?f=16457) (IBG). IB
@@ -40,24 +44,24 @@ While you are free to use `InteractiveTradeR` on your paper account, note that
 violation of the license**, which does not allow for commercial use. To obtain a
 commercial license, please contact the author.
 
-#### 3. Download and install the [latest version of
+#### 4. Download and install the [latest version of
 RStudio](https://rstudio.com/products/rstudio/download/#download).
 
-#### 4. Open RStudio and install the package `devtools` with:
+#### 5. Open RStudio and install the package `devtools` with:
 ``` r
 install.packages("devtools")
 ```
 
-#### 5. In RStudio, install the `InteractiveTradeR` package with:
+#### 6. In RStudio, install the `InteractiveTradeR` package with:
 ``` r
 devtools::install_github("JakeVestal/InteractiveTradeR")
 ```
 
-#### 6. In RStudio, create a new project (or open an existing one).
+#### 7. In RStudio, create a new project (or open an existing one).
 To create new, use File > New Project > New Directory > New Project. Name the
 new project anything you want.
 
-#### 7. Open your project and load `InteractiveTradeR` with:
+#### 8. Open your project and load `InteractiveTradeR` with:
 ``` r
 library("InteractiveTradeR")
 ```
@@ -67,7 +71,7 @@ Do so. This action will store default connection parameters (port number, host,
 master client ID) as R variables so that you don't have to re-enter them. You
 may change these parameters at any later time.
 
-#### 8. Allow API connection to TWS / IBG
+#### 9. Allow API connection to TWS / IBG
 1. Open whichever program you installed and wish to use -- TWS or IBG -- and log
 in to your account, paper account, or the demo (TWS only).
 
@@ -84,7 +88,7 @@ command `active_connection_parameters()`. Copy-paste this numeric ID into the
 
 6. Click "Apply and OK" to close the API Settings window.
 
-#### 9. Test your connection
+#### 10. Test your connection
 At this point, you should have an instance of TWS or IBG running and accepting
 connections from the API. Within RStudio, with `InteractiveTradeR` having been
 loaded, you can test your connection with command `req_current_time()`. If you

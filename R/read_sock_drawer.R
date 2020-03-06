@@ -1,6 +1,9 @@
 #' Read Sock Drawer
 #'
-#' Read the whole sock drawer (NULL) or certain socks.
+#' Read the whole sock drawer.
+#' 
+#' @param verbose (Boolean, default FALSE): If set to TRUE, `read_sock_drawer`()
+#'   will print informative messages to the terminal.
 #'
 #' @export
 #'
