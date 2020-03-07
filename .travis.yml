@@ -4,8 +4,6 @@ language: R
 cache: packages
 os:
   - linux
-before_install:
-  - sudo apt-get -y install xvfb
 install:
   - ./scripts/install-dependencies.sh
 before_deploy: Rscript -e 'if(.Platform$OS.type == "unix"){remotes::install_cran("pkgdown")}'
