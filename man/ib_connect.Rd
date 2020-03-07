@@ -7,8 +7,8 @@
 ib_connect(
   master = FALSE,
   tws = FALSE,
-  host = active_itr_option(host),
-  port = active_itr_option(port)
+  host = active_itr_option("host"),
+  port = active_itr_option("port")
 )
 }
 \arguments{

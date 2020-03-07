@@ -7,8 +7,8 @@
 #'
 #' @keywords internal
 ib_sync_connect <- function(
-  host      = active_itr_option(host),
-  port      = active_itr_option(port),
+  host      = active_itr_option("host"),
+  port      = active_itr_option("port"),
   client_id
 ){
 

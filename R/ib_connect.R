@@ -25,16 +25,16 @@
 ib_connect <- function(
   master = FALSE,
   tws    = FALSE,
-  host   = active_itr_option(host),
-  port   = active_itr_option(port)
+  host   = active_itr_option("host"),
+  port   = active_itr_option("port")
 ){
-
+  
   tryCatch(
-
+    
     {
-
+      
       conn_rows_1 <- rownames(showConnections())
-
+      
       s <- suppressWarnings(
         try(
           socketConnection(
@@ -46,7 +46,7 @@ ib_connect <- function(
           silent = TRUE
         )
       )
-
+      
       if(class(s) == "try-error" || !isOpen(s)){
         stop(
           structure(
@@ -55,16 +55,16 @@ ib_connect <- function(
           )
         )
       }
-
+      
       conn_row  <- as.numeric(
         setdiff(
           rownames(showConnections()),
           conn_rows_1
         )
       )
-
+      
       if(master){
-        client_id <- active_itr_option(master)
+        client_id <- active_itr_option("master")
         sock_name <- "master"
       } else if(tws){
         client_id <- 0
@@ -81,14 +81,14 @@ ib_connect <- function(
             )
           )
         )
-
-        if(client_id == active_itr_option(master)){
+        
+        if(client_id == active_itr_option("master")){
           client_id <- 100
         }
-
+        
         sock_name <- paste0("sock_", client_id)
       }
-
+      
       writeBin(
         object = c(
           InteractiveTradeR::functionary$fixed_api_msgs$initiate_handshake_msg,
@@ -104,16 +104,16 @@ ib_connect <- function(
         con    = s,
         endian = "big"
       )
-
+      
       socket_raw_data <- read_channel_raw(s)
-
+      
       handshake <- ib_decode_low_level_msg(socket_raw_data[[1]]) %>% {
         list(
           "server_version" = .[[1]],
           "start_time"     = lubridate::as_datetime(.[[2]], tz = NULL)
         )
       }
-
+      
       assign(
         sock_name,
         value = structure(
@@ -126,11 +126,11 @@ ib_connect <- function(
         ),
         envir = sock_drawer
       )
-
+      
     },
-
+    
     could_not_connect_error = function(e) stop(e)
-
+    
   )
-
+  
 }

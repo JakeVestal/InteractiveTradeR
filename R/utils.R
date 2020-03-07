@@ -393,13 +393,15 @@ format_market_data_type <- function(){
 
 check_for_saved_params <- function(){
   
-  names(options()) %>% {
-    .[grepl("interactivetrader", .)]
-  } %>% 
-    gsub("(.*)\\.", "", .) %>%
-    unique() %>%
-    sort() %>%
-    identical(., c("host", "master", "paper", "platform", "port"))
+  setdiff(
+    c("host", "master", "paper", "platform", "port"),
+    names(options()) %>% {
+      .[grepl("interactivetrader", .)]
+    } %>% 
+      gsub("(.*)\\.", "", .) %>%
+      unique()  
+  ) %>%
+    identical(., character(0))
   
 }
 
@@ -470,4 +472,14 @@ save_default_params <- function(){
     
   }
   
+}
+
+debug_toggle <- function(){
+  if(isTRUE(getOption("interactivetrader.debug"))){
+    options(interactivetrader.debug = FALSE)
+    usethis::ui_info(paste0("debug mode ", crayon::bold("OFF")))
+  } else {
+    options(interactivetrader.debug = TRUE)
+    usethis::ui_info(paste0("debug mode ", crayon::bold("ON")))
+  }
 }

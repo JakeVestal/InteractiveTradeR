@@ -54,8 +54,8 @@ create_new_connections <- function(
   number_of_new_socks = 1,
   include_master      = FALSE,
   include_tws         = FALSE,
-  host                = active_itr_option(host),
-  port                = active_itr_option(port)
+  host                = active_itr_option("host"),
+  port                = active_itr_option("port")
 ){
 
   # arg checks --------------------------------------------------------------
