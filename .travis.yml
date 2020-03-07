@@ -4,7 +4,10 @@ language: R
 cache: packages
 os:
  - linux
- - osx
+before_install:
+ - sudo apt-get -y install xvfb wget
+ - pwd
+ - ls
 before_deploy: Rscript -e 'if(.Platform$OS.type == "unix"){remotes::install_cran("pkgdown")}'
 deploy:
   provider: script
