@@ -29,7 +29,7 @@ particular OS.
 
 You may also choose to install
 [IBGateway](https://www1.interactivebrokers.com/en/index.php?f=16457) (IBG). IB
-Gateway will not work with the free demo, provided by Interactive Brokers, but
+Gateway will not work with the free demo provided by Interactive Brokers, but
 for paper and trading accounts it provides all of the functionality of Trader
 Workstation without the charting and graphical user interface.
 
