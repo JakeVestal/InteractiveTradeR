@@ -9,20 +9,20 @@ req_current_time(channel = NULL)
 \arguments{
 \item{channel}{One of the following:
 
-* **Not Specified** (Default): Opens a new connection to IB, uses it to issue
-the request and retrieve the response, and closes connection behind itself
-upon completion.
-
-* **The Name of a Sock**: Character vector, length 1. The name of an open,
-connected socket in the \link{sock_drawer}; e.g., "master", "tws", "sock_123"
-
-* **Numeric Client ID**: Numeric, length 1. The client ID for which open
-orders are to be retrieved; e.g., 0, 874, 123. If a client ID is passed, and
-no socket in the \link{sock_drawer} is connected on that ID, then a new
-socket will be opened using that ID, and closed upon function exit.
-
-* **A `sockconn` Connection**: An open connection object of class "sockconn",
-connected to the IB API; e.g., `sock_drawer$tws`}
+\itemize{
+  \item \strong{Not Specified} (Default): Opens a new connection to IB, uses
+  it to issue the request and retrieve the response, and closes connection
+  behind itself upon completion.
+  \item \strong{The Name of a Sock}: Character vector, length 1. The name of
+  an open, connected socket in the \link{sock_drawer}; e.g., "master", "tws",
+  or "sock_123"
+  \item \strong{Numeric Client ID}: Numeric, length 1. The client ID for
+  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
+  passed, and no socket in the \link{sock_drawer} is connected on that ID,
+  then a new socket will be opened on that ID, and closed upon function exit.
+  \item \strong{A \code{sockconn} Connection}: An open connection object of
+  class "sockconn", connected to the IB API; e.g., \code{sock_drawer$tws}
+}}
 }
 \value{
 A POSIXct date-time object. See \link[base]{DateTimeClasses} for details.
@@ -31,23 +31,18 @@ A POSIXct date-time object. See \link[base]{DateTimeClasses} for details.
 Fetch the current time from IB's servers.
 }
 \details{
-IB servers use the UTC timezone, but `req_current_time`() returns the time in
-terms of whatever time zone is set in your current session of R. To check
-your timezone, run the basic R command \code{\link[base]{Sys.timezone}}().
+IB servers use the UTC timezone, but \code{req_current_time}() returns the
+time in terms of whatever time zone is set in your current session of R. To
+check your timezone, run the basic R command
+\code{\link[base]{Sys.timezone}}().
 }
 \examples{
-\dontrun{
-  # This example assumes that you're connected to a default PAPER Account
-  # having five (5) trading accounts (prefix "DU") and an admin (prefix "DF"),
-  # for six (6) accounts total.
+# Fetch the current time
+current_time <- req_current_time()
 
-  # Fetch the current time
-  current_time <- req_current_time()
+# Verify that current_time is a POSIXct object
+class(current_time)
 
-  # Verify that current_time is a POSIXct object
-  class(current_time)
-
-  # Print current_time
-  current_time
-}
+# Print current_time
+current_time
 }

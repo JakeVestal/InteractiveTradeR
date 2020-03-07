@@ -10,11 +10,11 @@
 #' the name of each element is the account ID to which that code applies.
 #'
 #' @section Family Codes:
-#' Every account at Interactive Brokers is associated with one **family code**
-#' in order to cluster accounts into groups according to management. By default,
-#' the family code for an account equals that account's ID suffixed with the
-#' letter "A"; for example, a an individual account having an ID = "U1234567"
-#' would have a Family Code of "U1234567A".
+#' Every account at Interactive Brokers is associated with one \strong{family
+#' code} in order to cluster accounts into groups according to management. By
+#' default, the family code for an account equals that account's ID suffixed
+#' with the letter "A"; for example, a an individual account having an ID =
+#' "U1234567" would have a Family Code of "U1234567A".
 #'
 #' If, however, Account U1234567 were managed by a Financial Advisor running an
 #' account under ID = "U7654321", then the Family Code of account U1234567 would

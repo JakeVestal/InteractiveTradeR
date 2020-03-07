@@ -133,18 +133,10 @@ timeout setting.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='co'># This example assumes that you're connected to a default PAPER Account</span>
-  <span class='co'># having five (5) trading accounts (prefix "DU") and an admin (prefix "DF"),</span>
-  <span class='co'># for six (6) accounts total.</span>
-
-  <span class='co'># Fetch the current timeout setting for SYNC functions (in seconds):</span>
-  <span class='fu'>sync_timeout</span>()
-
-  <span class='co'># Set the time out setting for SYNC functions to 10 seconds:</span>
-  <span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)
-
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Fetch the current timeout setting for SYNC functions (in seconds):</span>
+<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
+<span class='co'># Set the time out setting for SYNC functions to 10 seconds:</span>
+<span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

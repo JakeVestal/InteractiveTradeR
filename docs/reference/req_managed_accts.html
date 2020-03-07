@@ -122,17 +122,20 @@
     <tr>
       <th>channel</th>
       <td><p>One of the following:</p>
-<p>* **Not Specified** (Default): Opens a new connection to IB, uses it to issue
-the request and retrieve the response, and closes connection behind itself
-upon completion.</p>
-<p>* **The Name of a Sock**: Character vector, length 1. The name of an open,
-connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws", "sock_123"</p>
-<p>* **Numeric Client ID**: Numeric, length 1. The client ID for which open
-orders are to be retrieved; e.g., 0, 874, 123. If a client ID is passed, and
-no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID, then a new
-socket will be opened using that ID, and closed upon function exit.</p>
-<p>* **A `sockconn` Connection**: An open connection object of class "sockconn",
-connected to the IB API; e.g., `sock_drawer$tws`</p></td>
+<ul>
+<li><p><strong>Not Specified</strong> (Default): Opens a new connection to IB, uses
+  it to issue the request and retrieve the response, and closes connection
+  behind itself upon completion.</p></li>
+<li><p><strong>The Name of a Sock</strong>: Character vector, length 1. The name of
+  an open, connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws",
+  or "sock_123"</p></li>
+<li><p><strong>Numeric Client ID</strong>: Numeric, length 1. The client ID for
+  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
+  passed, and no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID,
+  then a new socket will be opened on that ID, and closed upon function exit.</p></li>
+<li><p><strong>A <code>sockconn</code> Connection</strong>: An open connection object of
+  class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
+</ul></td>
     </tr>
     </table>
 
@@ -142,16 +145,10 @@ connected to the IB API; e.g., `sock_drawer$tws`</p></td>
 the currently logged-in user.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='co'># This example assumes that you're connected to a default PAPER Account</span>
-  <span class='co'># having five (5) trading accounts (prefix "DU") and an admin (prefix "DF"),</span>
-  <span class='co'># for six (6) accounts total.</span>
-
-  <span class='co'># Fetch managed accounts</span>
-  <span class='no'>managed_accts</span> <span class='kw'>&lt;-</span> <span class='fu'>req_managed_accts</span>()
-  <span class='co'># Print managed accounts</span>
-  <span class='no'>managed_accts</span>
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Fetch managed accounts</span>
+<span class='no'>managed_accts</span> <span class='kw'>&lt;-</span> <span class='fu'>req_managed_accts</span>()
+<span class='co'># Print managed accounts</span>
+<span class='no'>managed_accts</span></div><div class='output co'>#&gt; [1] "DF1267859" "DU1267860" "DU1267861" "DU1267862" "DU1267863" "DU1267864"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

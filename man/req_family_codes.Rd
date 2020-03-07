@@ -9,20 +9,20 @@ req_family_codes(channel = NULL)
 \arguments{
 \item{channel}{One of the following:
 
-* **Not Specified** (Default): Opens a new connection to IB, uses it to issue
-the request and retrieve the response, and closes connection behind itself
-upon completion.
-
-* **The Name of a Sock**: Character vector, length 1. The name of an open,
-connected socket in the \link{sock_drawer}; e.g., "master", "tws", "sock_123"
-
-* **Numeric Client ID**: Numeric, length 1. The client ID for which open
-orders are to be retrieved; e.g., 0, 874, 123. If a client ID is passed, and
-no socket in the \link{sock_drawer} is connected on that ID, then a new
-socket will be opened using that ID, and closed upon function exit.
-
-* **A `sockconn` Connection**: An open connection object of class "sockconn",
-connected to the IB API; e.g., `sock_drawer$tws`}
+\itemize{
+  \item \strong{Not Specified} (Default): Opens a new connection to IB, uses
+  it to issue the request and retrieve the response, and closes connection
+  behind itself upon completion.
+  \item \strong{The Name of a Sock}: Character vector, length 1. The name of
+  an open, connected socket in the \link{sock_drawer}; e.g., "master", "tws",
+  or "sock_123"
+  \item \strong{Numeric Client ID}: Numeric, length 1. The client ID for
+  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
+  passed, and no socket in the \link{sock_drawer} is connected on that ID,
+  then a new socket will be opened on that ID, and closed upon function exit.
+  \item \strong{A \code{sockconn} Connection}: An open connection object of
+  class "sockconn", connected to the IB API; e.g., \code{sock_drawer$tws}
+}}
 }
 \value{
 A named character vector containing all of the family codes for the accounts
@@ -34,11 +34,11 @@ Retrieve the family codes for all accounts accessible by the current user.
 }
 \section{Family Codes}{
 
-Every account at Interactive Brokers is associated with one **family code**
-in order to cluster accounts into groups according to management. By default,
-the family code for an account equals that account's ID suffixed with the
-letter "A"; for example, a an individual account having an ID = "U1234567"
-would have a Family Code of "U1234567A".
+Every account at Interactive Brokers is associated with one \strong{family
+code} in order to cluster accounts into groups according to management. By
+default, the family code for an account equals that account's ID suffixed
+with the letter "A"; for example, a an individual account having an ID =
+"U1234567" would have a Family Code of "U1234567A".
 
 If, however, Account U1234567 were managed by a Financial Advisor running an
 account under ID = "U7654321", then the Family Code of account U1234567 would
@@ -46,14 +46,8 @@ be "U7654321A".
 }
 
 \examples{
-\dontrun{
-  # This example assumes that you're connected to a default PAPER Account
-  # having five (5) trading accounts (prefix "DU") and an admin (prefix "DF"),
-  # for six (6) accounts total.
-
-  # Fetch family codes
-  family_codes <- req_family_codes()
-  # Print family codes
-  family_codes
-}
+# Fetch family codes
+family_codes <- req_family_codes()
+# Print family codes
+family_codes
 }
