@@ -5,6 +5,7 @@
 </h1>
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/JakeVestal/InteractiveTradeR.svg?branch=master)](https://travis-ci.org/JakeVestal/InteractiveTradeR)
 <!-- badges: end -->
 
 Connect R to the world's markets.

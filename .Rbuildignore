@@ -8,3 +8,4 @@
 ^\.Rproj\.user$
 ^pkgdown$
 skelly.R
+^\.travis\.yml$
