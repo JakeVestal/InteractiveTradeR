@@ -1,0 +1,28 @@
+
+body {
+  color: #ffffff;
+}
+
+#InteractiveTradeR-main-title {
+  background-color: inherit;
+  color: #baf5d2;
+}
+
+#InteractiveTradeR-main-title-R {
+ color: White;
+}
+
+table.ref-index {
+  padding-right: 30px;
+  padding-left: 30px;
+}
+.ref-index th {color: #ffdaa0;}
+.ref-index td > p {padding-right: 15px;}
+.ref-index td > p > code > a {color: #375f84;}
+
+.ref-description p {color: #f9f0db;}
+
+pre, code {background-color: #dceef3;}
+
+.contents h1{font-weight: bolder;}
+.contents h2{color: #cbffd2;}
