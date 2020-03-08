@@ -30,3 +30,5 @@ Imports:
 Suggests: 
     roxygen2,
     testthat
+URL: https://github.com/JakeVestal/InteractiveTradeR
+BugReports: https://github.com/JakeVestal/InteractiveTradeR/issues
