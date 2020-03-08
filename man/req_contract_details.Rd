@@ -4,10 +4,10 @@
 \alias{req_contract_details}
 \title{Request Contract Details}
 \usage{
-req_contract_details(contract = NULL, channel = NULL, block = TRUE)
+req_contract_details(contract = NULL, channel = NULL)
 }
 \arguments{
-\item{contract}{Named character vector of contract parameter(s). The name of each element identifies the parameter -- e.g., `secType` or `symbol` -- and each element itself gives the set value, e.g., `STK` or `IBM`. \cr \cr **The `contract` parameters that may be passed in to `req_contract_details`() are**:\cr`secId`, `tradingClass`, `primaryExchange`, `conId`, `symbol`, `secType`, `lastTradeDateOrContractMonth`, `strike`, `right`, `multiplier`, `exchange`, `currency`, `localSymbol`, `includeExpired`, `secIdType`\cr \cr See \link{contract} for detailed information on all `contract` parameters.}
+\item{contract}{Named character vector of contract parameter(s). The name of each element identifies the parameter -- for example, \code{secType}, \code{symbol}, \code{exchange}... -- and each element itself gives the set value (e.g., "STK", "IBM", "SMART"). \cr \cr \strong{The `contract` parameters that may be used with} \code{req_contract_details}() \strong{are}:\cr\code{secId}, \code{tradingClass}, \code{primaryExchange}, \code{conId}, \code{symbol}, \code{secType}, \code{lastTradeDateOrContractMonth}, \code{strike}, \code{right}, \code{multiplier}, \code{exchange}, \code{currency}, \code{localSymbol}, \code{includeExpired}, \code{secIdType}\cr \cr See \link{contract} for detailed information on all \code{contract} parameters.}
 
 \item{channel}{One of the following:
 
@@ -25,89 +25,78 @@ req_contract_details(contract = NULL, channel = NULL, block = TRUE)
   \item \strong{A \code{sockconn} Connection}: An open connection object of
   class "sockconn", connected to the IB API; e.g., \code{sock_drawer$tws}
 }}
-
-\item{block}{Logical, default = TRUE. `block` *must* be TRUE if `channel` is NULL. If
-`block` == TRUE, then `req_contract_details`() will hold up programmatic
-execution until it completes. Otherwise, `req_contract_details`() will write
-the request for contract details to a socket and will return NULL, invisibly,
-without reading any data. The contract details data, when it arrives from IB,
-can then be picked up later when `read_sock_drawer`() is called.}
 }
 \value{
-If `block = TRUE`, a CONTRACT_DETAILS object will be returned; otherwise NULL
-is returned invisibly.
+A \code{CONTRACT_DETAILS} if sync mode; otherwise NULL is returned invisibly
+and the query results will be updated in \code{treasury$CONTRACT_DETAILS}
+when \link{read_sock_drawer}() is called at a later time.
 }
 \description{
 Fetch a wealth of information about contracts at Interactive Brokers that are
-found to match parameters supplied in the `contract` argument.
+found to match parameters supplied in the \code{contract} argument.
 }
 \details{
-**Contract Details**: A list of each column variable that can appear in the
-output can be found here in the
+\strong{IB's documentation} describes each column variable that can appear in
+the output of \strong{InteractiveTradeR}'s implementation of
+\code{req_contract_details}() in the
 \href{https://interactivebrokers.github.io/tws-api/classIBApi_1_1ContractDetails-members.html}{ContractDetails
-Members} section of IB's documentation.
-
-**Contract Parameters**: A list of the contract parameters that may be passed
-in via the `contract` object can be found in IB's
+Members} section. A list of the contract parameters that may be passed in via
+the \code{contract} object can be found in IB's
 \href{https://interactivebrokers.github.io/tws-api/classIBApi_1_1Contract.html}{Contract
 Class Reference}.
 
-**Pacing and Large Queries**: `req_contract_details`() is able to send
-queries that involve the transfer of high amounts of data in cases where many
-contracts are found to match the selection criteria. As a consequence,
-Interactive Brokers may **pace** requests made by this function by placing
-similar or identical requests on hold for one minute, with the amount of time
-increasing each time subsequent similar/identical requests are made.
+\strong{Pacing and Large Queries}: \code{req_contract_details}() is able to
+send queries that involve the transfer of high amounts of data in cases where
+many contracts are found to match the selection criteria. As a consequence,
+Interactive Brokers may \strong{pace} requests made by this function by
+placing similar or identical requests on hold for one minute, with the amount
+of time increasing each time subsequent similar/identical requests are made.
 
 The exact criteria regarding what constitutes a "similar" request, and the
 rules governing pacing behavior, are not published. However, by following
 three general rules of thumb, pacing should not be a problem when using
-`req_contract_details`() in InteractiveTradeR:
+\code{req_contract_details}() in InteractiveTradeR:
 
-* **In SYNC mode (`channel` = NULL), bump up the timeout parameter for large
-queries with \link{sync_timeout}()**. If a large number of contracts are
-found to match the parameters in `contract`, then the function might return
-an error if called with the default timeout because it needs bit more time
-than the default 5 seconds in order to complete. Try using
-`sync_timeout(10)` or `sync_timeout(15)`.
-
-* **In Shiny apps or scripts whose execution can't/shouldn't be held up while
-`req_contract_details`() executes, use `block = FALSE`**. Specify "async" or
-a named socket for `channel`. Have your script or app look for the updated
-data in treasury$CONTRACT_DETAILS.
-
-* **Subsequent calls to `req_contract_details`() with `block = FALSE` will
-overwrite the CONTRACT_DETAILS treasury object**. In other words, there is at
-most one CONTRACT_DETAILS object in the treasury at any given time.
-
-**Using `conId` Only**: If the object passed in as `contract` has length = 1,
-then `req_contract_details`() will assume that `contract` contains a `conId`,
-which is sufficient to specify a unique contract. This shortcut can help
-speed up usage.
+\itemize{
+  \item \strong{In SYNC mode (} \code{channel = NULL}) \strong{, bump up the
+  timeout parameter for large queries with \link{sync_timeout}()}. If a large
+  number of contracts are found to match the parameters in \code{contract},
+  then the function might return an error if called with the default timeout
+  because it needs bit more time than the default 5 seconds in order to
+  complete. Try using \code{sync_timeout(10)} or \code{sync_timeout(15)}.
+  \item \strong{In Shiny apps or scripts whose execution can't/shouldn't be
+  held up while \code{req_contract_details}() executes, use} \link{async}
+  \strong{mode}. Have your script or app look for the updated data in
+  \code{treasury$CONTRACT_DETAILS} at a later time.
+  \item \strong{Subsequent calls to \code{req_contract_details}() will
+  overwrite the} \code{CONTRACT_DETAILS} \strong{treasury object}. In other
+  words, there is at most one \code{CONTRACT_DETAILS} object in the treasury
+  at any given time.
+  \item \strong{Using \code{conId} Only}: If the object passed in as
+  \code{contract} has length = 1, then \code{req_contract_details}() will
+  assume that \code{contract} contains a \code{conId}, which is sufficient to
+  specify a unique contract. This shortcut can help speed up usage.
 }
-\section{CONTRACT_DETAILS Treasury Object}{
+}
+\section{\code{CONTRACT_DETAILS} Treasury Object}{
 
-If `block == FALSE`, `req_contract_details`() will write its data request as
-informed by the `channel` argument and will return NULL without reading any
-incoming data from IB. At a later time, when the data arrives from the
-server, the **CONTRACT_DETAILS** object will be updated in the treasury.
-
-The CONTRACT_DETAILS object is a \link[tibble]{tibble} in which each row
-represents a contract found to match the supplied parameters. The columns of
-CONTRACT_DETAILS are described in the
+The \code{CONTRACT_DETAILS} object is a \link[tibble]{tibble} in which each
+row represents a contract found to match the supplied parameters. The columns
+of \code{CONTRACT_DETAILS} are described in the
 \href{https://interactivebrokers.github.io/tws-api/classIBApi_1_1ContractDetails.html}{Contract
-Details Class Reference} page in IB's online documentation **with one minor
-difference**: in InteractiveTradeR, the parameters "`validExchanges`" and
-"`marketRuleIds`" are grouped together in the column "`exchange_info`" to
-make it easy to read which market rule applies to which exchange.
+Details Class Reference} page in IB's online documentation \strong{with one
+minor difference}: in \strong{InteractiveTradeR}, the parameters
+\code{validExchanges} and \code{marketRuleIds} are grouped together in the
+column \code{exchange_info} to make it easy to read which market rule applies
+to which exchange.
 }
 
 \examples{
 #### Example: supplying more parameters gives more specific results.
 #### Goal: We would like to retrieve the contract details of IBM common stock,
-####       which has conId = 8314.
+####       which, at IB, happens to have conId = 8314.
 
-# The fastest and simplest way to get IBM's contract details is by conId only
+# The fastest and simplest way to get IBM's contract details is by conId only:
 contract_details <- req_contract_details(8314)
 contract_details
 
@@ -115,16 +104,17 @@ contract_details
 contract_details$exchange_info # View the exchange info
 contract_details$orderTypes    # See what order types are available
 contract_details$conId         # Check the conId
+
 # ... and so on.
 
 # You can also use glimpse() to print the information in what may be an
 # easier-to-read format:
 dplyr::glimpse(contract_details)
 
-# But what if you didn't already know the conId?
+# But what if you didn't already know IBM's conId?
 
 # 2) You could try to get IBM's contract details by symbol only, but because
-# there are may securities across many exchanges that have the symbol "IBM"
+# there are many securities across many exchanges that have the symbol "IBM"
 # this query won't work -- IB responds by asking for more info.
 contract_details_1 <- req_contract_details(contract = c(symbol = "IBM"))
 
@@ -133,8 +123,9 @@ contract_details_2 <- req_contract_details(
   contract = c(symbol = "IBM", secType  = "STK")
 )
 contract_details_2
-# This call will work, but should return quite a few matching contracts. Only
-# one of these is the contract of interest.
+
+# This call will work, but returns ALL of the contracts whose symbol is "IBM".
+# Only one of these is the contract of interest, so this doesn't help much.
 
 # 4) Narrow things down by specifying a currency:
 contract_details_3 <- req_contract_details(
@@ -145,7 +136,8 @@ contract_details_3 <- req_contract_details(
   )
 )
 contract_details_3
-# This helped a bit, but still have a large number of matching contracts.
+
+# This helped somewhat, but still have a large number of matching contracts.
 
 # 5) Specify an exchange:
 contract_details_4 <- req_contract_details(
@@ -157,6 +149,7 @@ contract_details_4 <- req_contract_details(
   )
 )
 contract_details_4
+
 # Success! For IBM, these four exchanges are enough to specify the contract.
 
 # Bond details return slightly different parameters. See the "ContractDetails"

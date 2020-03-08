@@ -1,7 +1,4 @@
-#' The Functionary: A 'dictionary' for functions
-#'
-#' Coded values needed for communicating with IB's servers over socket.
-#'
+#' The Functionary
 #' @keywords internal
 "functionary"
 
@@ -15,6 +12,7 @@ mcid_format <- function(
   )
 ){ do.call("paste0", rox_list) }
 
+
 #' Master Client ID
 #'
 #' @description
@@ -22,12 +20,14 @@ mcid_format <- function(
 #' IB Gateway. Within \link{InteractiveTradeR}, a socket that connects to TWS or
 #' IBG using the Master Client ID is considered a *master socket*.
 #'
-#' The Master Client ID is special becayse any call made **LIST CALLS HERE**, if
+#' The Master Client ID is special becayse any call made \strong{LIST CALLS HERE} , if
 #' made on a master socket, will ---, whereas for a normal one, ---.
+#'
+#' @name `Master Client ID`
 #'
 #' @eval mcid_format()
 #'
-"master_client_id"
+NULL
 
 #' Client ID 0: The Trader Workstation Client
 #'
@@ -36,57 +36,60 @@ mcid_format <- function(
 #' socket*. TWS sockets have the unique property of being able to view orders
 #' placed within the TWS app itself.
 #'
-"client_id_0"
+#' @name `Client ID 0`
+#' 
+NULL
 
-#' The `contract` Object and Contract Parameters
+#' The \code{contract} Object
 #'
 #' @description
-#' In InteractiveTradeR, a `contract` object is simply a named character vector
-#' or list whose elements correspond to one or more of the `contract_parameters`
-#' below. For example:
+#' In InteractiveTradeR, a \code{contract} object is simply a named character
+#' vector or list whose elements correspond to one or more of the
+#' contract parameters described below. For example:
 #'
-#' **AMD US Stock** \cr
-#' `c(symbol = "AMD", secType  = "STK", currency = "USD", exchange = "SMART")`,
+#' \strong{AMD US Stock} \cr
+#' \code{c(symbol = "AMD", secType  = "STK", currency = "USD", exchange =
+#' "SMART")},
 #'
-#' **EUR - GBP currency pair** \cr
-#' `c(symbol = "EUR", secType  = "CASH", currency = "GBP", exchange =
-#' "IDEALPRO")`,
+#' \strong{EUR - GBP currency pair} \cr
+#' \code{c(symbol = "EUR", secType  = "CASH", currency = "GBP", exchange =
+#' "IDEALPRO")},
 #'
-#'  **US T-bill, 2.25\%, 31 March 2021** \cr
-#' `c(symbol= "912828C57", secType = "BOND", exchange = "SMART", currency =
-#' "USD")`, and
+#' \strong{US T-bill, 2.25\%, 31 March 2021} \cr
+#' \code{c(symbol= "912828C57", secType = "BOND", exchange = "SMART", currency =
+#' "USD")} , and
 #'
-#'  **E-mini S&P 500 Futures** \cr
-#' `c(symbol = "ES", secType = "FUT", exchange = "GLOBEX", currency = "USD",
-#' lastTradeDateOrContractMonth = "201903")`
+#' \strong{E-mini S&P 500 Futures} \cr
+#' \code{c(symbol = "ES", secType = "FUT", exchange = "GLOBEX", currency = "USD",
+#' lastTradeDateOrContractMonth = "201903")} 
 #'
-#' ...are all valid `contract` objects.
+#' ...are all valid \code{contract} objects.
 #'
-#' @section `conId` and `exchange` are Special:
+#' @section \code{conId} and \code{exchange} are Special:
 #'
-#' **If a `contract` object is un-named and has only a single element**
-#' (`length(contract) == 1`), then InteractiveTradeR will treat the contract
-#' object as though it contained a `conId`.
+#' \strong{If a} \code{contract} \strong{object is un-named and has only a single element} 
+#' (\code{length(contract) == 1} ), then InteractiveTradeR will treat the contract
+#' object as though it contained a \code{conId} .
 #'
-#' **If a `contract` object is un-named and contains exactly two elements**
-#' (`length(contract) == 2`), then InteractiveTradeR will treat the contract
-#' object as though it contained a `conId` and an `exchange` (in any order).
+#' \strong{If a} \code{contract} \strong{object is un-named and contains exactly two elements} 
+#' (\code{length(contract) == 2} ), then InteractiveTradeR will treat the contract
+#' object as though it contained a \code{conId} and an \code{exchange} (in any order).
 #'
-#' Because a `conId` is the unique identifier of any contract in IB's system,
+#' Because a \code{conId} is the unique identifier of any contract in IB's system,
 #' this convention makes a few useful shortcuts possible in InteractiveTradeR:
 #'
-#' **Functions** (except for `place_order`(), below) **that accept a `contract`
-#' argument require only that the `conId` be specified**. In other words,
-#' `req_contract_details(8314)` will return the contract details for IBM US
-#' Stock, whose `conId = 8314`. This syntax is much simpler than having to pass
-#' in the full **basic contract** information: `c(symbol = "IBM", secType =
-#' "STK", currency = "USD", exchange = "SMART")`.
+#' \strong{Functions} (except for \code{place_order} (), below) \strong{that accept a \code{contract}
+#' argument require only that the \code{conId} be specified} . In other words,
+#' \code{req_contract_details(8314)} will return the contract details for IBM US
+#' Stock, whose \code{conId = 8314} . This syntax is much simpler than having to pass
+#' in the full \strong{basic contract} information: \code{c(symbol = "IBM", secType =
+#' "STK", currency = "USD", exchange = "SMART")} .
 #'
-#' **For `place_order`(), the `contract` object must also include an exchange.**
+#' \strong{For \code{place_order} (), the \code{contract} object must also include an exchange.} 
 #' Because orders require the user to specify the exchange on which the order is
 #' to be placed, the command
 #'
-#'  `place_order(
+#'  \code{place_order(
 #'     8314,
 #'     c(
 #'       action        = "BUY",
@@ -94,13 +97,13 @@ mcid_format <- function(
 #'       orderType     = "MKT",
 #'       totalQuantity = 50
 #'     )
-#'   )`
+#'   )} 
 #'
-#' would **not** work to buy 50 shares of IBM because the exchange isn't
+#' would \strong{not} work to buy 50 shares of IBM because the exchange isn't
 #' specified. Instead, the trader would need to include an exchange; for
 #' example, the SMART exchange:
 #'
-#' `place_order(
+#' \code{place_order(
 #'     c(8314, "SMART"),
 #'     c(
 #'       action        = "BUY",
@@ -108,95 +111,107 @@ mcid_format <- function(
 #'       orderType     = "MKT",
 #'       totalQuantity = 50
 #'     )
-#'   )`
+#'   )} 
 #'
 #'
 #' @section Basic Contract Definitions:
-#'
-#'
-#' * **comboLegs** <\link[tibble]{tibble}>: Defines the individual contract legs
-#' for placing a
-#' \href{https://www.interactivebrokers.com/php/whiteLabel/Interoperability/Socket_Client_Java/java_combo.htm}{Combination
-#' Order}. Each row in the tibble corresponds to a contract leg. Only those
-#' columns necessary to completely specify a combo leg's identity, exchange, and
-#' order weight need to be specified -- not all columns are required.
-#'
-#' For example, the following `comboLegs` tibble is sufficient to place a 1:1
-#' combo order for the two stocks identified by `conId`:
-#' \tabular{cccc}{
-#' **`conId`** \tab **`ratio`** \tab **`action`**  \tab **`exchange`** \cr
-#' `<numeric>` \tab `<numeric>` \tab `<character>` \tab `<character>`  \cr
-#' `43645865`  \tab `1`         \tab `"BUY"`       \tab `"SMART"`      \cr
-#' `9408`      \tab `1`         \tab `"SELL"`      \tab `"SMART"`      \cr
+#' The elements that may be used to create contract objects are defined below. 
+#' \strong{Order of elements does not matter} in a \code{contract} object.
+#' 
+#' \itemize{
+#'   \item \strong{conID} <numeric>: Interactive Brokers' unique numeric
+#'   identifier for a specified contract
+#'   \item \strong{symbol} <chr>: The exchange symbol under which the asset is
+#'   traded, e.g., "FB", "AAPL", "IBM"
+#'   \item \strong{secType} <chr>: Abbreviation describing security's type:
+#'     \tabular{cccccc}{
+#'       \strong{BAG} \tab \strong{BOND} \tab \strong{CASH}   \tab \strong{CMDTY} \tab \strong{FOP}   \tab \strong{FUND} \cr
+#'       combo        \tab bond          \tab forex pair      \tab commodity      \tab futures option \tab mutual fund
+#'     }
+#'     \tabular{cccccc}{
+#'       \strong{FUT} \tab \strong{IND}  \tab \strong{NEWS}   \tab \strong{OPT}   \tab \strong{STK}   \tab \strong{WAR}  \cr
+#'       futures      \tab index         \tab news            \tab option         \tab stock or ETF   \tab warrant
+#'     }
+#'   \item \strong{lastTradeDateOrContractMonth} For options & futures, the last
+#'   trading day or contract month (as applicable), in YYYYMMDD and YYYYMM
+#'   format, respectively.
+#'   \item \strong{strike} <numeric>: Strike price of asset, if applicable.
+#'   \item \strong{right} <chr>: If applicable, the "right" parameter of a
+#'   contract, e.g. "C" (right to buy, for a call), "P" (right to sell, put).
+#'   \item \strong{multiplier} <numeric>: The "lot size" of a contract, if
+#'   applicable; e.g., an options contract for 100 shares of underlying.
+#'   \item \strong{exchange} <chr>: Destination exchange; i.e., the exchange on
+#'   which the contract is to be traded.
+#'   \item \strong{currency} <chr>: 3-letter abbreviation of the currency in
+#'   which the contract is traded, e.g. "USD", "HKD".
+#'   \item \strong{localSymbol} <chr>: The symbol under which the contract is
+#'   traded in its primary exchange.
+#'   \item \strong{primaryExchange} <chr>: Main exchange on which a contract is
+#'   traded, e.g., "NASDAQ", "NYSE".
+#'   \item \strong{tradingClass} <chr>: Code that classifies an asset based on
+#'   the manner in which it is traded. Stocks, for example, have
+#'   \code{tradingClass} = "NMS" denoting the United States'
+#'   \href{https://en.wikipedia.org/wiki/National_Market_System}{National Market
+#'   System} for equities.
+#'   \item \strong{includeExpired} <logical>: If TRUE, expired options contracts 
+#'   may be included in the output. Does not work for expired options or other
+#'   financial instruments; e.g, delisted stocks.
+#'   \item \strong{SecIdType} <chr>: Specifies the type of security ID provided 
+#'   in \emph{SecId}, the next argument; for example, ISIN or CUSIP.
+#'   \item \strong{SecId} <chr>: Gives the value of the security ID whose type
+#'   you specified via \emph{SecIdType}. For example, a \code{contract} object
+#'   specifying IBM by ISIN would contain the elements \emph{SecIdType} = "ISIN
+#'   and \emph{SecId} = "US4592001014".
+#'   \item \strong{comboLegsDescrip} <chr>: short description of combo legs, if
+#'   a combo contract is being defined.
+#'   \item \strong{comboLegs} <\link[tibble]{tibble}>: Defines the individual
+#'   contract legs for placing a
+#'   \href{https://www.interactivebrokers.com/php/whiteLabel/Interoperability/Socket_Client_Java/java_combo.htm}{Combination
+#'   Order}. Each row in the tibble corresponds to a contract leg. Only those
+#'   columns necessary to completely specify a combo leg's identity, exchange,
+#'   and order weight need to be specified -- not all columns are required. For
+#'   example, the following \code{comboLegs} tibble is sufficient to place a 1:1
+#'   combo order for the two stocks identified by \code{conId}:
+#'   \tabular{cccc}{
+#'     \strong{conId}   \tab \strong{ratio}   \tab \strong{action}    \tab \strong{exchange}  \cr
+#'     \code{<numeric>} \tab \code{<numeric>} \tab \code{<character>} \tab \code{<character>} \cr
+#'     \code{43645865}  \tab \code{1}         \tab \code{"BUY"}       \tab \code{"SMART"}     \cr
+#'     \code{9408}      \tab \code{1}         \tab \code{"SELL"}      \tab \code{"SMART"}     \cr
+#'   }
+#'   \code{comboLegs} may have the following columns:
+#'     \itemize{
+#'       \item \strong{conId} <numeric>: IB's unique identifier for the contract
+#'       \item \strong{ratio} <numeric>: The contract's weight in the combo
+#'       order in terms of relative number of contracts; e.g., in a combo order
+#'       to buy 25% A and 75% B, the \code{ratio} of A and B is 1 and 3.
+#'       \item \strong{action} <character>: "BUY" or "SELL".
+#'       \item \strong{exchange} <character>: Specifies exchange on which the
+#'       order is intended to be placed.
+#'       \item \strong{openClose} <numeric>: Only necessary for institutional
+#'       (non-retail) customers. If you don't know what that is, then you're
+#'       probably a retail customer and don't need to worry about this. Only
+#'       takes the values \strong{1} \strong{2}, or \strong{3}, to signify
+#'       \strong{opening}, \strong{closing}, or \strong{unknown}.
+#'       \item \strong{shortSaleSlot} <numeric>: Only takes the values
+#'       \strong{1} or \strong{2} specifying the short sale service as
+#'       \strong{clearing broker} or \strong{third party}, respectively.
+#'       \item \strong{designatedLocation} <character>: If \code{shortSaleSlot
+#'       == 2} (third party), specifies the third party to service the short.
+#'   }
+#'   \strong{deltaNeutralContract} <\link[tibble]{tibble}>: Defines the
+#'   individual contract legs for what IB considers a delta neutral contract.
+#'   Each row in the tibble corresponds to an \strong{underlying} contract,
+#'   which may be STK or FUT, upon which derivative instruments are constructed.
+#'   The tibble must have three columns:
+#'   \itemize{
+#'     \item \emph{conId}: IB's \code{conId} for the contract
+#'     \item \emph{delta}: The delta value for the underlying contract
+#'     \item \emph{price}: Price of the underlying
+#'   }
 #' }
 #'
-#' `comboLegs` may have the following columns:
-#'
-#'   * **conId** <numeric>: IB's unique numeric identifier for the contract
-#'
-#'   * **ratio** <numeric>: The contract's weight in the combo order in terms of
-#'   relative number of contracts; e.g., in a combo order to buy 25% A and 75%
-#'   B, the `ratio` of A and B might be 1 and 3, respectively.
-#'
-#'   * **action** <character>: "BUY" or "SELL".
-#'
-#'   * **openClose** <numeric>: Only necessary for institutional (non-retail)
-#'   customers. If you don't know what that is, then you're probably a retail
-#'   customer and don't need to worry about this. Only takes the values **1**,
-#'   **2**, or **3**, which, respectively, identify an order as **opening** or
-#'   **closing** a position, or **unknown**.
-#'
-#'   * **shortSaleSlot** <numeric>: Only takes the values **1** or **2**
-#'   specifying the short sale service as **clearing broker** or **third
-#'   party**, respectively.
-#'
-#'   * **designatedLocation** <character>: If `shortSaleSlot == 2` (third
-#'   party), specifies the third party that will service the short.
-#'
-#' * **comboLegsDescrip**
-#' * **conID** <numeric>: Interactive Brokers' unique numeric identifier for a
-#' specified contract
-#' * **symbol** <chr>: The exchange symbol under which the asset is traded,
-#' e.g., "FB", "AAPL", "IBM"
-#' * **secType** <chr>: Abbreviation describing security's type:
-#' \tabular{cccccc}{
-#' **BAG** \tab **BOND** \tab **CASH**   \tab **CMDTY** \tab **FOP**        \tab **FUND**    \cr
-#' combo   \tab bond     \tab forex pair \tab commodity \tab futures option \tab mutual fund
-#' }
-#' \tabular{cccccc}{
-#' **FUT** \tab **IND** \tab **NEWS** \tab **OPT** \tab **STK**      \tab **WAR**  \cr
-#' futures \tab index   \tab news     \tab option  \tab stock or ETF \tab warrant
-#' }
-#' * **lastTradeDateOrContractMonth** For options & futures, the last
-#' trading day or contract month (as applicable), in YYYYMMDD ("\\%Y\\%m\\%d"
-#' format in R) and YYYYMM ("\\%Y\\%m" format in R) format, respectively.
-#' * **strike** <numeric>: Strike price of asset, if applicable.
-#' * **right** <chr>: If applicable, the "right" parameter of a contract, e.g.
-#' "C" (right to buy, for a call), "P" (right to sell, put).
-#' * **multiplier** <numeric>: The "lot size" of a contract, if applicable;
-#' e.g., an options contract that affects 100 shares of underlying. Numeric.
-#' * **exchange** <chr>: Destination exchange; i.e., the exchange on which the
-#' contract is to be traded.
-#'  * **currency** <chr>: 3-letter abbreviation of the currency in which the
-#'  contract is traded, e.g. "USD", "HKD".
-#' * **localSymbol** <chr>: The symbol under which the contract is traded in its
-#' primary exchange.
-#' * **primaryExchange** <chr>: Main exchange on which a contract is traded,
-#' e.g., "NASDAQ", "NYSE".
-#' * **tradingClass** <chr>: Code that classifies an asset based on the manner
-#' in which it is traded. Stocks, for example, have `trading_class` = "NMS"
-#' denoting the United States'
-#' \href{https://en.wikipedia.org/wiki/National_Market_System}{National Market
-#' System} for equities.
-#'
-#' @name contract_parameters
+#' @name contracts
 #'
 #' @aliases contract
 #'
 NULL
-
-#' Test Contracts
-#' 
-#' A list of different types of example contracts.
-#' 
-"test_contracts"

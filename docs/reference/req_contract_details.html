@@ -39,7 +39,7 @@
 
 <meta property="og:title" content="Request Contract Details — req_contract_details" />
 <meta property="og:description" content="Fetch a wealth of information about contracts at Interactive Brokers that are
-found to match parameters supplied in the `contract` argument." />
+found to match parameters supplied in the contract argument." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,17 +113,17 @@ found to match parameters supplied in the `contract` argument." />
 
     <div class="ref-description">
     <p>Fetch a wealth of information about contracts at Interactive Brokers that are
-found to match parameters supplied in the `contract` argument.</p>
+found to match parameters supplied in the <code>contract</code> argument.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>block</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>contract</th>
-      <td><p>Named character vector of contract parameter(s). The name of each element identifies the parameter -- e.g., `secType` or `symbol` -- and each element itself gives the set value, e.g., `STK` or `IBM`. <br /> <br /> **The `contract` parameters that may be passed in to `req_contract_details`() are**:<br />`secId`, `tradingClass`, `primaryExchange`, `conId`, `symbol`, `secType`, `lastTradeDateOrContractMonth`, `strike`, `right`, `multiplier`, `exchange`, `currency`, `localSymbol`, `includeExpired`, `secIdType`<br /> <br /> See <a href='contract_parameters.html'>contract</a> for detailed information on all `contract` parameters.</p></td>
+      <td><p>Named character vector of contract parameter(s). The name of each element identifies the parameter -- for example, <code>secType</code>, <code>symbol</code>, <code>exchange</code>... -- and each element itself gives the set value (e.g., "STK", "IBM", "SMART"). <br /> <br /> <strong>The `contract` parameters that may be used with</strong> <code>req_contract_details</code>() <strong>are</strong>:<br /><code>secId</code>, <code>tradingClass</code>, <code>primaryExchange</code>, <code>conId</code>, <code>symbol</code>, <code>secType</code>, <code>lastTradeDateOrContractMonth</code>, <code>strike</code>, <code>right</code>, <code>multiplier</code>, <code>exchange</code>, <code>currency</code>, <code>localSymbol</code>, <code>includeExpired</code>, <code>secIdType</code><br /> <br /> See <a href='contract_parameters.html'>contract</a> for detailed information on all <code>contract</code> parameters.</p></td>
     </tr>
     <tr>
       <th>channel</th>
@@ -143,111 +143,161 @@ found to match parameters supplied in the `contract` argument.</p>
   class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
 </ul></td>
     </tr>
-    <tr>
-      <th>block</th>
-      <td><p>Logical, default = TRUE. `block` *must* be TRUE if `channel` is NULL. If
-`block` == TRUE, then `req_contract_details`() will hold up programmatic
-execution until it completes. Otherwise, `req_contract_details`() will write
-the request for contract details to a socket and will return NULL, invisibly,
-without reading any data. The contract details data, when it arrives from IB,
-can then be picked up later when `read_sock_drawer`() is called.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If `block = TRUE`, a CONTRACT_DETAILS object will be returned; otherwise NULL
-is returned invisibly.</p>
+    <p>A <code>CONTRACT_DETAILS</code> if sync mode; otherwise NULL is returned invisibly
+and the query results will be updated in <code>treasury$CONTRACT_DETAILS</code>
+when <a href='read_sock_drawer.html'>read_sock_drawer</a>() is called at a later time.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>**Contract Details**: A list of each column variable that can appear in the
-output can be found here in the
+    <p><strong>IB's documentation</strong> describes each column variable that can appear in
+the output of <strong>InteractiveTradeR</strong>'s implementation of
+<code>req_contract_details</code>() in the
 <a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1ContractDetails-members.html'>ContractDetails
-Members</a> section of IB's documentation.</p>
-<p>**Contract Parameters**: A list of the contract parameters that may be passed
-in via the `contract` object can be found in IB's
+Members</a> section. A list of the contract parameters that may be passed in via
+the <code>contract</code> object can be found in IB's
 <a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1Contract.html'>Contract
 Class Reference</a>.</p>
-<p>**Pacing and Large Queries**: `req_contract_details`() is able to send
-queries that involve the transfer of high amounts of data in cases where many
-contracts are found to match the selection criteria. As a consequence,
-Interactive Brokers may **pace** requests made by this function by placing
-similar or identical requests on hold for one minute, with the amount of time
-increasing each time subsequent similar/identical requests are made.</p>
+<p><strong>Pacing and Large Queries</strong>: <code>req_contract_details</code>() is able to
+send queries that involve the transfer of high amounts of data in cases where
+many contracts are found to match the selection criteria. As a consequence,
+Interactive Brokers may <strong>pace</strong> requests made by this function by
+placing similar or identical requests on hold for one minute, with the amount
+of time increasing each time subsequent similar/identical requests are made.</p>
 <p>The exact criteria regarding what constitutes a "similar" request, and the
 rules governing pacing behavior, are not published. However, by following
 three general rules of thumb, pacing should not be a problem when using
-`req_contract_details`() in InteractiveTradeR:</p>
-<p>* **In SYNC mode (`channel` = NULL), bump up the timeout parameter for large
-queries with <a href='sync_timeout.html'>sync_timeout</a>()**. If a large number of contracts are
-found to match the parameters in `contract`, then the function might return
-an error if called with the default timeout because it needs bit more time
-than the default 5 seconds in order to complete. Try using
-`sync_timeout(10)` or `sync_timeout(15)`.</p>
-<p>* **In Shiny apps or scripts whose execution can't/shouldn't be held up while
-`req_contract_details`() executes, use `block = FALSE`**. Specify "async" or
-a named socket for `channel`. Have your script or app look for the updated
-data in treasury$CONTRACT_DETAILS.</p>
-<p>* **Subsequent calls to `req_contract_details`() with `block = FALSE` will
-overwrite the CONTRACT_DETAILS treasury object**. In other words, there is at
-most one CONTRACT_DETAILS object in the treasury at any given time.</p>
-<p>**Using `conId` Only**: If the object passed in as `contract` has length = 1,
-then `req_contract_details`() will assume that `contract` contains a `conId`,
-which is sufficient to specify a unique contract. This shortcut can help
-speed up usage.</p>
-    <h2 class="hasAnchor" id="contract-details-treasury-object"><a class="anchor" href="#contract-details-treasury-object"></a>CONTRACT_DETAILS Treasury Object</h2>
+<code>req_contract_details</code>() in InteractiveTradeR:</p>
+<ul>
+<li><p><strong>In SYNC mode (</strong> <code>channel = NULL</code>) <strong>, bump up the
+  timeout parameter for large queries with <a href='sync_timeout.html'>sync_timeout</a>()</strong>. If a large
+  number of contracts are found to match the parameters in <code>contract</code>,
+  then the function might return an error if called with the default timeout
+  because it needs bit more time than the default 5 seconds in order to
+  complete. Try using <code><a href='sync_timeout.html'>sync_timeout(10)</a></code> or <code><a href='sync_timeout.html'>sync_timeout(15)</a></code>.</p></li>
+<li><p><strong>In Shiny apps or scripts whose execution can't/shouldn't be
+  held up while <code>req_contract_details</code>() executes, use</strong> async
+  <strong>mode</strong>. Have your script or app look for the updated data in
+  <code>treasury$CONTRACT_DETAILS</code> at a later time.</p></li>
+<li><p><strong>Subsequent calls to <code>req_contract_details</code>() will
+  overwrite the</strong> <code>CONTRACT_DETAILS</code> <strong>treasury object</strong>. In other
+  words, there is at most one <code>CONTRACT_DETAILS</code> object in the treasury
+  at any given time.</p></li>
+<li><p><strong>Using <code>conId</code> Only</strong>: If the object passed in as
+  <code>contract</code> has length = 1, then <code>req_contract_details</code>() will
+  assume that <code>contract</code> contains a <code>conId</code>, which is sufficient to
+  specify a unique contract. This shortcut can help speed up usage.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="contract-details-treasury-object"><a class="anchor" href="#contract-details-treasury-object"></a><code>CONTRACT_DETAILS</code> Treasury Object</h2>
 
     
 
-<p>If `block == FALSE`, `req_contract_details`() will write its data request as
-informed by the `channel` argument and will return NULL without reading any
-incoming data from IB. At a later time, when the data arrives from the
-server, the **CONTRACT_DETAILS** object will be updated in the treasury.</p>
-<p>The CONTRACT_DETAILS object is a <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> in which each row
-represents a contract found to match the supplied parameters. The columns of
-CONTRACT_DETAILS are described in the
+<p>The <code>CONTRACT_DETAILS</code> object is a <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> in which each
+row represents a contract found to match the supplied parameters. The columns
+of <code>CONTRACT_DETAILS</code> are described in the
 <a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1ContractDetails.html'>Contract
-Details Class Reference</a> page in IB's online documentation **with one minor
-difference**: in InteractiveTradeR, the parameters "`validExchanges`" and
-"`marketRuleIds`" are grouped together in the column "`exchange_info`" to
-make it easy to read which market rule applies to which exchange.</p>
+Details Class Reference</a> page in IB's online documentation <strong>with one
+minor difference</strong>: in <strong>InteractiveTradeR</strong>, the parameters
+<code>validExchanges</code> and <code>marketRuleIds</code> are grouped together in the
+column <code>exchange_info</code> to make it easy to read which market rule applies
+to which exchange.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#### Example: supplying more parameters gives more specific results.</span>
 <span class='co'>#### Goal: We would like to retrieve the contract details of IBM common stock,</span>
-<span class='co'>####       which has conId = 8314.</span>
+<span class='co'>####       which, at IB, happens to have conId = 8314.</span>
 
-<span class='co'># The fastest and simplest way to get IBM's contract details is by conId only</span>
-<span class='no'>contract_details</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>8314</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>✖</span><span> Could not connect to IB
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
-#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
-#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'>
+<span class='co'># The fastest and simplest way to get IBM's contract details is by conId only:</span>
+<span class='no'>contract_details</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>8314</span>)
+<span class='no'>contract_details</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 23</span><span>
+#&gt;   symbol secType exchange currency localSymbol marketName tradingClass conId
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> IBM    STK     SMART    USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #949494;'># … with 15 more variables: minTick </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, mdSizeMultiplier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   orderTypes </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, priceMagnifier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, longName </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   primaryExchange </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, industry </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, category </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, subcategory </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   timeZoneId </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, tradingHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, liquidHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, aggGroup </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   stockType </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, exchange_info </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'>
 <span class='co'># You can select, manipulate, and view the fetched details:</span>
-<span class='no'>contract_details</span>$<span class='no'>exchange_info</span> <span class='co'># View the exchange info</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'><span class='no'>contract_details</span>$<span class='no'>orderTypes</span>    <span class='co'># See what order types are available</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'><span class='no'>contract_details</span>$<span class='no'>conId</span>         <span class='co'># Check the conId</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'><span class='co'># ... and so on.</span>
+<span class='no'>contract_details</span>$<span class='no'>exchange_info</span> <span class='co'># View the exchange info</span></div><div class='output co'>#&gt; [[1]]
+#&gt; </span><span style='color: #949494;'># A tibble: 21 x 2</span><span>
+#&gt;    validExchanges marketRuleIds
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> SMART          26           
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> AMEX           26           
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> NYSE           26           
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> CBOE           26           
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> PHLX           26           
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ISE            26           
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> CHX            26           
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ARCA           26           
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ISLAND         26           
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DRCTEDGE       26           
+#&gt; </span><span style='color: #949494;'># … with 11 more rows</span><span>
+#&gt; </div><div class='input'><span class='no'>contract_details</span>$<span class='no'>orderTypes</span>    <span class='co'># See what order types are available</span></div><div class='output co'>#&gt; [1] "ACTIVETIM,AD,ADJUST,ALERT,ALGO,ALLOC,AVGCOST,BASKET,BENCHPX,COND,CONDORDER,DARKONLY,DARKPOLL,DAY,DEACT,DEACTDIS,DEACTEOD,DIS,GAT,GTC,GTD,GTT,HID,IBKRATS,ICE,IMB,IOC,LIT,LMT,LOC,MIDPX,MIT,MKT,MOC,MTL,NGCOMB,NODARK,NONALGO,OCA,OPG,OPGREROUT,PEGBENCH,POSTONLY,PREOPGRTH,REL,RPI,RTH,RTHIGNOPG,SCALE,SCALEODD,SCALERST,SMARTSTG,SNAPMID,SNAPMKT,SNAPREL,STP,STPLMT,SWEEP,TRAIL,TRAILLIT,TRAILLMT,TRAILMIT,WHATIF"</div><div class='input'><span class='no'>contract_details</span>$<span class='no'>conId</span>         <span class='co'># Check the conId</span></div><div class='output co'>#&gt; [1] 8314</div><div class='input'>
+<span class='co'># ... and so on.</span>
 
 <span class='co'># You can also use glimpse() to print the information in what may be an</span>
 <span class='co'># easier-to-read format:</span>
-<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>contract_details</span>)</div><div class='output co'>#&gt; <span class='error'>Error in dplyr::glimpse(contract_details): object 'contract_details' not found</span></div><div class='input'>
-<span class='co'># But what if you didn't already know the conId?</span>
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>contract_details</span>)</div><div class='output co'>#&gt; Observations: 1
+#&gt; Variables: 23
+#&gt; $ symbol           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "IBM"
+#&gt; $ secType          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "STK"
+#&gt; $ exchange         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "SMART"
+#&gt; $ currency         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "USD"
+#&gt; $ localSymbol      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "IBM"
+#&gt; $ marketName       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "IBM"
+#&gt; $ tradingClass     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "IBM"
+#&gt; $ conId            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 8314
+#&gt; $ minTick          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.01
+#&gt; $ mdSizeMultiplier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 100
+#&gt; $ orderTypes       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "ACTIVETIM,AD,ADJUST,ALERT,ALGO,ALLOC,AVGCOST,BASKET…
+#&gt; $ priceMagnifier   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1
+#&gt; $ longName         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "INTL BUSINESS MACHINES CORP"
+#&gt; $ primaryExchange  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "NYSE"
+#&gt; $ industry         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "Technology"
+#&gt; $ category         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "Computers"
+#&gt; $ subcategory      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "Computer Services"
+#&gt; $ timeZoneId       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "EST (Eastern Standard Time)"
+#&gt; $ tradingHours     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "20200308:CLOSED;20200309:0400-20200309:2000;2020031…
+#&gt; $ liquidHours      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "20200308:CLOSED;20200309:0930-20200309:1600;2020031…
+#&gt; $ aggGroup         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1
+#&gt; $ stockType        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "COMMON"
+#&gt; $ exchange_info    </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span> [&lt;tbl_df[21 x 2]&gt;]</div><div class='input'>
+<span class='co'># But what if you didn't already know IBM's conId?</span>
 
 <span class='co'># 2) You could try to get IBM's contract details by symbol only, but because</span>
-<span class='co'># there are may securities across many exchanges that have the symbol "IBM"</span>
+<span class='co'># there are many securities across many exchanges that have the symbol "IBM"</span>
 <span class='co'># this query won't work -- IB responds by asking for more info.</span>
-<span class='no'>contract_details_1</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>))</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
-#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
-#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'>
+<span class='no'>contract_details_1</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>))
+
 <span class='co'># 3) So, try providing a valid security type:</span>
 <span class='no'>contract_details_2</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(
   <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>, <span class='kw'>secType</span>  <span class='kw'>=</span> <span class='st'>"STK"</span>)
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
-#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
-#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details_2</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_2' not found</span></div><div class='input'><span class='co'># This call will work, but should return quite a few matching contracts. Only</span>
-<span class='co'># one of these is the contract of interest.</span>
+)
+<span class='no'>contract_details_2</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 28 x 24</span><span>
+#&gt;    symbol secType exchange currency localSymbol marketName tradingClass  conId
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> IBM    STK     SMART    USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> IBM    STK     SMART    EUR      IBM         XETRA      XETRA        1.41</span><span style='color: #949494;'>e</span><span>6
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> IBM    STK     AMEX     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> IBM    STK     NYSE     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> IBM    STK     CBOE     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> IBM    STK     PHLX     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> IBM    STK     ISE      USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> IBM    STK     CHX      USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> IBM    STK     ARCA     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> IBM    STK     ISLAND   USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #949494;'># … with 18 more rows, and 16 more variables: minTick </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   mdSizeMultiplier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, orderTypes </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, priceMagnifier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   longName </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, primaryExchange </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, industry </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, category </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   subcategory </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, timeZoneId </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, tradingHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, liquidHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   secIdList </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span style='color: #949494;'>, aggGroup </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, stockType </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, exchange_info </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'>
+<span class='co'># This call will work, but returns ALL of the contracts whose symbol is "IBM".</span>
+<span class='co'># Only one of these is the contract of interest, so this doesn't help much.</span>
 
 <span class='co'># 4) Narrow things down by specifying a currency:</span>
 <span class='no'>contract_details_3</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(
@@ -256,11 +306,26 @@ make it easy to read which market rule applies to which exchange.</p>
     <span class='kw'>secType</span>  <span class='kw'>=</span> <span class='st'>"STK"</span>,
     <span class='kw'>currency</span> <span class='kw'>=</span> <span class='st'>"USD"</span>
   )
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
-#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
-#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details_3</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_3' not found</span></div><div class='input'><span class='co'># This helped a bit, but still have a large number of matching contracts.</span>
+)
+<span class='no'>contract_details_3</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 21 x 23</span><span>
+#&gt;    symbol secType exchange currency localSymbol marketName tradingClass conId
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> IBM    STK     SMART    USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> IBM    STK     AMEX     USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> IBM    STK     NYSE     USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> IBM    STK     CBOE     USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> IBM    STK     PHLX     USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> IBM    STK     ISE      USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> IBM    STK     CHX      USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> IBM    STK     ARCA     USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> IBM    STK     ISLAND   USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> IBM    STK     DRCTEDGE USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #949494;'># … with 11 more rows, and 15 more variables: minTick </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   mdSizeMultiplier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, orderTypes </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, priceMagnifier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   longName </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, primaryExchange </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, industry </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, category </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   subcategory </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, timeZoneId </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, tradingHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, liquidHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   aggGroup </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, stockType </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, exchange_info </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'>
+<span class='co'># This helped somewhat, but still have a large number of matching contracts.</span>
 
 <span class='co'># 5) Specify an exchange:</span>
 <span class='no'>contract_details_4</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(
@@ -270,19 +335,27 @@ make it easy to read which market rule applies to which exchange.</p>
     <span class='kw'>currency</span> <span class='kw'>=</span> <span class='st'>"USD"</span>,
     <span class='kw'>exchange</span> <span class='kw'>=</span> <span class='st'>"SMART"</span>
   )
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
-#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
-#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details_4</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_4' not found</span></div><div class='input'><span class='co'># Success! For IBM, these four exchanges are enough to specify the contract.</span>
+)
+<span class='no'>contract_details_4</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 23</span><span>
+#&gt;   symbol secType exchange currency localSymbol marketName tradingClass conId
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> IBM    STK     SMART    USD      IBM         IBM        IBM           </span><span style='text-decoration: underline;'>8</span><span>314
+#&gt; </span><span style='color: #949494;'># … with 15 more variables: minTick </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, mdSizeMultiplier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   orderTypes </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, priceMagnifier </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, longName </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   primaryExchange </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, industry </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, category </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, subcategory </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   timeZoneId </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, tradingHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, liquidHours </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, aggGroup </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   stockType </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, exchange_info </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'>
+<span class='co'># Success! For IBM, these four exchanges are enough to specify the contract.</span>
 
 <span class='co'># Bond details return slightly different parameters. See the "ContractDetails"</span>
 <span class='co'># documentation on IB's website at the link provided in the "Value" section.</span>
-<span class='no'>broadcom_bond</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>359401413</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
-#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
-#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>broadcom_bond</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'broadcom_bond' not found</span></div></span></pre>
+<span class='no'>broadcom_bond</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>359401413</span>)
+<span class='no'>broadcom_bond</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 10</span><span>
+#&gt;   secType descAppend exchange tradingClass  conId minTick mdSizeMultiplier
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> BOND    AVGO 4 1/… SMART    AVGO         3.59</span><span style='color: #949494;'>e</span><span>8  0.000</span><span style='text-decoration: underline;'>1</span><span>                1
+#&gt; </span><span style='color: #949494;'># … with 3 more variables: orderTypes </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, aggGroup </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span style='color: #949494;'>,
+#&gt; #   exchange_info </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -290,7 +363,7 @@ make it easy to read which market rule applies to which exchange.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#contract-details-treasury-object">CONTRACT_DETAILS Treasury Object</a></li>
+      <li><a href="#contract-details-treasury-object"><code>CONTRACT_DETAILS</code> Treasury Object</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

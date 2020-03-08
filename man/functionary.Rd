@@ -3,12 +3,12 @@
 \docType{data}
 \name{functionary}
 \alias{functionary}
-\title{The Functionary: A 'dictionary' for functions}
+\title{The Functionary}
 \format{An object of class \code{list} of length 25.}
 \usage{
 functionary
 }
 \description{
-Coded values needed for communicating with IB's servers over socket.
+The Functionary
 }
 \keyword{internal}

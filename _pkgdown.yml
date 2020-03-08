@@ -12,3 +12,11 @@ reference:
   - req_current_time
   - req_family_codes
   - req_managed_accts
+- title: Get Info about Assets
+  desc: Retreive identifiers, strike prices, active exchanges, etc for financial instruments
+  contents:
+  - req_contract_details
+- title: Concepts
+  desc: Explains key elements of such as sockets, contract objects, sync & aysnc modes, etc.
+  contents:
+  - contracts

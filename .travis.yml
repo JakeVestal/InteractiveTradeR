@@ -4,7 +4,6 @@ language: R
 cache: packages
 os:
   - linux
-  - osx
 install:
   - ./scripts/install-dependencies.sh
 r_check_args: " --no-examples"

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request Family Codes — req_family_codes • InteractiveTradeR</title>
+<title>Master Client ID — `Master Client ID` • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,12 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Request Family Codes — req_family_codes" />
-<meta property="og:description" content="Retrieve the family codes for all accounts accessible by the current user." />
+<meta property="og:title" content="Master Client ID — `Master Client ID`" />
+<meta property="og:description" content="A particular client ID that the user identifies within Trader Workstation or
+IB Gateway. Within InteractiveTradeR, a socket that connects to TWS or
+IBG using the Master Client ID is considered a *master socket*.
+The Master Client ID is special becayse any call made LIST CALLS HERE , if
+made on a master socket, will ---, whereas for a normal one, ---." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,72 +109,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request Family Codes</h1>
+    <h1>Master Client ID</h1>
     
-    <div class="hidden name"><code>req_family_codes.Rd</code></div>
+    <div class="hidden name"><code>tick-Master-Client-ID-tick.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve the family codes for all accounts accessible by the current user.</p>
+    <p>A particular client ID that the user identifies within Trader Workstation or
+IB Gateway. Within <a href='InteractiveTradeR.html'>InteractiveTradeR</a>, a socket that connects to TWS or
+IBG using the Master Client ID is considered a *master socket*.</p>
+<p>The Master Client ID is special becayse any call made <strong>LIST CALLS HERE</strong> , if
+made on a master socket, will ---, whereas for a normal one, ---.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>req_family_codes</span>(<span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>channel</th>
-      <td><p>One of the following:</p>
-<ul>
-<li><p><strong>Not Specified</strong> (Default): Opens a new connection to IB, uses
-  it to issue the request and retrieve the response, and closes connection
-  behind itself upon completion.</p></li>
-<li><p><strong>The Name of a Sock</strong>: Character vector, length 1. The name of
-  an open, connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws",
-  or "sock_123"</p></li>
-<li><p><strong>Numeric Client ID</strong>: Numeric, length 1. The client ID for
-  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
-  passed, and no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID,
-  then a new socket will be opened on that ID, and closed upon function exit.</p></li>
-<li><p><strong>A <code>sockconn</code> Connection</strong>: An open connection object of
-  class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
-</ul></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A named character vector containing all of the family codes for the accounts
-that are visible to the user. The value of each element is a family code, and
-the name of each element is the account ID to which that code applies.</p>
-    <h2 class="hasAnchor" id="family-codes"><a class="anchor" href="#family-codes"></a>Family Codes</h2>
+    <p>integer between 1 and 65,535, inclusive</p>
 
-    
-
-<p>Every account at Interactive Brokers is associated with one <strong>family
-code</strong> in order to cluster accounts into groups according to management. By
-default, the family code for an account equals that account's ID suffixed
-with the letter "A"; for example, a an individual account having an ID =
-"U1234567" would have a Family Code of "U1234567A".</p>
-<p>If, however, Account U1234567 were managed by a Financial Advisor running an
-account under ID = "U7654321", then the Family Code of account U1234567 would
-be "U7654321A".</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Fetch family codes</span>
-<span class='no'>family_codes</span> <span class='kw'>&lt;-</span> <span class='fu'>req_family_codes</span>()
-<span class='co'># Print family codes</span>
-<span class='no'>family_codes</span></div><div class='output co'>#&gt;            * 
-#&gt; "DF1267859A" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#family-codes">Family Codes</a></li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="#format">Format</a></li>
     </ul>
 
   </div>

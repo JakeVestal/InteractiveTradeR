@@ -13,10 +13,7 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancellator.html</loc>
   </url>
   <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/client_id_0.html</loc>
-  </url>
-  <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/contract_parameters.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/contracts.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/create_new_connections.html</loc>
@@ -41,9 +38,6 @@
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/launch_InteractiveTradeR_example_app.html</loc>
-  </url>
-  <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/master_client_id.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/order_obj.html</loc>
@@ -76,7 +70,10 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/sync_timeout.html</loc>
   </url>
   <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/test_contracts.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tick-Client-ID-0-tick.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tick-Master-Client-ID-tick.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tidyeval.html</loc>
