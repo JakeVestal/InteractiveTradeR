@@ -16,6 +16,7 @@ reference:
   desc: Retreive identifiers, strike prices, active exchanges, etc for financial instruments
   contents:
   - req_contract_details
+  - req_matching_symbols
 - title: Concepts
   desc: Explains key elements of such as sockets, contract objects, sync & aysnc modes, etc.
   contents:

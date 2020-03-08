@@ -93,7 +93,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/JakeVestal/InteractiveTradeR">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -108,7 +113,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create New Connections to Interactive Brokers</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/create_new_connections.R'><code>R/create_new_connections.R</code></a></small>
     <div class="hidden name"><code>create_new_connections.Rd</code></div>
     </div>
 
@@ -136,13 +141,13 @@
     <tr>
       <th>include_master</th>
       <td><p>Boolean, default = FALSE. If TRUE, then a connection using the
-master_client_idMaster Client ID will be opened and assigned the
+<a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client ID will be opened and assigned the
 name "**master**".</p></td>
     </tr>
     <tr>
       <th>include_tws</th>
       <td><p>Boolean, default = FALSE. If TRUE, then a connection using
-client_id_0Client ID 0 will be included in the result and assigned
+<a href='tick-Client-ID-0-tick.html'>client_id_0</a>Client ID 0 will be included in the result and assigned
 the name "**tws**".</p></td>
     </tr>
     <tr>
@@ -167,8 +172,8 @@ storing pointers that refer to them within InteractiveTradeR.</p>
 
     <p>**Client IDs** In InteractiveTradeR, Client IDs are not assigned by the user;
 instead, they are tracked internally. The user may assign subscriptions and
-requests to the master_client_idMaster Client, the
-client_id_0TWS Client(Client ID = 0) or a generic socket.</p>
+requests to the <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client, the
+<a href='tick-Client-ID-0-tick.html'>client_id_0</a>TWS Client(Client ID = 0) or a generic socket.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>disconnect</p></div>

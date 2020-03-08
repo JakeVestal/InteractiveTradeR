@@ -117,6 +117,14 @@ connections to Trader Workstation (TWS) and IB Gateway (IBG):
 }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/JakeVestal/InteractiveTradeR}
+  \item Report bugs at \url{https://github.com/JakeVestal/InteractiveTradeR/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Jake Vestal \email{jmvestal@gmail.com} (\href{https://orcid.org/0000-0002-2970-4795}{ORCID})
 

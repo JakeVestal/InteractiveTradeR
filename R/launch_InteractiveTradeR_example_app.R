@@ -25,7 +25,7 @@
 #'   # Print the directory containing the code for all examples
 #'   system.file("examples", package="InteractiveTradeR")
 #' }
-#' @export
+#' 
 launch_InteractiveTradeR_example_app <- function(
   port           = NULL,
   launch.browser = getOption('shiny.launch.browser', interactive()),

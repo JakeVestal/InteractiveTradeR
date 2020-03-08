@@ -92,7 +92,12 @@ found to match parameters supplied in the contract argument." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/JakeVestal/InteractiveTradeR">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,7 +112,7 @@ found to match parameters supplied in the contract argument." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Request Contract Details</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_contract_details.R'><code>R/req_contract_details.R</code></a></small>
     <div class="hidden name"><code>req_contract_details.Rd</code></div>
     </div>
 
@@ -178,7 +183,7 @@ three general rules of thumb, pacing should not be a problem when using
   because it needs bit more time than the default 5 seconds in order to
   complete. Try using <code><a href='sync_timeout.html'>sync_timeout(10)</a></code> or <code><a href='sync_timeout.html'>sync_timeout(15)</a></code>.</p></li>
 <li><p><strong>In Shiny apps or scripts whose execution can't/shouldn't be
-  held up while <code>req_contract_details</code>() executes, use</strong> async
+  held up while <code>req_contract_details</code>() executes, use</strong> <a href='async.html'>async</a>
   <strong>mode</strong>. Have your script or app look for the updated data in
   <code>treasury$CONTRACT_DETAILS</code> at a later time.</p></li>
 <li><p><strong>Subsequent calls to <code>req_contract_details</code>() will
