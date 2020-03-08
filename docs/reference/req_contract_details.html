@@ -218,7 +218,11 @@ make it easy to read which market rule applies to which exchange.</p>
 <span class='co'>####       which has conId = 8314.</span>
 
 <span class='co'># The fastest and simplest way to get IBM's contract details is by conId only</span>
-<span class='no'>contract_details</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>8314</span>)</div><div class='output co'>#&gt; <span class='error'>Error in clear_cols(.): could not find function "clear_cols"</span></div><div class='input'><span class='no'>contract_details</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'>
+<span class='no'>contract_details</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>8314</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'>
 <span class='co'># You can select, manipulate, and view the fetched details:</span>
 <span class='no'>contract_details</span>$<span class='no'>exchange_info</span> <span class='co'># View the exchange info</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'><span class='no'>contract_details</span>$<span class='no'>orderTypes</span>    <span class='co'># See what order types are available</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'><span class='no'>contract_details</span>$<span class='no'>conId</span>         <span class='co'># Check the conId</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details' not found</span></div><div class='input'><span class='co'># ... and so on.</span>
 
@@ -230,12 +234,19 @@ make it easy to read which market rule applies to which exchange.</p>
 <span class='co'># 2) You could try to get IBM's contract details by symbol only, but because</span>
 <span class='co'># there are may securities across many exchanges that have the symbol "IBM"</span>
 <span class='co'># this query won't work -- IB responds by asking for more info.</span>
-<span class='no'>contract_details_1</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>))</div><div class='output co'>#&gt; <span style='color: #00BB00;'>✔</span><span> Stop Early Element reached
-#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Error validating request:-'bQ' : cause - The symbol or the local-symbol or the security id must be entered</div><div class='input'>
+<span class='no'>contract_details_1</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>))</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'>
 <span class='co'># 3) So, try providing a valid security type:</span>
 <span class='no'>contract_details_2</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(
   <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>, <span class='kw'>secType</span>  <span class='kw'>=</span> <span class='st'>"STK"</span>)
-)</div><div class='output co'>#&gt; <span class='error'>Error in clear_cols(.): could not find function "clear_cols"</span></div><div class='input'><span class='no'>contract_details_2</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_2' not found</span></div><div class='input'><span class='co'># This call will work, but should return quite a few matching contracts. Only</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details_2</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_2' not found</span></div><div class='input'><span class='co'># This call will work, but should return quite a few matching contracts. Only</span>
 <span class='co'># one of these is the contract of interest.</span>
 
 <span class='co'># 4) Narrow things down by specifying a currency:</span>
@@ -245,7 +256,11 @@ make it easy to read which market rule applies to which exchange.</p>
     <span class='kw'>secType</span>  <span class='kw'>=</span> <span class='st'>"STK"</span>,
     <span class='kw'>currency</span> <span class='kw'>=</span> <span class='st'>"USD"</span>
   )
-)</div><div class='output co'>#&gt; <span class='error'>Error in clear_cols(.): could not find function "clear_cols"</span></div><div class='input'><span class='no'>contract_details_3</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_3' not found</span></div><div class='input'><span class='co'># This helped a bit, but still have a large number of matching contracts.</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details_3</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_3' not found</span></div><div class='input'><span class='co'># This helped a bit, but still have a large number of matching contracts.</span>
 
 <span class='co'># 5) Specify an exchange:</span>
 <span class='no'>contract_details_4</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(
@@ -255,11 +270,19 @@ make it easy to read which market rule applies to which exchange.</p>
     <span class='kw'>currency</span> <span class='kw'>=</span> <span class='st'>"USD"</span>,
     <span class='kw'>exchange</span> <span class='kw'>=</span> <span class='st'>"SMART"</span>
   )
-)</div><div class='output co'>#&gt; <span class='error'>Error in clear_cols(.): could not find function "clear_cols"</span></div><div class='input'><span class='no'>contract_details_4</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_4' not found</span></div><div class='input'><span class='co'># Success! For IBM, these four exchanges are enough to specify the contract.</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>contract_details_4</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'contract_details_4' not found</span></div><div class='input'><span class='co'># Success! For IBM, these four exchanges are enough to specify the contract.</span>
 
 <span class='co'># Bond details return slightly different parameters. See the "ContractDetails"</span>
 <span class='co'># documentation on IB's website at the link provided in the "Value" section.</span>
-<span class='no'>broadcom_bond</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>359401413</span>)</div><div class='output co'>#&gt; <span class='error'>Error in clear_cols(.): could not find function "clear_cols"</span></div><div class='input'><span class='no'>broadcom_bond</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'broadcom_bond' not found</span></div></span></pre>
+<span class='no'>broadcom_bond</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='fl'>359401413</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='no'>broadcom_bond</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'broadcom_bond' not found</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

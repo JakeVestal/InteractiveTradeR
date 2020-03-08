@@ -159,10 +159,12 @@ be "U7654321A".</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch family codes</span>
-<span class='no'>family_codes</span> <span class='kw'>&lt;-</span> <span class='fu'>req_family_codes</span>()
-<span class='co'># Print family codes</span>
-<span class='no'>family_codes</span></div><div class='output co'>#&gt;            * 
-#&gt; "DF1267859A" </div></pre>
+<span class='no'>family_codes</span> <span class='kw'>&lt;-</span> <span class='fu'>req_family_codes</span>()</div><div class='output co'>#&gt; <span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='co'># Print family codes</span>
+<span class='no'>family_codes</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'family_codes' not found</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

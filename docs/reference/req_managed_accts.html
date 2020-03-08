@@ -146,9 +146,12 @@ the currently logged-in user.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch managed accounts</span>
-<span class='no'>managed_accts</span> <span class='kw'>&lt;-</span> <span class='fu'>req_managed_accts</span>()
-<span class='co'># Print managed accounts</span>
-<span class='no'>managed_accts</span></div><div class='output co'>#&gt; [1] "DF1267859" "DU1267860" "DU1267861" "DU1267862" "DU1267863" "DU1267864"</div></pre>
+<span class='no'>managed_accts</span> <span class='kw'>&lt;-</span> <span class='fu'>req_managed_accts</span>()</div><div class='output co'>#&gt; <span style='color: #BB0000;'>✖</span><span> Could not connect to IB
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Make sure that an instance of Trader Workstation (TWS) or IB Gateway (IBG) is open.
+#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Verify that InteractiveTradeR is attempting to connect to TWS / IBG with a valid set
+#&gt;   of parameters by issuing command </span><span style='font-weight: bold;'>active_connection_parameters</span><span>().</div><div class='output co'>#&gt; <span class='error'>Error in value[[3L]](cond): Error in socketConnection(host = host, port = port, open = "ab", encoding = "ascii") : </span>
+#&gt; <span class='error'>  cannot open the connection</span></div><div class='output co'>#&gt; <span class='error'>Error in close(sock): object 'sock' not found</span></div><div class='input'><span class='co'># Print managed accounts</span>
+<span class='no'>managed_accts</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'managed_accts' not found</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
