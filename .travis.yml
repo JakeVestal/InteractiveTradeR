@@ -5,7 +5,6 @@ cache: packages
 os:
   - linux
   - osx
-  - windows
 #install:
 #  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./scripts/install-dependencies.sh; fi
 r_check_args: " --no-examples"
