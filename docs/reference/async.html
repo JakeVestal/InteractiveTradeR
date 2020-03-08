@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request Current Time — req_current_time • InteractiveTradeR</title>
+<title>Async Mode — async • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Request Current Time — req_current_time" />
-<meta property="og:description" content="Fetch the current time from IB's servers." />
+<meta property="og:title" content="Async Mode — async" />
+<meta property="og:description" content="Documentation goes here." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,66 +105,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request Current Time</h1>
+    <h1>Async Mode</h1>
     
-    <div class="hidden name"><code>req_current_time.Rd</code></div>
+    <div class="hidden name"><code>async.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fetch the current time from IB's servers.</p>
+    <p>Documentation goes here.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>req_current_time</span>(<span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>channel</th>
-      <td><p>One of the following:</p>
-<ul>
-<li><p><strong>Not Specified</strong> (Default): Opens a new connection to IB, uses
-  it to issue the request and retrieve the response, and closes connection
-  behind itself upon completion.</p></li>
-<li><p><strong>The Name of a Sock</strong>: Character vector, length 1. The name of
-  an open, connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws",
-  or "sock_123"</p></li>
-<li><p><strong>Numeric Client ID</strong>: Numeric, length 1. The client ID for
-  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
-  passed, and no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID,
-  then a new socket will be opened on that ID, and closed upon function exit.</p></li>
-<li><p><strong>A <code>sockconn</code> Connection</strong>: An open connection object of
-  class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
-</ul></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A POSIXct date-time object. See <a href='https://rdrr.io/r/base/DateTimeClasses.html'>DateTimeClasses</a> for details.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>IB servers use the UTC timezone, but <code>req_current_time</code>() returns the
-time in terms of whatever time zone is set in your current session of R. To
-check your timezone, run the basic R command
-<code><a href='https://rdrr.io/r/base/timezones.html'>Sys.timezone</a></code>().</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Fetch the current time</span>
-<span class='no'>current_time</span> <span class='kw'>&lt;-</span> <span class='fu'>req_current_time</span>()
-
-<span class='co'># Verify that current_time is a POSIXct object</span>
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>current_time</span>)</div><div class='output co'>#&gt; [1] "POSIXct" "POSIXt" </div><div class='input'>
-<span class='co'># Print current_time</span>
-<span class='no'>current_time</span></div><div class='output co'>#&gt; [1] "2020-03-08 12:50:16 EDT"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

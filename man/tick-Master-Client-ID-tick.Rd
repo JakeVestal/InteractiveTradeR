@@ -2,6 +2,7 @@
 % Please edit documentation in R/data.R
 \name{`Master Client ID`}
 \alias{`Master Client ID`}
+\alias{master_client_id}
 \title{Master Client ID}
 \format{integer between 1 and 65,535, inclusive}
 \description{

@@ -24,6 +24,8 @@ mcid_format <- function(
 #' made on a master socket, will ---, whereas for a normal one, ---.
 #'
 #' @name `Master Client ID`
+#' 
+#' @aliases master_client_id
 #'
 #' @eval mcid_format()
 #'
@@ -37,6 +39,16 @@ NULL
 #' placed within the TWS app itself.
 #'
 #' @name `Client ID 0`
+#' 
+#' @aliases client_id_0
+#' 
+NULL
+
+#' Async Mode
+#' 
+#' Documentation goes here.
+#' 
+#' @name async
 #' 
 NULL
 

@@ -2,6 +2,7 @@
 % Please edit documentation in R/data.R
 \name{`Client ID 0`}
 \alias{`Client ID 0`}
+\alias{client_id_0}
 \title{Client ID 0: The Trader Workstation Client}
 \description{
 A socket that connects to TWS or IBG using Client ID = 0 is considered a *TWS
