@@ -2,6 +2,6 @@
 
 set -ev
 
-wget -O /scripts https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh
+sudo wget -O /scripts https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh
 sudo chmod ugo+x scripts/ibgateway-latest-standalone-linux-x64.sh
 yes n | sudo ./scripts/ibgateway-latest-standalone-linux-x64.sh
