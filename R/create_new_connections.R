@@ -3,7 +3,7 @@ number_of_new_socks_param <- function(
     "@param number_of_new_socks Integer, default = 1. Total number of new ",
     "connections to open, including Master and TWS (if requested). ",
     "Interactive Brokers allows a maximum of ",
-    InteractiveTradeR::functionary$max_client_applications,
+    InteractiveTradeR:::functionary$max_client_applications,
     "connections open at a time, per username."
   )
 ){ do.call("paste0", rox_list) }
@@ -81,7 +81,7 @@ create_new_connections <- function(
 
   # Check max connections rule
   if(
-    InteractiveTradeR::functionary$max_client_applications < sum(
+    InteractiveTradeR:::functionary$max_client_applications < sum(
       length(ls(sock_drawer)), number_of_new_socks
     )
   ){
@@ -93,13 +93,13 @@ create_new_connections <- function(
         crayon::bold(number_of_new_socks),
         " new connections, but only ",
         crayon::bold(
-          InteractiveTradeR::functionary$max_client_applications -
+          InteractiveTradeR:::functionary$max_client_applications -
             nrow(showConnections())
         ), " new connections\n",
         "are possible without exceeding Interactive Brokers' limit of\n\t",
         crayon::bold(
           crayon::underline(
-            InteractiveTradeR::functionary$max_client_applications,
+            InteractiveTradeR:::functionary$max_client_applications,
             "connections",
             "at any given time"
           )

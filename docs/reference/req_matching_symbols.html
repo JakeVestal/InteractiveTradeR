@@ -184,56 +184,56 @@ telling you that IB is busy processing the request for a different client.</p>
 <span class='no'>matching_symbols</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
 <span class='co'># If that doesn't satisfy, try a few more search strings. Wait 3 seconds after</span>
 <span class='co'># each one so as to be kind to IB's servers.</span>
-<span class='fu'>req_matching_symbols</span>(<span class='st'>"ibm"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 15 x 6</span><span>
+<span class='fu'>req_matching_symbols</span>(<span class='st'>"ibm"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 15 x 6</span><span>
 #&gt;    con_id    symbol    sec_type primary_exchange currency asset_types
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 8314      IBM       STK      NYSE             USD      </span><span style='color: #949494;'>&lt;chr [6]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 1411277   IBM       STK      IBIS             EUR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 38709473  IBM       STK      MEXI             MXN      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 41645598  IBMUSD    STK      EBS              USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 205626661 IBMK      STK      ARCA             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 163609161 IBMI      STK      ARCA             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 205626656 IBMJ      STK      ARCA             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 272692107 IBML      STK      BATS             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 311679969 IBMM      STK      BATS             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 341758684 IBMN      STK      BATS             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 361208024 IBMQ      STK      BATS             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 359815312 IBMO      STK      BATS             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> 360508598 IBMP      STK      BATS             USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> 365190838 IBMFNIFTY STK      NSE              INR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> 265861716 IBM.REC   STK      CARISK           USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>3</span>)
-<span class='fu'>req_matching_symbols</span>(<span class='st'>"business"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 6</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'> 1</span><span> 8314      IBM       STK      NYSE             USD      </span><span style='color: #555555;'>&lt;chr [6]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 2</span><span> 1411277   IBM       STK      IBIS             EUR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span> 38709473  IBM       STK      MEXI             MXN      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 4</span><span> 41645598  IBMUSD    STK      EBS              USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 5</span><span> 205626661 IBMK      STK      ARCA             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 6</span><span> 163609161 IBMI      STK      ARCA             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 205626656 IBMJ      STK      ARCA             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 272692107 IBML      STK      BATS             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 9</span><span> 311679969 IBMM      STK      BATS             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> 341758684 IBMN      STK      BATS             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>11</span><span> 361208024 IBMQ      STK      BATS             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> 359815312 IBMO      STK      BATS             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>13</span><span> 360508598 IBMP      STK      BATS             USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>14</span><span> 365190838 IBMFNIFTY STK      NSE              INR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>15</span><span> 265861716 IBM.REC   STK      CARISK           USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>3</span>)
+<span class='fu'>req_matching_symbols</span>(<span class='st'>"business"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 6</span><span>
 #&gt;    con_id    symbol sec_type primary_exchange currency asset_types
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 8314      IBM    STK      NYSE             USD      </span><span style='color: #949494;'>&lt;chr [6]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 41645598  IBMUSD STK      EBS              USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 1411277   IBM    STK      IBIS             EUR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 38709473  IBM    STK      MEXI             MXN      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 6604892   PSB    STK      NYSE             USD      </span><span style='color: #949494;'>&lt;chr [3]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 235343043 BBU.UN STK      TSE              CAD      </span><span style='color: #949494;'>&lt;chr [2]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 234647237 BBU    STK      NYSE             USD      </span><span style='color: #949494;'>&lt;chr [2]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 44263073  4733   STK      TSEJ             JPY      </span><span style='color: #949494;'>&lt;chr [1]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 39131134  2834   STK      TAI              TWD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 48880606  RLIA   STK      BM               EUR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 229728912 MOO    STK      ARCA             USD      </span><span style='color: #949494;'>&lt;chr [4]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 4726958   BBSI   STK      NASDAQ.NMS       USD      </span><span style='color: #949494;'>&lt;chr [3]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> 260519091 147    STK      SEHK             HKD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> 132897787 SV3U   STK      SGX              SGD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> 171642734 NEWT   STK      NASDAQ.NMS       USD      </span><span style='color: #949494;'>&lt;chr [3]&gt;</span><span>  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>3</span>)
-<span class='fu'>req_matching_symbols</span>(<span class='st'>"machines"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 11 x 6</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'> 1</span><span> 8314      IBM    STK      NYSE             USD      </span><span style='color: #555555;'>&lt;chr [6]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 2</span><span> 41645598  IBMUSD STK      EBS              USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span> 1411277   IBM    STK      IBIS             EUR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 4</span><span> 38709473  IBM    STK      MEXI             MXN      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 5</span><span> 6604892   PSB    STK      NYSE             USD      </span><span style='color: #555555;'>&lt;chr [3]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 6</span><span> 235343043 BBU.UN STK      TSE              CAD      </span><span style='color: #555555;'>&lt;chr [2]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 234647237 BBU    STK      NYSE             USD      </span><span style='color: #555555;'>&lt;chr [2]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 44263073  4733   STK      TSEJ             JPY      </span><span style='color: #555555;'>&lt;chr [1]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 9</span><span> 39131134  2834   STK      TAI              TWD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> 48880606  RLIA   STK      BM               EUR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>11</span><span> 229728912 MOO    STK      ARCA             USD      </span><span style='color: #555555;'>&lt;chr [4]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>12</span><span> 4726958   BBSI   STK      NASDAQ.NMS       USD      </span><span style='color: #555555;'>&lt;chr [3]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>13</span><span> 260519091 147    STK      SEHK             HKD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>14</span><span> 132897787 SV3U   STK      SGX              SGD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>15</span><span> 171642734 NEWT   STK      NASDAQ.NMS       USD      </span><span style='color: #555555;'>&lt;chr [3]&gt;</span><span>  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>3</span>)
+<span class='fu'>req_matching_symbols</span>(<span class='st'>"machines"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 11 x 6</span><span>
 #&gt;    con_id    symbol    sec_type primary_exchange currency asset_types
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 8314      IBM       STK      NYSE             USD      </span><span style='color: #949494;'>&lt;chr [6]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 41645598  IBMUSD    STK      EBS              USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 1411277   IBM       STK      IBIS             EUR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 38709473  IBM       STK      MEXI             MXN      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 295400721 M2Z       STK      FWB2             EUR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 146510035 MMX       STK      LSE              GBP      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 92870230  WINDMACHI STK      NSE              INR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 311885911 MACPOWER  STK      NSE              INR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 56983469  LOKESHMAC STK      NSE              INR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 332653316 MARSHALL  STK      NSE              INR      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 265861716 IBM.REC   STK      CARISK           USD      </span><span style='color: #949494;'>&lt;chr [0]&gt;</span><span>  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>3</span>)
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'> 1</span><span> 8314      IBM       STK      NYSE             USD      </span><span style='color: #555555;'>&lt;chr [6]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 2</span><span> 41645598  IBMUSD    STK      EBS              USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span> 1411277   IBM       STK      IBIS             EUR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 4</span><span> 38709473  IBM       STK      MEXI             MXN      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 5</span><span> 295400721 M2Z       STK      FWB2             EUR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 6</span><span> 146510035 MMX       STK      LSE              GBP      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 92870230  WINDMACHI STK      NSE              INR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 311885911 MACPOWER  STK      NSE              INR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 9</span><span> 56983469  LOKESHMAC STK      NSE              INR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>10</span><span> 332653316 MARSHALL  STK      NSE              INR      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>11</span><span> 265861716 IBM.REC   STK      CARISK           USD      </span><span style='color: #555555;'>&lt;chr [0]&gt;</span><span>  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>3</span>)
 
 <span class='co'># Say you only wanted to know what asset types -- futures, options, warrants,</span>
 <span class='co'># etc -- that were available for the stock traded on the NYSE under the symbol</span>

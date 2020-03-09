@@ -5,9 +5,9 @@ test_that(
   expect_false(
     any(
       names(
-        InteractiveTradeR::functionary$outgoing_msg_codes
+        InteractiveTradeR:::functionary$outgoing_msg_codes
       ) %in% names(
-        InteractiveTradeR::functionary$incoming_msg_codes
+        InteractiveTradeR:::functionary$incoming_msg_codes
       )
     )
   )

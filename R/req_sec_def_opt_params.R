@@ -71,14 +71,14 @@ req_sec_def_opt_params <- function(
     socket          = sock,
     success_element = simple_encode(
       c(
-        InteractiveTradeR::functionary$incoming_msg_codes$
+        InteractiveTradeR:::functionary$incoming_msg_codes$
           SECURITY_DEFINITION_OPTION_PARAMETER_END,
         req_id
       )
     ),
     stop_early = simple_encode(
       c(
-        InteractiveTradeR::functionary$incoming_msg_codes$ERR_MSG,
+        InteractiveTradeR:::functionary$incoming_msg_codes$ERR_MSG,
         2,
         req_id
       )

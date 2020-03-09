@@ -91,11 +91,11 @@ ib_connect <- function(
       
       writeBin(
         object = c(
-          InteractiveTradeR::functionary$fixed_api_msgs$initiate_handshake_msg,
+          InteractiveTradeR:::functionary$fixed_api_msgs$initiate_handshake_msg,
           ib_encode_raw_msg(
             c(
-              InteractiveTradeR::functionary$outgoing_msg_codes$START_API,
-              InteractiveTradeR::functionary$function_versions_py$startApi,
+              InteractiveTradeR:::functionary$outgoing_msg_codes$START_API,
+              InteractiveTradeR:::functionary$function_versions_py$startApi,
               client_id,
               ""
             )
