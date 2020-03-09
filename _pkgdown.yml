@@ -19,6 +19,6 @@ reference:
   - req_matching_symbols
   - req_sec_def_opt_params
 - title: Concepts
-  desc: Explains key elements of such as sockets, contract objects, sync & aysnc modes, etc.
+  desc: Explains key elements such as sockets, contract objects, sync & aysnc modes, etc.
   contents:
   - contracts

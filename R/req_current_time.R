@@ -39,7 +39,7 @@ req_current_time <- function(channel = NULL){
   sock <- select_sock_for_api_fun()
   
   writeBin(
-    object = InteractiveTradeR::functionary$fixed_api_msgs$req_current_time,
+    object = InteractiveTradeR:::functionary$fixed_api_msgs$req_current_time,
     con    = sock,
     endian = "big"
   )
@@ -48,7 +48,7 @@ req_current_time <- function(channel = NULL){
     element_names   = "CURRENT_TIME",
     socket          = sock,
     success_element = simple_encode(
-      InteractiveTradeR::functionary$incoming_msg_codes$CURRENT_TIME
+      InteractiveTradeR:::functionary$incoming_msg_codes$CURRENT_TIME
     )
   )
   

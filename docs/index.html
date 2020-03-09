@@ -70,71 +70,68 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-<div class="page-header"><h1>
-  <code id="InteractiveTradeR-main-title">
-    <span>InteractiveTrade</span><span id="InteractiveTradeR-main-title-R">R</span>
-  </code>
-</h1></div>
+<div id="interactivetrader" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#interactivetrader" class="anchor"></a>InteractiveTradeR</h1></div>
 <!-- badges: start -->
 
 <p>Connect R to the world’s markets.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div id="download-and-install-the-latest-version-of-r-from-the-official-cran-website-" class="section level4">
+<div id="1-download-and-install-the-latest-version-of-r-from-the-official-cran-website" class="section level4">
 <h4 class="hasAnchor">
-<a href="#download-and-install-the-latest-version-of-r-from-the-official-cran-website-" class="anchor"></a>1. Download and install the latest version of R from the <a href="https://www.r-project.org/">official CRAN website</a>.</h4>
+<a href="#1-download-and-install-the-latest-version-of-r-from-the-official-cran-website" class="anchor"></a>1. Download and install the latest version of R from the <a href="https://www.r-project.org/">official CRAN website</a>.</h4>
 <ul>
 <li>
 <strong>Windows Users</strong> should also install <a href="https://cran.r-project.org/bin/windows/Rtools/installer.html">Rtools</a>.</li>
 <li>If you’re a <strong>Mac User</strong>, also install <a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12">Xcode</a>. Go get a coffee, it’ll take a few minutes.</li>
 </ul>
 </div>
-<div id="install-git" class="section level4">
+<div id="2-install-git" class="section level4">
 <h4 class="hasAnchor">
-<a href="#install-git" class="anchor"></a>2. Install Git</h4>
+<a href="#2-install-git" class="anchor"></a>2. Install Git</h4>
 <p>Follow the instructions on <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git’s webpage</a> for your particular OS.</p>
 </div>
-<div id="download-and-install-the-latest-version-of-trader-workstation-tws-" class="section level4">
+<div id="3-download-and-install-the-latest-version-of-trader-workstation-tws" class="section level4">
 <h4 class="hasAnchor">
-<a href="#download-and-install-the-latest-version-of-trader-workstation-tws-" class="anchor"></a>3. Download and install the latest version of <a href="https://www1.interactivebrokers.com/en/index.php?f=16040">Trader Workstation</a> (TWS).</h4>
+<a href="#3-download-and-install-the-latest-version-of-trader-workstation-tws" class="anchor"></a>3. Download and install the latest version of <a href="https://www1.interactivebrokers.com/en/index.php?f=16040">Trader Workstation</a> (TWS).</h4>
 <p>You may also choose to install <a href="https://www1.interactivebrokers.com/en/index.php?f=16457">IBGateway</a> (IBG). IB Gateway will not work with the free demo provided by Interactive Brokers, but for paper and trading accounts it provides all of the functionality of Trader Workstation without the charting and graphical user interface.</p>
-<div id="optional-create-an-account-with-interactive-brokers-" class="section level5">
+<div id="optional-create-an-account-with-interactive-brokers" class="section level5">
 <h5 class="hasAnchor">
-<a href="#optional-create-an-account-with-interactive-brokers-" class="anchor"></a>(OPTIONAL) Create an account with Interactive Brokers.</h5>
+<a href="#optional-create-an-account-with-interactive-brokers" class="anchor"></a>(OPTIONAL) Create an account with Interactive Brokers.</h5>
 <p>This can be done for free, and you do <strong>not</strong> have to fund the account with real money. The advantage of creating an account is that doing so allows you to create a <a href="https://www.interactivebrokers.com/en/software/omnibrokers/topics/papertrader.htm">paper trading account</a> that you may use to develop and test any trading system you develop.</p>
 <p>While you are free to use <code>InteractiveTradeR</code> on your paper account, note that <strong>using <code>InteractiveTradeR</code> to place trades on an actual trading account is a violation of the license</strong>, which does not allow for commercial use. To obtain a commercial license, please contact the author.</p>
 </div>
 </div>
-<div id="download-and-install-the-latest-version-of-rstudio-" class="section level4">
+<div id="4-download-and-install-the-latest-version-of-rstudio" class="section level4">
 <h4 class="hasAnchor">
-<a href="#download-and-install-the-latest-version-of-rstudio-" class="anchor"></a>4. Download and install the <a href="https://rstudio.com/products/rstudio/download/#download">latest version of RStudio</a>.</h4>
+<a href="#4-download-and-install-the-latest-version-of-rstudio" class="anchor"></a>4. Download and install the <a href="https://rstudio.com/products/rstudio/download/#download">latest version of RStudio</a>.</h4>
 </div>
-<div id="open-rstudio-and-install-the-package-devtools-with" class="section level4">
+<div id="5-open-rstudio-and-install-the-package-devtools-with" class="section level4">
 <h4 class="hasAnchor">
-<a href="#open-rstudio-and-install-the-package-devtools-with" class="anchor"></a>5. Open RStudio and install the package <code>devtools</code> with:</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a></code></pre></div>
+<a href="#5-open-rstudio-and-install-the-package-devtools-with" class="anchor"></a>5. Open RStudio and install the package <code>devtools</code> with:</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a></code></pre></div>
 </div>
-<div id="in-rstudio-install-the-interactivetrader-package-with" class="section level4">
+<div id="6-in-rstudio-install-the-interactivetrader-package-with" class="section level4">
 <h4 class="hasAnchor">
-<a href="#in-rstudio-install-the-interactivetrader-package-with" class="anchor"></a>6. In RStudio, install the <code>InteractiveTradeR</code> package with:</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"JakeVestal/InteractiveTradeR"</span>)</a></code></pre></div>
+<a href="#6-in-rstudio-install-the-interactivetrader-package-with" class="anchor"></a>6. In RStudio, install the <code>InteractiveTradeR</code> package with:</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"JakeVestal/InteractiveTradeR"</span>)</a></code></pre></div>
 </div>
-<div id="in-rstudio-create-a-new-project-or-open-an-existing-one-" class="section level4">
+<div id="7-in-rstudio-create-a-new-project-or-open-an-existing-one" class="section level4">
 <h4 class="hasAnchor">
-<a href="#in-rstudio-create-a-new-project-or-open-an-existing-one-" class="anchor"></a>7. In RStudio, create a new project (or open an existing one).</h4>
+<a href="#7-in-rstudio-create-a-new-project-or-open-an-existing-one" class="anchor"></a>7. In RStudio, create a new project (or open an existing one).</h4>
 <p>To create new, use File &gt; New Project &gt; New Directory &gt; New Project. Name the new project anything you want.</p>
 </div>
-<div id="open-your-project-and-load-interactivetrader-with" class="section level4">
+<div id="8-open-your-project-and-load-interactivetrader-with" class="section level4">
 <h4 class="hasAnchor">
-<a href="#open-your-project-and-load-interactivetrader-with" class="anchor"></a>8. Open your project and load <code>InteractiveTradeR</code> with:</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"InteractiveTradeR"</span>)</a></code></pre></div>
+<a href="#8-open-your-project-and-load-interactivetrader-with" class="anchor"></a>8. Open your project and load <code>InteractiveTradeR</code> with:</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"InteractiveTradeR"</span>)</a></code></pre></div>
 <p>If this is the first time you’ve loaded <code>InteractiveTradeR</code> in the current RStudio project, you’ll be asked if you want to establish some default settings. Do so. This action will store default connection parameters (port number, host, master client ID) as R variables so that you don’t have to re-enter them. You may change these parameters at any later time.</p>
 </div>
-<div id="allow-api-connection-to-tws-ibg" class="section level4">
+<div id="9-allow-api-connection-to-tws--ibg" class="section level4">
 <h4 class="hasAnchor">
-<a href="#allow-api-connection-to-tws-ibg" class="anchor"></a>9. Allow API connection to TWS / IBG</h4>
+<a href="#9-allow-api-connection-to-tws--ibg" class="anchor"></a>9. Allow API connection to TWS / IBG</h4>
 <ol>
 <li><p>Open whichever program you installed and wish to use – TWS or IBG – and log in to your account, paper account, or the demo (TWS only).</p></li>
 <li><p>From the File menu, find File &gt; Global Configuration &gt; API &gt; Settings.</p></li>
@@ -144,13 +141,13 @@
 <li><p>Click “Apply and OK” to close the API Settings window.</p></li>
 </ol>
 </div>
-<div id="test-your-connection" class="section level4">
+<div id="10-test-your-connection" class="section level4">
 <h4 class="hasAnchor">
-<a href="#test-your-connection" class="anchor"></a>10. Test your connection</h4>
+<a href="#10-test-your-connection" class="anchor"></a>10. Test your connection</h4>
 <p>At this point, you should have an instance of TWS or IBG running and accepting connections from the API. Within RStudio, with <code>InteractiveTradeR</code> having been loaded, you can test your connection with command <code><a href="reference/req_current_time.html">req_current_time()</a></code>. If you get a timestamp response, all’s well and you’re set up!</p>
 </div>
 </div>
-
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -6,7 +6,7 @@
 #'
 #' @inheritParams req_current_time
 #'
-#' @eval contract_param("req_contract_details", InteractiveTradeR::functionary$big_function_args$contract_args$req_contract_details)
+#' @eval contract_param("req_contract_details", InteractiveTradeR:::functionary$big_function_args$contract_args$req_contract_details)
 #'
 #' @details
 #' \strong{IB's documentation} describes each column variable that can appear in
@@ -82,16 +82,16 @@ req_contract_details <- function(contract = NULL, channel  = NULL){
   
   req_contract_details_msg <- mget(
     setdiff(
-      InteractiveTradeR::functionary$big_function_args$contract_args$
+      InteractiveTradeR:::functionary$big_function_args$contract_args$
         req_contract_details,
       c(tryCatch(names(contract), error = function(e){NULL}), ls())
     ),
-    envir = InteractiveTradeR::functionary$contract_vars$Contract
+    envir = InteractiveTradeR:::functionary$contract_vars$Contract
   ) %>%
     c(contract) %$% {
       c(
-        InteractiveTradeR::functionary$outgoing_msg_codes$REQ_CONTRACT_DATA,
-        InteractiveTradeR::functionary$function_versions_py$reqContractDetails,
+        InteractiveTradeR:::functionary$outgoing_msg_codes$REQ_CONTRACT_DATA,
+        InteractiveTradeR:::functionary$function_versions_py$reqContractDetails,
         get("req_id"),
         get("conId"),
         get("symbol"),
@@ -124,14 +124,14 @@ req_contract_details <- function(contract = NULL, channel  = NULL){
       socket          = sock,
       success_element = simple_encode(
         c(
-          InteractiveTradeR::functionary$incoming_msg_codes$CONTRACT_DATA_END,
+          InteractiveTradeR:::functionary$incoming_msg_codes$CONTRACT_DATA_END,
           1,
           req_id
         )
       ),
       stop_early      = simple_encode(
         c(
-          InteractiveTradeR::functionary$incoming_msg_codes$ERR_MSG,
+          InteractiveTradeR:::functionary$incoming_msg_codes$ERR_MSG,
           "2",
           req_id
         )

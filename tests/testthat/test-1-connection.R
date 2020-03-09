@@ -27,9 +27,9 @@ test_that(
         function(sock){
           attr(sock, "server_version") %>% {
             (
-              . >= InteractiveTradeR::functionary$server_versions$MIN_CLIENT_VER
+              . >= InteractiveTradeR:::functionary$server_versions$MIN_CLIENT_VER
             ) && (
-              . <= InteractiveTradeR::functionary$server_versions$MAX_CLIENT_VER
+              . <= InteractiveTradeR:::functionary$server_versions$MAX_CLIENT_VER
             )
           }
         },

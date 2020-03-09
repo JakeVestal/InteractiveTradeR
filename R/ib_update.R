@@ -5,12 +5,12 @@ ib_update <- function(incoming_data, rtn_elements = NULL){
     incoming_data[which(!(names(incoming_data) %in% rtn_elements))] %>%
       Map(
         function(x, ib_update_index){
-          InteractiveTradeR::functionary$ib_update[[ib_update_index]](x)
+          InteractiveTradeR:::functionary$ib_update[[ib_update_index]](x)
         },
         x = .,
         ib_update_index = match(
           names(.),
-          names(InteractiveTradeR::functionary$ib_update)
+          names(InteractiveTradeR:::functionary$ib_update)
         )
       ) %>%
       purrr::compact() %>%
@@ -23,11 +23,11 @@ ib_update <- function(incoming_data, rtn_elements = NULL){
               parse(
                 text = {
                   for(
-                    envir in names(InteractiveTradeR::functionary$environ_map)
+                    envir in names(InteractiveTradeR:::functionary$environ_map)
                   ){
                     if(
                       any(
-                        InteractiveTradeR::functionary$environ_map[[
+                        InteractiveTradeR:::functionary$environ_map[[
                           envir
                           ]] == data_obj_name
                       )

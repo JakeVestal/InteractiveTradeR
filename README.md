@@ -1,8 +1,4 @@
-<h1>
-  <code id = "InteractiveTradeR-main-title">
-    <span>InteractiveTrade</span><span id = "InteractiveTradeR-main-title-R">R</span>
-  </code>
-</h1>
+# InteractiveTradeR
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/JakeVestal/InteractiveTradeR.svg?branch=master)](https://travis-ci.org/JakeVestal/InteractiveTradeR)

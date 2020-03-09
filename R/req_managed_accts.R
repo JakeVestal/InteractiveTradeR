@@ -17,7 +17,7 @@ req_managed_accts <- function(channel = NULL){
   sock <- select_sock_for_api_fun()
 
   writeBin(
-    object = InteractiveTradeR::functionary$fixed_api_msgs$req_managed_accts,
+    object = InteractiveTradeR:::functionary$fixed_api_msgs$req_managed_accts,
     con    = sock,
     endian = "big"
   )
@@ -26,7 +26,7 @@ req_managed_accts <- function(channel = NULL){
     element_names   = "MANAGED_ACCTS",
     socket          = sock,
     success_element = simple_encode(
-      InteractiveTradeR::functionary$incoming_msg_codes$MANAGED_ACCTS
+      InteractiveTradeR:::functionary$incoming_msg_codes$MANAGED_ACCTS
     )
   )
 
