@@ -105,7 +105,7 @@
 <h2 class="hasAnchor">
 <a href="#a-word-on-connection-parameters" class="anchor"></a>A Word on Connection Parameters</h2>
 <p>When you first load <strong>InteractiveTradeR</strong>, you’ll be asked if you want to store some default connection parameters. It is recommended that you do so; this will create a “.Rprofile” file (or will add to the existing one, if there is one) in your RStudio project home directory. .Rpofile contains the port numbers, hostname, etc that <strong>InteractiveTradeR</strong> will use to connect to the API.</p>
-<p>If you prefer, you can configure these yourself on a session-by-session basis. The parameters are stored as R options and can be set like this:</p>
+<p>You can always open up .Rprofile in RStudio or a text editor and change the defaults to your liking. If you prefer, you can also configure the parameters yourself on a session-by-session basis. Just follow the example below to set each option:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">interactivetrader.platform         =</span> <span class="st">"TWS"</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">interactivetrader.paper            =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">interactivetrader.tws.paper.host   =</span> <span class="st">"localhost"</span>)</a>
@@ -121,12 +121,12 @@
 <div id="sync-mode" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sync-mode" class="anchor"></a>Sync Mode</h2>
-<p>If you’re just interested in running a script or pinging IB for info every now and then, you don’t really need to worry about <strong>Async Mode</strong> and can just stick to the “there-and-back-again” <strong>Sync Mode</strong>, which is the default for all <strong>InteractiveTradeR</strong> functions that communicate with IB.</p>
-<p>For example, if you call <code>req_current_time</code>() on its own, it’ll open up a socket, ask IB for the time, get the response, and then close the socket behind itself when it’s finished.</p>
+<p>If you’re just interested in running a script or pinging IB for info every now and then, you don’t really need to worry about <strong>Async Mode</strong> and can just stick to the “there-and-back-again” <strong>Sync Mode</strong>, which is the default for all <strong>InteractiveTradeR</strong> functions that communicate with IB. For example, if you call <code>req_current_time</code>() on its own with no additional arguments, it’ll open up a socket, ask IB for the time, get the response, and then close the socket behind itself when it’s finished.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Sync Mode:</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/req_current_time.html">req_current_time</a></span>()</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] "2020-03-10 13:35:26 EDT"</span></a></code></pre></div>
-<p>If you’re following along in the Connections window of IBG/TWS, you should note that a new connection was briefly created, then closed as you ran the above.</p>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] "2020-03-10 13:50:23 EDT"</span></a></code></pre></div>
+<p>If you’re following along in the Connections window of IBG/TWS, you should note that a new connection was briefly created when you ran the code above – the connection block briefly flashed green. When the function exited, the connection closed again.</p>
+<p>This is <strong>Sync Mode</strong> in a nutshell: request and receive. If this is all the functionality you need for your project, then you can stick with <strong>Sync Mode</strong> and avoid worrying about the added functionality of <strong>Async</strong>.</p>
 </div>
 <div id="async-mode" class="section level2">
 <h2 class="hasAnchor">
@@ -137,11 +137,11 @@
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="../reference/create_new_connections.html">create_new_connections</a></span>()             <span class="co">#1. Create a new sock</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="../reference/socks.html">socks</a></span>()                              <span class="co">#2. View your socks (optional, of course)</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; sock_1: A socket connection on '-&gt;localhost:7497'.</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; Client ID: 1 Server Version: 155 Connection time: 2020-03-10 13:35:26</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; Client ID: 1 Server Version: 155 Connection time: 2020-03-10 13:50:24</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; Subscriptions:</span></a>
 <a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; None</span></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw"><a href="../reference/req_current_time.html">req_current_time</a></span>(<span class="dt">channel =</span> <span class="st">"async"</span>)  <span class="co">#3. Use sock to req_current_time()</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; [1] "2020-03-10 13:35:26 EDT"</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; [1] "2020-03-10 13:50:24 EDT"</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw"><a href="../reference/disconnect.html">disconnect</a></span>()                         <span class="co">#4. Close the sock when you're finished.</span></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; Sock drawer cleaned out!</span></a>
 <a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; ✔ Disconnected 1 socket.</span></a></code></pre></div>

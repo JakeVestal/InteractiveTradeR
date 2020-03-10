@@ -26,8 +26,10 @@ create a ".Rprofile" file (or will add to the existing one, if there is one) in
 your RStudio project home directory. .Rpofile contains the port numbers, 
 hostname, etc that **InteractiveTradeR** will use to connect to the API.
 
-If you prefer, you can configure these yourself on a session-by-session basis.
-The parameters are stored as R options and can be set like this:
+You can always open up .Rprofile in RStudio or a text editor and change the
+defaults to your liking. If you prefer, you can also configure the parameters
+yourself on a session-by-session basis. Just follow the example below to set
+each option:
 ```{r}
 options(interactivetrader.platform         = "TWS")
 options(interactivetrader.paper            = TRUE)
@@ -50,12 +52,11 @@ Keeping an eye on the API connections will help you understand how
 ## Sync Mode
 If you're just interested in running a script or pinging IB for info every now
 and then, you don't really need to worry about **Async Mode** and can just stick
-to the "there-and-back-again" **Sync Mode**, which is the default for all 
-**InteractiveTradeR** functions that communicate with IB.
-
-For example, if you call `req_current_time`() on its own, it'll open up a
-socket, ask IB for the time, get the response, and then close the socket behind
-itself when it's finished.
+to the "there-and-back-again" **Sync Mode**, which is the default for all
+**InteractiveTradeR** functions that communicate with IB. For example, if you
+call `req_current_time`() on its own with no additional arguments, it'll open up
+a socket, ask IB for the time, get the response, and then close the socket
+behind itself when it's finished.
 
 ```{r}
 # Sync Mode:
@@ -63,7 +64,13 @@ req_current_time()
 ```
 
 If you're following along in the Connections window of IBG/TWS, you should note
-that a new connection was briefly created, then closed as you ran the above.
+that a new connection was briefly created when you ran the code above -- the 
+connection block briefly flashed green. When the function exited, the connection 
+closed again.
+
+This is **Sync Mode** in a nutshell: request and receive. If this is all the
+functionality you need for your project, then you can stick with **Sync Mode**
+and avoid worrying about the added functionality of **Async**.
 
 ## Async Mode
 **Sync Mode** is convenient and simple, but if you're building a Shiny app,
