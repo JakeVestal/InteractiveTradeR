@@ -1,0 +1,86 @@
+---
+title: "Socks"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Socks}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Load up **InteractiveTradeR**
+```{r setup}
+library(InteractiveTradeR)
+```
+
+## A Word on Connection Parameters
+When you first load **InteractiveTradeR**, you'll be asked if you want to store
+some default connection parameters. It is recommended that you do so; this will
+create a ".Rprofile" file (or will add to the existing one, if there is one) in
+your RStudio project home directory. .Rpofile contains the port numbers, 
+hostname, etc that **InteractiveTradeR** will use to connect to the API.
+
+If you prefer, you can configure these yourself on a session-by-session basis.
+The parameters are stored as R options and can be set like this:
+```{r}
+options(interactivetrader.platform         = "TWS")
+options(interactivetrader.paper            = TRUE)
+options(interactivetrader.tws.paper.host   = "localhost")
+options(interactivetrader.tws.paper.port   = 7497)
+options(interactivetrader.tws.paper.master = 57869)
+```
+
+Note that if you're connecting to a **LIVE** (non-paper) IB account without 
+permission, you're violating the licence agreement!
+
+## Open your Connections Window in TWS/IBG
+This vignette is a lot more informative if you pull up the "Connections" window
+in TWS/IBG alongside RStudio as you run the examples yourself. In IB Gateway,
+the connections info is displayed in the default GUI; in TWS, you can find it by
+clicking on the "DATA" text in the upper right-hand corner of the window.
+Keeping an eye on the API connections will help you understand how
+**InteractiveTradeR** communicates with the IB apps.
+
+## Sync Mode
+If you're just interested in running a script or pinging IB for info every now
+and then, you don't really need to worry about **Async Mode** and can just stick
+to the "there-and-back-again" **Sync Mode**, which is the default for all 
+**InteractiveTradeR** functions that communicate with IB.
+
+For example, if you call `req_current_time`() on its own, it'll open up a
+socket, ask IB for the time, get the response, and then close the socket behind
+itself when it's finished.
+
+```{r}
+# Sync Mode:
+req_current_time()
+```
+
+If you're following along in the Connections window of IBG/TWS, you should note
+that a new connection was briefly created, then closed as you ran the above.
+
+## Async Mode
+**Sync Mode** is convenient and simple, but if you're building a Shiny app,
+dashboard, or an online trading program, you're going to need the ability to
+create subscriptions to data feeds like open orders, account balances, P/L, and
+so on. These values update asynchronously; for example, if you've placed an
+active limit order, there is no way for you to be sure when/if the order fills.
+
+All **InteractiveTradeR** functions that communicate with IB can also be used in
+**Async Mode**, in which you create a persistant socket object that is not
+opened & closed each time a function executes. `req_current_time`(), for
+example, can be called in **Async Mode** as follows:
+
+```{r}
+# Async Mode:
+create_new_connections()             #1. Create a new sock
+socks()                              #2. View your socks (optional, of course)
+req_current_time(channel = "async")  #3. Use sock to req_current_time()
+disconnect()                         #4. Close the sock when you're finished.
+```

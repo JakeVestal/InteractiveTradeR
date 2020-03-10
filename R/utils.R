@@ -109,11 +109,12 @@ read_channel_raw <- function(channel){
   
 }
 
-print_async <- function(sock){
+print_async <- function(sock, sock_name){
   
   cat(
     paste0(
-      "A socket connection on ",
+      crayon::bold(sock_name),
+      ": A socket connection on ",
       usethis::ui_value(
         showConnections()%>% {
           .[rownames(.) == attr(sock, "conn_row"), "description"]
@@ -123,9 +124,9 @@ print_async <- function(sock){
       crayon::bold("Client ID: "),
       attr(sock, "client_id"),
       crayon::bold("\tServer Version: "),
-      attr(sock, "handshake")$server_version,
+      attr(sock, "server_version"),
       crayon::bold("\tConnection time: "),
-      attr(sock, "handshake")$start_time,
+      attr(sock, "start_time"),
       crayon::bold("\nSubscriptions:\n")
     )
   )
@@ -440,7 +441,7 @@ save_default_params <- function(){
       usethis::ui_info(paste0("Creating .Rprofile: ", pkg_root))
       
       paste0(
-        "###############################################################################\n############## InteractiveTradeR Options -- Do not edit by hand! ##############\n###############################################################################\noptions(interactivetrader.paper            = TRUE)\noptions(interactivetrader.platform         = \"TWS\")\noptions(interactivetrader.tws.paper.host   = \"localhost\")\noptions(interactivetrader.tws.paper.port   = 7497)\noptions(interactivetrader.tws.paper.master = ",
+        "###############################################################################\n########################## InteractiveTradeR Options ##########################\n###############################################################################\noptions(interactivetrader.paper            = TRUE)\noptions(interactivetrader.platform         = \"TWS\")\noptions(interactivetrader.tws.paper.host   = \"localhost\")\noptions(interactivetrader.tws.paper.port   = 7497)\noptions(interactivetrader.tws.paper.master = ",
         sample(1:functionary$max_client_id, 1),
         ")\noptions(interactivetrader.ibg.paper.host   = \"localhost\")\noptions(interactivetrader.ibg.paper.port   = 4002)\noptions(interactivetrader.ibg.paper.master = ",
         sample(1:functionary$max_client_id, 1),

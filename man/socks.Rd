@@ -8,5 +8,5 @@
 socks()
 }
 \description{
-Describe
+Print a detailed description of all the socks that are currently open.
 }

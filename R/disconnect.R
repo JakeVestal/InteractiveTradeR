@@ -16,6 +16,8 @@
 #' will be disconnected if it exists.
 #'
 #' @seealso create_new_connections
+#' 
+#' @export
 #'
 disconnect <- function(
   number_to_disconnect = "all",
