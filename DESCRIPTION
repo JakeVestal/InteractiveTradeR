@@ -7,13 +7,14 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jmvestal@gmail.com",
            comment = c(ORCID = "0000-0002-2970-4795"))
-Description: API for trading, data collection, and strategy testing.
+Description: API for trading, data collection, and strategy
+    testing.
 License: file LICENSE
+URL: https://github.com/JakeVestal/InteractiveTradeR
+BugReports: 
+    https://github.com/JakeVestal/InteractiveTradeR/issues
 Depends: 
     R (>= 3.5.0)
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.0.2
 Imports: 
     magrittr,
     rlang (>= 0.1.2),
@@ -30,5 +31,6 @@ Imports:
 Suggests: 
     roxygen2,
     testthat
-URL: https://github.com/JakeVestal/InteractiveTradeR
-BugReports: https://github.com/JakeVestal/InteractiveTradeR/issues
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2

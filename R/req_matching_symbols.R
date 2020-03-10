@@ -43,7 +43,7 @@ req_matching_symbols <- function(pattern, channel = NULL){
 
   req_matching_symbols_msg <- ib_encode_raw_msg(
     c(
-      InteractiveTradeR:::functionary$outgoing_msg_codes$REQ_MATCHING_SYMBOLS,
+      functionary$outgoing_msg_codes$REQ_MATCHING_SYMBOLS,
       req_id,
       pattern
     )
@@ -60,12 +60,12 @@ req_matching_symbols <- function(pattern, channel = NULL){
     socket          = sock,
     success_element = simple_encode(
       c(
-        InteractiveTradeR:::functionary$incoming_msg_codes$SYMBOL_SAMPLES,
+        functionary$incoming_msg_codes$SYMBOL_SAMPLES,
         req_id
       )
     )
   )
 
-  matching_symbols
+  ib_validate(matching_symbols)
 
 }

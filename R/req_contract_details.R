@@ -6,7 +6,7 @@
 #'
 #' @inheritParams req_current_time
 #'
-#' @eval contract_param("req_contract_details", InteractiveTradeR:::functionary$big_function_args$contract_args$req_contract_details)
+#' @eval contract_param("req_contract_details", functionary$big_function_args$contract_args$req_contract_details)
 #'
 #' @details
 #' \strong{IB's documentation} describes each column variable that can appear in
@@ -82,16 +82,16 @@ req_contract_details <- function(contract = NULL, channel  = NULL){
   
   req_contract_details_msg <- mget(
     setdiff(
-      InteractiveTradeR:::functionary$big_function_args$contract_args$
+      functionary$big_function_args$contract_args$
         req_contract_details,
       c(tryCatch(names(contract), error = function(e){NULL}), ls())
     ),
-    envir = InteractiveTradeR:::functionary$contract_vars$Contract
+    envir = functionary$contract_vars$Contract
   ) %>%
     c(contract) %$% {
       c(
-        InteractiveTradeR:::functionary$outgoing_msg_codes$REQ_CONTRACT_DATA,
-        InteractiveTradeR:::functionary$function_versions_py$reqContractDetails,
+        functionary$outgoing_msg_codes$REQ_CONTRACT_DATA,
+        functionary$function_versions_py$reqContractDetails,
         get("req_id"),
         get("conId"),
         get("symbol"),
@@ -119,19 +119,19 @@ req_contract_details <- function(contract = NULL, channel  = NULL){
   )
   
   if(is.null(channel)){
-    sock_seek(
+    contract_details <- sock_seek(
       element_names   = c("BOND_CONTRACT_DETAILS", "CONTRACT_DETAILS"),
       socket          = sock,
       success_element = simple_encode(
         c(
-          InteractiveTradeR:::functionary$incoming_msg_codes$CONTRACT_DATA_END,
+          functionary$incoming_msg_codes$CONTRACT_DATA_END,
           1,
           req_id
         )
       ),
       stop_early      = simple_encode(
         c(
-          InteractiveTradeR:::functionary$incoming_msg_codes$ERR_MSG,
+          functionary$incoming_msg_codes$ERR_MSG,
           "2",
           req_id
         )
@@ -140,6 +140,8 @@ req_contract_details <- function(contract = NULL, channel  = NULL){
       purrr::compact() %>%
       purrr::flatten() %>%
       tibble::as_tibble()
+    
+    ib_validate(contract_details)
   }
   
 }

@@ -6,7 +6,8 @@
 \alias{InteractiveTradeR-package}
 \title{InteractiveTradeR}
 \description{
-API for trading, data collection, and strategy testing.
+API for trading, data collection, and strategy
+    testing.
 }
 \section{Disclaimer and Waiver}{
 

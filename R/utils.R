@@ -62,7 +62,7 @@ ib_read_incoming_message_size_bytes <- function(sock){
   readBin(
     sock,
     what   = raw(),
-    n      = InteractiveTradeR:::functionary$ib_raw_header_size_bytes,
+    n      = functionary$ib_raw_header_size_bytes,
     endian = "little"
   ) %>%
     rev() %>%
@@ -177,7 +177,7 @@ make_field_handle_empty <- function(field_var){
     isTRUE(
       any(
         c(
-          InteractiveTradeR:::functionary$common_params$UNSET_INTEGER,
+          functionary$common_params$UNSET_INTEGER,
           package_state$UNSET_DOUBLE
         ) == suppressWarnings(as.numeric(field_var))
       )
@@ -195,7 +195,7 @@ make_numeric_handle_empty <- function(field_var){
     is.null(field_var) || isTRUE(
       any(
         c(
-          InteractiveTradeR:::functionary$common_params$UNSET_INTEGER,
+          functionary$common_params$UNSET_INTEGER,
           package_state$UNSET_DOUBLE
         ) == suppressWarnings(as.numeric(field_var))
       )
@@ -308,7 +308,7 @@ clear_cols <- function(x){
               isTRUE(all(. == 0)) ||
               isTRUE(
                 all(
-                  . == InteractiveTradeR:::functionary$common_params$NO_VALID_ID
+                  . == functionary$common_params$NO_VALID_ID
                 ) && !any(c("position", "clientId") == col_name)
               ) ||
               isTRUE(all(. == "?")) ||
@@ -441,13 +441,13 @@ save_default_params <- function(){
       
       paste0(
         "###############################################################################\n############## InteractiveTradeR Options -- Do not edit by hand! ##############\n###############################################################################\noptions(interactivetrader.paper            = TRUE)\noptions(interactivetrader.platform         = \"TWS\")\noptions(interactivetrader.tws.paper.host   = \"localhost\")\noptions(interactivetrader.tws.paper.port   = 7497)\noptions(interactivetrader.tws.paper.master = ",
-        sample(1:InteractiveTradeR:::functionary$max_client_id, 1),
+        sample(1:functionary$max_client_id, 1),
         ")\noptions(interactivetrader.ibg.paper.host   = \"localhost\")\noptions(interactivetrader.ibg.paper.port   = 4002)\noptions(interactivetrader.ibg.paper.master = ",
-        sample(1:InteractiveTradeR:::functionary$max_client_id, 1),
+        sample(1:functionary$max_client_id, 1),
         ")\noptions(interactivetrader.tws.live.host    = \"localhost\")\noptions(interactivetrader.tws.live.port    = 7496)\noptions(interactivetrader.tws.live.master  = ",
-        sample(1:InteractiveTradeR:::functionary$max_client_id, 1),
+        sample(1:functionary$max_client_id, 1),
         ")\noptions(interactivetrader.ibg.live.host    = \"localhost\")\noptions(interactivetrader.ibg.live.port    = 4001)\noptions(interactivetrader.ibg.live.master  = ",
-        sample(1:InteractiveTradeR:::functionary$max_client_id, 1),
+        sample(1:functionary$max_client_id, 1),
         ")\n###############################################################################\n######################## End InteractiveTradeR Options ########################\n###############################################################################\n"
       ) %>% {
         eval(parse(text = .))

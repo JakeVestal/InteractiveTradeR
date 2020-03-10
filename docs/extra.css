@@ -3,15 +3,6 @@ body {
   color: #ffffff;
 }
 
-#InteractiveTradeR-main-title {
-  background-color: inherit;
-  color: #baf5d2;
-}
-
-#InteractiveTradeR-main-title-R {
- color: White;
-}
-
 table.ref-index {
   padding-right: 30px;
   padding-left: 30px;
@@ -24,5 +15,4 @@ table.ref-index {
 
 pre, code {background-color: #dceef3;}
 
-.contents h1{font-weight: bolder;}
 .contents h2{color: #cbffd2;}

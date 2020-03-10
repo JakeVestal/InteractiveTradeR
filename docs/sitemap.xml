@@ -4,6 +4,9 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//index.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/InteractiveTradeR.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/active_connection_parameters.html</loc>
   </url>
   <url>
@@ -37,7 +40,7 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_sync_connect.html</loc>
   </url>
   <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/InteractiveTradeR.html</loc>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_validate.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/launch_InteractiveTradeR_example_app.html</loc>

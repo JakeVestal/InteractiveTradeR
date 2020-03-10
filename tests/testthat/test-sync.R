@@ -1,3 +1,31 @@
+context("Examples Ran Successfully")
+# In other words, test basic operation of functions sync mode by making sure
+#   functions' error messages do NOT appear anywhere in /docs/references.
+
+list.files(
+  file.path("..", "..", "..", "InteractiveTradeR", "docs", "reference"),
+  full.names = TRUE,
+  pattern    = "(.*)\\.html$"
+) %>%
+  stats::setNames(., gsub("\\.html$", "", basename(.))) %>%
+  purrr::iwalk(
+    function(ref_path, ref_name){
+      testthat::expect_false(
+        object = readLines(ref_path) %>% 
+          paste0(collapse = "") %>%
+          grepl("Could not connect to IB", .),
+        info   = ref_name
+      )
+      testthat::expect_false(
+        object = readLines(ref_path) %>% 
+          paste0(collapse = "") %>%
+          grepl("Data retrieval failure in ", .),
+        info   = ref_name
+      )
+    }
+  )
+
+  
 context("Integrity")
 
 test_that(
@@ -5,9 +33,9 @@ test_that(
   expect_false(
     any(
       names(
-        InteractiveTradeR:::functionary$outgoing_msg_codes
+        functionary$outgoing_msg_codes
       ) %in% names(
-        InteractiveTradeR:::functionary$incoming_msg_codes
+        functionary$incoming_msg_codes
       )
     )
   )

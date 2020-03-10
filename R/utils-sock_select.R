@@ -1,7 +1,7 @@
 select_sock_for_api_fun <- function(){
-
+  
   channel <- get0("channel", envir = parent.frame())
-
+  
   tryCatch(
     {
       if(inherits(channel, "sockconn")){return(channel)}
@@ -109,7 +109,7 @@ select_sock_for_api_fun <- function(){
         )
         return(sock)
       }
-
+      
       tryCatch(
         sock_drawer[[
           names(
@@ -127,7 +127,7 @@ select_sock_for_api_fun <- function(){
           do.call(
             what  = on.exit,
             args  = list(
-              expr = substitute(close(sock)),
+              expr = substitute(try(close(sock), silent = TRUE)),
               add  = TRUE
             ),
             envir = parent.frame(5)
@@ -135,26 +135,71 @@ select_sock_for_api_fun <- function(){
           ib_sync_connect(client_id = channel)
         }
       )
-
+      
     },
     error = function(e){
-      usethis::ui_oops("Could not connect to IB")
-      usethis::ui_info(
-        paste0(
-          "Make sure that an instance of Trader Workstation (TWS) or IB ",
-          "Gateway (IBG) is open."
+      
+      call_time     <- Sys.time()
+      ib_func       <- as.character(sys.call(-5))
+      ib_func_frame <- sys.frame(-5)
+      
+      assign(
+        "ib_connect_failure",
+        value = dplyr::bind_rows(
+          error_log$ib_connect_failure,
+          tibble::tibble(
+            "time" = call_time,
+            "call" = ib_func,
+            "args" = mget(ls(ib_func_frame), envir = ib_func_frame)
+          )
         )
       )
+      
+      conn_fail_msg <- paste0(
+        crayon::bold(ib_func),
+        ": Could not connect to IB.\nSee ",
+        crayon::bold("error_log$data_retrieval_errors"),
+        " for details."
+      )
+      
+      usethis::ui_oops(conn_fail_msg)
+      
       usethis::ui_info(
         paste0(
-          "Verify that InteractiveTradeR is attempting to connect to TWS / ",
-          "IBG with a valid set\nof parameters by issuing command ",
+          "Verify that the API settings entered for your running instance of ",
+          "TWS/IBG\n (which are found at ",
+          crayon::inverse("File > Global Configuration > API > Settings"),
+          ")\nagree with the below output of ",
           crayon::bold("active_connection_parameters"),
-          "()."
+          "():"
         )
       )
-      stop(e$message)
+      
+      active_connection_parameters()
+      
+      usethis::ui_info(
+        paste0(
+          crayon::underline("Also verify in TWS/IBG's API setings that"),
+          ":\n1. The ",
+          crayon::inverse("\"Enable ActiveX and Socket Clients"),
+          " box is ",
+          crayon::underline(crayon::bold("checked")),
+          "; and\n2. The ",
+          crayon::inverse("Read-Only API"), 
+          " box is ",
+          crayon::bold(paste0(crayon::underline("un"), "checked")),
+          " (if you wish to allow order placement)."
+        )
+      )
+      
+      do.call(
+        what  = return,
+        args  = list(value = "IB Connection Failure"),
+        envir = parent.frame(5)
+      )
+      
+      e
     }
   )
-
+  
 }

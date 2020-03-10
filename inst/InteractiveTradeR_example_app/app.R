@@ -29,7 +29,7 @@ ui <- dashboardPagePlus(
         "IB API for R",
         subtitle = paste0(
           "Version ",
-          paste(InteractiveTradeR:::functionary$api_version, collapse = ".")
+          paste(functionary$api_version, collapse = ".")
         )
       ),
       div(
@@ -153,7 +153,7 @@ server <- function(input, output, session) {
         isTRUE(
           length(
             reactiveValuesToList(sock_drawer)) + 1 >
-          InteractiveTradeR:::functionary$max_client_applications
+          functionary$max_client_applications
         )
       ){
 
@@ -170,7 +170,7 @@ server <- function(input, output, session) {
             switch(
               input$sock_type,
               normal = setdiff(
-                1:InteractiveTradeR:::functionary$max_client_id,
+                1:functionary$max_client_id,
                 c(
                   "0",
                   as.numeric(get_temp_info("IB_MASTER_CLIENT_ID")),

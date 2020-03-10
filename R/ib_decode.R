@@ -16,15 +16,15 @@ ib_decode <- function(ib_parsed_raw_list){
     }
   ) %>%
     stats::setNames(
-      names(InteractiveTradeR:::functionary$incoming_msg_codes)[match(
+      names(functionary$incoming_msg_codes)[match(
         vapply(., function(x){x[1]}, character(1)),
-        InteractiveTradeR:::functionary$incoming_msg_codes
+        functionary$incoming_msg_codes
       )]
     ) %>%
     Map(
       function(ibdc, ib_polish_index){
         tryCatch(
-          InteractiveTradeR:::functionary$ib_polish[[ib_polish_index]](ibdc),
+          functionary$ib_polish[[ib_polish_index]](ibdc),
           error = function(e){
             if(isTRUE(getOption("interactivetrader.debug"))){
               
@@ -65,7 +65,7 @@ ib_decode <- function(ib_parsed_raw_list){
       .,
       match(
         names(.),
-        names(InteractiveTradeR:::functionary$ib_polish)
+        names(functionary$ib_polish)
       )
     ) %>% {
       y <- .[!vapply(., is.null, logical(1))]

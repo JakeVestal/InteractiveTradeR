@@ -6,7 +6,7 @@ mcid_format <- function(
   rox_list = list(
     "@format integer between 1 and ",
     formattable::comma(
-      InteractiveTradeR:::functionary$max_client_id, digits = 0
+      functionary$max_client_id, digits = 0
     ),
     ", inclusive"
   )

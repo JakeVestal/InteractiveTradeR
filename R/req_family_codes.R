@@ -29,7 +29,7 @@ req_family_codes <- function(channel = NULL){
   sock <- select_sock_for_api_fun()
 
   writeBin(
-    object = InteractiveTradeR:::functionary$fixed_api_msgs$req_family_codes,
+    object = functionary$fixed_api_msgs$req_family_codes,
     con    = sock,
     endian = "big"
   )
@@ -38,10 +38,10 @@ req_family_codes <- function(channel = NULL){
     element_names   = "FAMILY_CODES",
     socket          = sock,
     success_element = simple_encode(
-      InteractiveTradeR:::functionary$incoming_msg_codes$FAMILY_CODES
+      functionary$incoming_msg_codes$FAMILY_CODES
     )
   )
 
-  family_codes
+  ib_validate(family_codes)
 
 }
