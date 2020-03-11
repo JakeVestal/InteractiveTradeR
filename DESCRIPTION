@@ -25,7 +25,6 @@ Imports:
     pack,
     purrr,
     rprojroot,
-    shiny,
     tibble,
     usethis
 Suggests: 
