@@ -9,3 +9,4 @@
 ^pkgdown$
 skelly.R
 ^\.travis\.yml$
+^vignettes
