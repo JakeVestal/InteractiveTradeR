@@ -7,18 +7,26 @@ template:
 
 reference:
 - title: Quick Fetch
-  desc: Retreive a simple piece of data; e.g., a list of all tradable instruments that match a search string, the current time, list of news providers, etc.
+  desc: Retreive a simple piece of data; e.g., a list of all tradable 
+    instruments that match a search string, the current time, news info, etc.
   contents:
   - req_current_time
   - req_family_codes
   - req_managed_accts
 - title: Get Info about Assets
-  desc: Retreive identifiers, strike prices, active exchanges, etc for financial instruments
+  desc: Retreive static info about tradable financial instruments such as 
+    identifiers, strike prices, active exchanges, etc for 
   contents:
   - req_contract_details
   - req_matching_symbols
   - req_sec_def_opt_params
 - title: Concepts
-  desc: Explains key elements such as sockets, contract objects, sync & aysnc modes, etc.
+  desc: Explainations of important elements used by InteractiveTradeR.
   contents:
   - contracts
+- title: Utilities
+  desc: Functions for managing InteractiveTradeR's operation.
+  contents:
+  - create_new_connections 
+  - disconnect
+  - socks

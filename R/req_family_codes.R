@@ -20,9 +20,9 @@
 #' account under ID = "U7654321", then the Family Code of account U1234567 would
 #' be "U7654321A".
 #'
-#' @export
-#'
 #' @example inst/examples/req_family_codes_ex.R
+#' @family quick fetch
+#' @export
 #'
 req_family_codes <- function(channel = NULL){
 

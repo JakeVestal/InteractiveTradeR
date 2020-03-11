@@ -17,29 +17,30 @@
 #'
 #' @seealso create_new_connections
 #' 
+#' @example inst/examples/create_and_remove_connections_ex.R
+#' @family utilities
 #' @export
-#' @family connect and disconnect
 #'
 disconnect <- function(
   number_to_disconnect = "all",
   disconnect_master    = FALSE,
   disconnect_tws       = FALSE
 ){
-
+  
   length_1 <- length(ls(sock_drawer))
-
+  
   if(identical(number_to_disconnect, "all")){
-
+    
     clean_slate(c("sock_drawer", "subscriptions"))
-
+    
     if(length_1 == 0){
-
+      
       usethis::ui_info(
         crayon::bold("Sock drawer currently contains 0 socks.")
       )
-
+      
     } else {
-
+      
       cat(crayon::bold("Sock drawer cleaned out!\n"))
       usethis::ui_done(
         paste0(
@@ -53,13 +54,13 @@ disconnect <- function(
           }
         )
       )
-
+      
     }
-
+    
     return(invisible())
-
+    
   }
-
+  
   if(number_to_disconnect > length_1){
     usethis::ui_oops(
       paste0(
@@ -71,49 +72,49 @@ disconnect <- function(
     )
     return(invisible())
   }
-
+  
   if(disconnect_master){
     if(any(ls(sock_drawer) == "master")){
-
+      
       close(sock_drawer$master)
-
+      
       rm(list = "master", envir = sock_drawer)
-
+      
       usethis::ui_done("Master socket disconnected.")
-
+      
     } else {
-
+      
       usethis::ui_oops("No Master socket is currently open.")
-
+      
     }
-
+    
     number_to_disconnect <- number_to_disconnect - 1
-
+    
   }
-
+  
   if(number_to_disconnect == 0){return(invisible())}
-
+  
   if(disconnect_tws){
     if(any(ls(sock_drawer) == "tws")){
-
+      
       close(sock_drawer$tws)
-
+      
       rm(list = "tws", envir = sock_drawer)
-
+      
       usethis::ui_done("TWS socket (Client ID = 0) disconnected.")
-
+      
     } else {
-
+      
       usethis::ui_oops("No TWS socket is currently open.")
-
+      
     }
-
+    
     number_to_disconnect <- number_to_disconnect - 1
-
+    
   }
-
+  
   if(number_to_disconnect == 0){return(invisible())}
-
+  
   socks_to_disconnect <- grep(
     "sock_",
     ls(sock_drawer),
@@ -125,11 +126,11 @@ disconnect <- function(
     utils::tail(number_to_disconnect) %>%
     paste0("sock_", .) %>%
     mget(sock_drawer)
-
+  
   socks_to_disconnect %>% purrr::walk(close)
-
+  
   rm(list = names(socks_to_disconnect), envir = sock_drawer)
-
+  
   conn_rows_left <- vapply(
     ls(sock_drawer),
     function(sock){
@@ -137,7 +138,7 @@ disconnect <- function(
     },
     numeric(1)
   )
-
+  
   for(subscription in ls(subscriptions)){
     assign(
       subscription,
@@ -147,7 +148,7 @@ disconnect <- function(
       envir = subscriptions
     )
   }
-
+  
   usethis::ui_done(
     paste0(
       "Disconnected ",
@@ -155,5 +156,5 @@ disconnect <- function(
       " sockets."
     )
   )
-
+  
 }

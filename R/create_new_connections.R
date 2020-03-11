@@ -4,7 +4,7 @@ number_of_new_socks_param <- function(
     "connections to open, including Master and TWS (if requested). ",
     "Interactive Brokers allows a maximum of ",
     functionary$max_client_applications,
-    "connections open at a time, per username."
+    " connections open at a time, per username."
   )
 ){ do.call("paste0", rox_list) }
 
@@ -48,8 +48,10 @@ number_of_new_socks_param <- function(
 #'
 #' @seealso disconnect
 #'
+#' @example inst/examples/create_and_remove_connections_ex.R
+#'
 #' @export
-#' @family connect and disconnect
+#' @family utilities
 #'
 create_new_connections <- function(
   number_of_new_socks = 1,
@@ -161,8 +163,6 @@ create_new_connections <- function(
     number_of_new_socks <- number_of_new_socks - 1
 
   }
-
-  # ----------------------------------------------------------------------------
 
   if(number_of_new_socks > 0){
     for(i in 1:number_of_new_socks){

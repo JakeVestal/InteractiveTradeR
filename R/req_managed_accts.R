@@ -8,10 +8,10 @@
 #' character vector in which each element is the ID of an account accessible by
 #' the currently logged-in user.
 #'
-#' @export
-#'
 #' @example inst/examples/req_managed_accts_ex.R
-#'
+#' @family quick fetch
+#' @export
+#' 
 req_managed_accts <- function(channel = NULL){
 
   sock <- select_sock_for_api_fun()

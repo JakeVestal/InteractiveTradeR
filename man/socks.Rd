@@ -2,7 +2,6 @@
 % Please edit documentation in R/socks.R
 \name{socks}
 \alias{socks}
-\alias{sock_drawer}
 \title{Socks}
 \usage{
 socks()
@@ -10,3 +9,9 @@ socks()
 \description{
 Print a detailed description of all the socks that are currently open.
 }
+\seealso{
+Other utilities: 
+\code{\link{create_new_connections}()},
+\code{\link{disconnect}()}
+}
+\concept{utilities}

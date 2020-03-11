@@ -148,30 +148,30 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>number_of_new_socks</th>
-      <td><p>Integer, default = 1. Total number of new connections to open, including Master and TWS (if requested). Interactive Brokers allows a maximum of 32connections open at a time, per username.</p></td>
+      <td><p>Integer, default = 1. Total number of new connections to open, including Master and TWS (if requested). Interactive Brokers allows a maximum of 32 connections open at a time, per username.</p></td>
     </tr>
     <tr>
       <th>include_master</th>
       <td><p>Boolean, default = FALSE. If TRUE, then a connection using the
 <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client ID will be opened and assigned the
-name "**master**".</p></td>
+name "<strong>master</strong>".</p></td>
     </tr>
     <tr>
       <th>include_tws</th>
       <td><p>Boolean, default = FALSE. If TRUE, then a connection using
 <a href='tick-Client-ID-0-tick.html'>client_id_0</a>Client ID 0 will be included in the result and assigned
-the name "**tws**".</p></td>
+the name "<strong>tws</strong>".</p></td>
     </tr>
     <tr>
       <th>host</th>
-      <td><p>Character vector of length 1 giving the **hostname** for the session of IB
-Gateway or TWS to which the connection(s) should be made. Usually is
-"`localhost`" because most users connect to an instance of TWS/IBG that is
+      <td><p>Character vector of length 1 giving the <strong>hostname</strong> for the session of
+IB Gateway or TWS to which the connection(s) should be made. Usually is
+"localhost" because most users connect to an instance of TWS/IBG that is
 running on the same computer as InteractiveTradeR.</p></td>
     </tr>
     <tr>
       <th>port</th>
-      <td><p>Character vector length 1 or numeric giving the **port number** for the
+      <td><p>Character vector length 1 or numeric giving the <strong>port number</strong> for the
 session of IB Gateway or TWS to which the connection(s) should be made.</p></td>
     </tr>
     </table>
@@ -182,14 +182,145 @@ session of IB Gateway or TWS to which the connection(s) should be made.</p></td>
 storing pointers that refer to them within InteractiveTradeR.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>**Client IDs** In InteractiveTradeR, Client IDs are not assigned by the user;
-instead, they are tracked internally. The user may assign subscriptions and
-requests to the <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client, the
-<a href='tick-Client-ID-0-tick.html'>client_id_0</a>TWS Client(Client ID = 0) or a generic socket.</p>
+    <p><strong>Client IDs</strong> In InteractiveTradeR, Client IDs are not assigned by the
+user; instead, they are tracked internally. The user may assign subscriptions
+and requests to the Master Client, the TWS Client, (Client ID = 0) or a
+generic async socket.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>disconnect</p></div>
+    <div class='dont-index'><p>disconnect</p>
+<p>Other utilities: 
+<code><a href='disconnect.html'>disconnect</a>()</code>,
+<code><a href='socks.html'>socks</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Creating and Disconnecting IB Sockets</span>
+<span class='co'># The following example walks you through creating and disconnecting the three</span>
+<span class='co'># kinds of async socks: Master, TWS, and general. After each step, socks() is </span>
+<span class='co'># called to view the current connected sockets so that you can observe what's</span>
+<span class='co'># been created / disconnected. </span>
+
+<span class='co'># As you go through this example yourself, remember that it's helpful to use the</span>
+<span class='co'># "connections" window in the Interactive Brokers apps. In IB Gateway, you can</span>
+<span class='co'># easily see connections from the default window; in TWS, it can be accessed by</span>
+<span class='co'># clicking on the "DATA" text in the upper right-hand corner of the user</span>
+<span class='co'># interface window of the app.</span>
+
+<span class='co'># Disconnect all sockets that might exist so that we start with a clean slate.</span>
+<span class='fu'><a href='disconnect.html'>disconnect</a></span>()</div><div class='output co'>#&gt; <span style='color: #BBBB00;'>ℹ</span><span> </span><span style='font-weight: bold;'>Sock drawer currently contains 0 socks.</span><span></div><div class='input'>
+<span class='co'># Create five (5) new socket connections. Include a Master and a TWS Socket.</span>
+<span class='fu'>create_new_connections</span>(<span class='fl'>5</span>, <span class='kw'>include_master</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_tws</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># Print the socket connections you created</span>
+<span class='fu'><a href='socks.html'>socks</a></span>()</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>master</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>22998</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_1</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>1</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_2</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>2</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:21</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_3</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>3</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:21</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>tws</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>0</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span></div><div class='input'>
+<span class='co'># Remove two general-purpose (i.e., not TWS or Master) sockets:</span>
+<span class='fu'><a href='disconnect.html'>disconnect</a></span>(<span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>✔</span><span> Disconnected 2 sockets.</div><div class='input'>
+<span class='co'># See that two general-purpose connections are now gone</span>
+<span class='fu'><a href='socks.html'>socks</a></span>()</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>master</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>22998</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_1</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>1</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>tws</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>0</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span></div><div class='input'>
+<span class='co'># Create two more, view with socks()</span>
+<span class='fu'>create_new_connections</span>(<span class='fl'>2</span>)
+<span class='fu'><a href='socks.html'>socks</a></span>()</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>master</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>22998</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_1</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>1</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_2</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>2</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:22</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_3</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>3</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:22</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>tws</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>0</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span></div><div class='input'>
+<span class='co'># Disconnect only the TWS and the Master, view with socks()</span>
+<span class='fu'><a href='disconnect.html'>disconnect</a></span>(
+  <span class='kw'>number_to_disconnect</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>disconnect_master</span>    <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>disconnect_tws</span>       <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>✔</span><span> Master socket disconnected.
+#&gt; </span><span style='color: #00BB00;'>✔</span><span> TWS socket (Client ID = 0) disconnected.</div><div class='input'><span class='fu'><a href='socks.html'>socks</a></span>()</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>sock_1</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>1</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_2</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>2</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:22</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_3</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>3</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:22</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span></div><div class='input'>
+<span class='co'># Re-connect TWS and Master, view with socks()</span>
+<span class='fu'>create_new_connections</span>(
+  <span class='kw'>number_of_new_socks</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>include_master</span>      <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>include_tws</span>         <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
+<span class='fu'><a href='socks.html'>socks</a></span>()</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>master</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>22998</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:24</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_1</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>1</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:20</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_2</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>2</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:22</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>sock_3</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>3</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:22</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span style='font-weight: bold;'>tws</span><span>: A socket connection on </span><span style='color: #0000BB;'>'-&gt;localhost:7497'</span><span>.
+#&gt; </span><span style='font-weight: bold;'>Client ID: </span><span>0</span><span style='font-weight: bold;'>	Server Version: </span><span>155</span><span style='font-weight: bold;'>	Connection time: </span><span>2020-03-11 12:35:24</span><span style='font-weight: bold;'>
+#&gt; Subscriptions:
+#&gt; </span><span style='font-style: italic;'>None
+#&gt; </span><span></div><div class='input'>
+<span class='co'># Disconnect ALL socks, view with socks()</span>
+<span class='fu'><a href='disconnect.html'>disconnect</a></span>()</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>Sock drawer cleaned out!
+#&gt; </span><span style='color: #00BB00;'>✔</span><span> Disconnected 1 sockets.</div><div class='input'><span class='fu'><a href='socks.html'>socks</a></span>()</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -198,6 +329,7 @@ requests to the <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Ma
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

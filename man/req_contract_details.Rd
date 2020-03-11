@@ -157,3 +157,9 @@ contract_details_4
 broadcom_bond <- req_contract_details(359401413)
 broadcom_bond
 }
+\seealso{
+Other asset info: 
+\code{\link{req_matching_symbols}()},
+\code{\link{req_sec_def_opt_params}()}
+}
+\concept{asset info}

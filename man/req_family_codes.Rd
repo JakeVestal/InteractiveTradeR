@@ -51,3 +51,9 @@ family_codes <- req_family_codes()
 # Print family codes
 family_codes
 }
+\seealso{
+Other quick fetch: 
+\code{\link{req_current_time}()},
+\code{\link{req_managed_accts}()}
+}
+\concept{quick fetch}

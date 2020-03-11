@@ -79,3 +79,9 @@ req_matching_symbols("ibm") \%>\%
   dplyr::select(asset_types) \%>\%
   unlist(use.names = FALSE)
 }
+\seealso{
+Other asset info: 
+\code{\link{req_contract_details}()},
+\code{\link{req_sec_def_opt_params}()}
+}
+\concept{asset info}

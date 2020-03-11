@@ -41,6 +41,8 @@
 #' @export
 #'
 #' @example inst/examples/req_sec_def_opt_params_ex.R
+#' @family asset info
+#' @export
 #'
 req_sec_def_opt_params <- function(
   underlyingSymbol  = "",

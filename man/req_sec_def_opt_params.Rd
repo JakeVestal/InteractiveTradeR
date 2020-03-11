@@ -85,3 +85,9 @@ ibm_opt_params$expirations
 # Find latest expiration:
 max(ibm_opt_params$expirations[[1]])
 }
+\seealso{
+Other asset info: 
+\code{\link{req_contract_details}()},
+\code{\link{req_matching_symbols}()}
+}
+\concept{asset info}

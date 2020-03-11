@@ -30,9 +30,9 @@
 #' @return
 #' A POSIXct date-time object. See \link[base]{DateTimeClasses} for details.
 #'
-#' @export
-#'
 #' @example inst/examples/req_current_time_ex.R
+#' @family quick fetch
+#' @export
 #'
 req_current_time <- function(channel = NULL){
   

@@ -2,8 +2,7 @@
 #'
 #' Print a detailed description of all the socks that are currently open.
 #'
-#' @aliases sock_drawer
-#'
+#' @family utilities
 #' @export
 #'
 socks <- function(){

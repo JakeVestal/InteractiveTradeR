@@ -37,3 +37,9 @@ managed_accts <- req_managed_accts()
 # Print managed accounts
 managed_accts
 }
+\seealso{
+Other quick fetch: 
+\code{\link{req_current_time}()},
+\code{\link{req_family_codes}()}
+}
+\concept{quick fetch}

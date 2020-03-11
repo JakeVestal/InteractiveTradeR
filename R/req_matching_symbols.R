@@ -33,7 +33,7 @@
 #' }
 #'
 #' @example inst/examples/req_matching_symbols_ex.R
-#' 
+#' @family asset info
 #' @export
 #'
 req_matching_symbols <- function(pattern, channel = NULL){

@@ -73,12 +73,13 @@ ib_connect <- function(
         client_id <- min(
           setdiff(
             1:32,
-            vapply(
-              socks(),
-              attr,
-              which = "client_id",
-              numeric(1)
-            )
+            mget(ls(sock_drawer), envir = sock_drawer) %>%
+              vapply(
+                attr,
+                which     = "client_id",
+                FUN.VALUE = numeric(1),
+                USE.NAMES = FALSE
+              )
           )
         )
         

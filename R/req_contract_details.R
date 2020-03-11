@@ -67,9 +67,9 @@
 #' and the query results will be updated in \code{treasury$CONTRACT_DETAILS}
 #' when \link{read_sock_drawer}() is called at a later time.
 #'
-#' @export
-#'
 #' @example inst/examples/req_contract_details_ex.R
+#' @family asset info
+#' @export
 #'
 req_contract_details <- function(contract = NULL, channel  = NULL){
   
