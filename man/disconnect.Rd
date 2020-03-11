@@ -17,7 +17,7 @@ connections if included.}
 \item{disconnect_master}{Boolean, default FALSE. If TRUE, then the \link{master_client_id}{Master
 Client Socket} will be disconnected if it exists.}
 
-\item{disconnect_tws}{Boolean, default FALSE. If TRUE, then the #' \link{client_id_0}{TWS Socket}
+\item{disconnect_tws}{Boolean, default FALSE. If TRUE, then the \link{client_id_0}{TWS Socket}
 will be disconnected if it exists.}
 }
 \description{
@@ -26,4 +26,8 @@ socket connections as directed.
 }
 \seealso{
 create_new_connections
+
+Other connect and disconnect: 
+\code{\link{create_new_connections}()}
 }
+\concept{connect and disconnect}

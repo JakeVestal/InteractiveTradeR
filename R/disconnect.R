@@ -12,12 +12,13 @@
 #' Client Socket} will be disconnected if it exists.
 #'
 #' @param disconnect_tws
-#' Boolean, default FALSE. If TRUE, then the #' \link{client_id_0}{TWS Socket}
+#' Boolean, default FALSE. If TRUE, then the \link{client_id_0}{TWS Socket}
 #' will be disconnected if it exists.
 #'
 #' @seealso create_new_connections
 #' 
 #' @export
+#' @family connect and disconnect
 #'
 disconnect <- function(
   number_to_disconnect = "all",

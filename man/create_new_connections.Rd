@@ -17,18 +17,18 @@ create_new_connections(
 
 \item{include_master}{Boolean, default = FALSE. If TRUE, then a connection using the
 \link{master_client_id}{Master Client ID} will be opened and assigned the
-name "**master**".}
+name "\strong{master}".}
 
 \item{include_tws}{Boolean, default = FALSE. If TRUE, then a connection using
 \link{client_id_0}{Client ID 0} will be included in the result and assigned
-the name "**tws**".}
+the name "\strong{tws}".}
 
-\item{host}{Character vector of length 1 giving the **hostname** for the session of IB
-Gateway or TWS to which the connection(s) should be made. Usually is
-"`localhost`" because most users connect to an instance of TWS/IBG that is
+\item{host}{Character vector of length 1 giving the \strong{hostname} for the session of
+IB Gateway or TWS to which the connection(s) should be made. Usually is
+"localhost" because most users connect to an instance of TWS/IBG that is
 running on the same computer as InteractiveTradeR.}
 
-\item{port}{Character vector length 1 or numeric giving the **port number** for the
+\item{port}{Character vector length 1 or numeric giving the \strong{port number} for the
 session of IB Gateway or TWS to which the connection(s) should be made.}
 }
 \value{
@@ -41,11 +41,15 @@ Creates a specified number of persistent async socket connections to
   and receive data.
 }
 \details{
-**Client IDs** In InteractiveTradeR, Client IDs are not assigned by the user;
-instead, they are tracked internally. The user may assign subscriptions and
-requests to the \link{master_client_id}{Master Client}, the
-\link{client_id_0}{TWS Client}(Client ID = 0) or a generic socket.
+\strong{Client IDs} In InteractiveTradeR, Client IDs are not assigned by the
+user; instead, they are tracked internally. The user may assign subscriptions
+and requests to the Master Client, the TWS Client, (Client ID = 0) or a
+generic async socket.
 }
 \seealso{
 disconnect
+
+Other connect and disconnect: 
+\code{\link{disconnect}()}
 }
+\concept{connect and disconnect}
