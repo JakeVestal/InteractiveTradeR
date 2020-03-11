@@ -10,7 +10,16 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/active_connection_parameters.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancel_account_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancel_account_updates_multi.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancellator.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/clean_slate.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/contracts.html</loc>
@@ -46,7 +55,19 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/pipe.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/place_order.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/read_sock_drawer.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_account_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_account_updates.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_account_updates_multi.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_contract_details.html</loc>
@@ -73,6 +94,9 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/start_api.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/subscriptions.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/sync_timeout.html</loc>
   </url>
   <url>
@@ -83,6 +107,9 @@
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tidyeval.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/treasury.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//articles/Socks.html</loc>

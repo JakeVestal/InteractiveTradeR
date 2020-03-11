@@ -1,6 +1,8 @@
 #' InteractiveTradeR
+#' 
+#' API for Interactive Brokers TWS & IBG
+#' 
 #' @docType package
-#' @keywords internal
 "_PACKAGE"
 
 # Define "." for R CMD Check:
@@ -25,7 +27,6 @@ assign("default_market_data_type", value = 1, envir = package_state)
 sock_drawer   <- new.env(parent = emptyenv())
 subscriptions <- new.env(parent = emptyenv())
 mkt_data      <- new.env(parent = emptyenv())
-treasury      <- new.env(parent = emptyenv())
 
 .onLoad <- function(libname, pkgname) {
   

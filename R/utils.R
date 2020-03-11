@@ -280,23 +280,6 @@ fetch_and_bump <- function(fun_name){
   }
 }
 
-clean_slate <- function(
-  what = c("archives", "sock_drawer", "subscriptions", "treasury")
-){
-  if(any(what == "sock_drawer")){
-    purrr::walk(mget(ls(sock_drawer), sock_drawer), close)
-  }
-  if(length(what) > 0){
-    purrr::walk(
-      what,
-      function(slate){
-        eval(parse(text = slate)) %>%
-          rm(list = ls(.), envir = .)
-      }
-    )
-  }
-}
-
 clear_cols <- function(x){
   x[,names(
     which(

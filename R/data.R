@@ -44,11 +44,23 @@ NULL
 #' 
 NULL
 
-#' Async Mode
+#' All About Subscriptions
+#'
+#' @description
+#' Keeps track of what your sockets are subscribed to.
+#'
+#' @name subscriptions
 #' 
-#' Documentation goes here.
+NULL
+
+#' The Treasury
 #' 
-#' @name async
+#' @description 
+#' Contains up-to-date data pertaining to account balances, positions, P/L, and
+#' other financials.
+#' 
+#' @name 
+#' treasury
 #' 
 NULL
 

@@ -81,6 +81,7 @@ create_new_connections
 
 Other utilities: 
 \code{\link{active_connection_parameters}()},
+\code{\link{clean_slate}()},
 \code{\link{create_new_connections}()},
 \code{\link{socks}()},
 \code{\link{start_api}()},

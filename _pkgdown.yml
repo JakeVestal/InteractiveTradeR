@@ -24,6 +24,13 @@ reference:
   desc: Explainations of important elements used by InteractiveTradeR.
   contents:
   - contracts
+- title: The Treasury
+  desc: The Treasury environment contains updated financials -- P/L, account 
+    balances, positions, and so on. This section includes all functions that 
+    update Treasury data.
+  contents:
+  - req_account_summary
+  - cancel_account_summary
 - title: Utilities
   desc: Functions for managing InteractiveTradeR's operation.
   contents:

@@ -37,35 +37,11 @@
 #'   then the function might return an error if called with the default timeout
 #'   because it needs bit more time than the default 5 seconds in order to
 #'   complete. Try using \code{sync_timeout(10)} or \code{sync_timeout(15)}.
-#'   \item \strong{In Shiny apps or scripts whose execution can't/shouldn't be
-#'   held up while \code{req_contract_details}() executes, use} \strong{Async
-#'   Mode}. Have your script or app look for the updated data in
-#'   \code{treasury$CONTRACT_DETAILS} at a later time.
-#'   \item \strong{Subsequent calls to \code{req_contract_details}() will
-#'   overwrite the} \code{CONTRACT_DETAILS} \strong{treasury object}. In other
-#'   words, there is at most one \code{CONTRACT_DETAILS} object in the treasury
-#'   at any given time.
 #'   \item \strong{Using \code{conId} Only}: If the object passed in as
 #'   \code{contract} has length = 1, then \code{req_contract_details}() will
 #'   assume that \code{contract} contains a \code{conId}, which is sufficient to
 #'   specify a unique contract. This shortcut can help speed up usage.
 #' }
-#'
-#' @section \code{CONTRACT_DETAILS} Treasury Object:
-#' The \code{CONTRACT_DETAILS} object is a \link[tibble]{tibble} in which each
-#' row represents a contract found to match the supplied parameters. The columns
-#' of \code{CONTRACT_DETAILS} are described in the
-#' \href{https://interactivebrokers.github.io/tws-api/classIBApi_1_1ContractDetails.html}{Contract
-#' Details Class Reference} page in IB's online documentation \strong{with one
-#' minor difference}: in \strong{InteractiveTradeR}, the parameters
-#' \code{validExchanges} and \code{marketRuleIds} are grouped together in the
-#' column \code{exchange_info} to make it easy to read which market rule applies
-#' to which exchange.
-#'
-#' @return
-#' A \code{CONTRACT_DETAILS} if sync mode; otherwise NULL is returned invisibly
-#' and the query results will be updated in \code{treasury$CONTRACT_DETAILS}
-#' when \link{read_sock_drawer}() is called at a later time.
 #'
 #' @example inst/examples/req_contract_details_ex.R
 #' @family asset info

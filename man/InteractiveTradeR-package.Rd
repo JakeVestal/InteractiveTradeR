@@ -6,8 +6,7 @@
 \alias{InteractiveTradeR-package}
 \title{InteractiveTradeR}
 \description{
-API for trading, data collection, and strategy
-    testing.
+API for Interactive Brokers TWS & IBG
 }
 \seealso{
 Useful links:
@@ -21,4 +20,3 @@ Useful links:
 \strong{Maintainer}: Jake Vestal \email{jmvestal@gmail.com} (\href{https://orcid.org/0000-0002-2970-4795}{ORCID})
 
 }
-\keyword{internal}

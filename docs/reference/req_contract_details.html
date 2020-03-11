@@ -162,11 +162,6 @@ found to match parameters supplied in the <code>contract</code> argument.</p>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>CONTRACT_DETAILS</code> if sync mode; otherwise NULL is returned invisibly
-and the query results will be updated in <code>treasury$CONTRACT_DETAILS</code>
-when <a href='read_sock_drawer.html'>read_sock_drawer</a>() is called at a later time.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><strong>IB's documentation</strong> describes each column variable that can appear in
@@ -194,33 +189,12 @@ three general rules of thumb, pacing should not be a problem when using
   then the function might return an error if called with the default timeout
   because it needs bit more time than the default 5 seconds in order to
   complete. Try using <code><a href='sync_timeout.html'>sync_timeout(10)</a></code> or <code><a href='sync_timeout.html'>sync_timeout(15)</a></code>.</p></li>
-<li><p><strong>In Shiny apps or scripts whose execution can't/shouldn't be
-  held up while <code>req_contract_details</code>() executes, use</strong> <strong>Async
-  Mode</strong>. Have your script or app look for the updated data in
-  <code>treasury$CONTRACT_DETAILS</code> at a later time.</p></li>
-<li><p><strong>Subsequent calls to <code>req_contract_details</code>() will
-  overwrite the</strong> <code>CONTRACT_DETAILS</code> <strong>treasury object</strong>. In other
-  words, there is at most one <code>CONTRACT_DETAILS</code> object in the treasury
-  at any given time.</p></li>
 <li><p><strong>Using <code>conId</code> Only</strong>: If the object passed in as
   <code>contract</code> has length = 1, then <code>req_contract_details</code>() will
   assume that <code>contract</code> contains a <code>conId</code>, which is sufficient to
   specify a unique contract. This shortcut can help speed up usage.</p></li>
 </ul>
 
-    <h2 class="hasAnchor" id="contract-details-treasury-object"><a class="anchor" href="#contract-details-treasury-object"></a><code>CONTRACT_DETAILS</code> Treasury Object</h2>
-
-    
-
-<p>The <code>CONTRACT_DETAILS</code> object is a <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> in which each
-row represents a contract found to match the supplied parameters. The columns
-of <code>CONTRACT_DETAILS</code> are described in the
-<a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1ContractDetails.html'>Contract
-Details Class Reference</a> page in IB's online documentation <strong>with one
-minor difference</strong>: in <strong>InteractiveTradeR</strong>, the parameters
-<code>validExchanges</code> and <code>marketRuleIds</code> are grouped together in the
-column <code>exchange_info</code> to make it easy to read which market rule applies
-to which exchange.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other asset info: 
@@ -264,7 +238,7 @@ to which exchange.</p>
 
 <span class='co'># You can also use glimpse() to print the information in what may be an</span>
 <span class='co'># easier-to-read format:</span>
-<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>contract_details</span>)</div><div class='output co'>#&gt; Observations: 1
+<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/reexports.html'>glimpse</a></span>(<span class='no'>contract_details</span>)</div><div class='output co'>#&gt; Observations: 1
 #&gt; Variables: 23
 #&gt; $ symbol           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "IBM"
 #&gt; $ secType          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "STK"
@@ -382,9 +356,7 @@ to which exchange.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#contract-details-treasury-object"><code>CONTRACT_DETAILS</code> Treasury Object</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -103,6 +103,7 @@ disconnect
 
 Other utilities: 
 \code{\link{active_connection_parameters}()},
+\code{\link{clean_slate}()},
 \code{\link{disconnect}()},
 \code{\link{socks}()},
 \code{\link{start_api}()},

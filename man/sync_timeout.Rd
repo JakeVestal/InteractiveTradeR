@@ -32,6 +32,7 @@ sync_timeout()
 \seealso{
 Other utilities: 
 \code{\link{active_connection_parameters}()},
+\code{\link{clean_slate}()},
 \code{\link{create_new_connections}()},
 \code{\link{disconnect}()},
 \code{\link{socks}()},

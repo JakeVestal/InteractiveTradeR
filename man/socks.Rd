@@ -13,6 +13,7 @@ Print a detailed description of all the socks that are currently open.
 \seealso{
 Other utilities: 
 \code{\link{active_connection_parameters}()},
+\code{\link{clean_slate}()},
 \code{\link{create_new_connections}()},
 \code{\link{disconnect}()},
 \code{\link{start_api}()},

@@ -185,7 +185,7 @@ in the full <strong>basic contract</strong> information: <code><a href='https://
 <p><strong>For <code>place_order</code> (), the <code>contract</code> object must also include an exchange.</strong> 
 Because orders require the user to specify the exchange on which the order is
 to be placed, the command</p>
-<p><code>place_order(
+<p><code><a href='place_order.html'>place_order(
     8314,
     c(
       action        = "BUY",
@@ -193,11 +193,11 @@ to be placed, the command</p>
       orderType     = "MKT",
       totalQuantity = 50
     )
-  )</code></p>
+  )</a></code></p>
 <p>would <strong>not</strong> work to buy 50 shares of IBM because the exchange isn't
 specified. Instead, the trader would need to include an exchange; for
 example, the SMART exchange:</p>
-<p><code>place_order(
+<p><code><a href='place_order.html'>place_order(
     c(8314, "SMART"),
     c(
       action        = "BUY",
@@ -205,7 +205,7 @@ example, the SMART exchange:</p>
       orderType     = "MKT",
       totalQuantity = 50
     )
-  )</code></p>
+  )</a></code></p>
     <h2 class="hasAnchor" id="basic-contract-definitions"><a class="anchor" href="#basic-contract-definitions"></a>Basic Contract Definitions</h2>
 
     

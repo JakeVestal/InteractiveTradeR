@@ -10,6 +10,10 @@ ib_validate <- function(output_obj){
   
   switch(
     ib_func,
+    "req_account_summary"    =  is.null(output_obj) || 
+      tibble::is_tibble(output_obj),
+    "req_account_updates"    =  is.null(output_obj) ||
+      tibble::is_tibble(output_obj),
     "req_current_time"       = inherits(output_obj, "POSIXct"),
     "req_contract_details"   = is.null(output_obj) ||
       tibble::is_tibble(output_obj),
