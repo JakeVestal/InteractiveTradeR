@@ -1,19 +1,20 @@
 #' Set/Get Sync Timeout
 #'
-#' Set or retrieve the number of seconds that API calls in SYNC mode will wait
-#' for a response from IB before giving up. The default value is 5 seconds.
+#' Set or retrieve the number of seconds that API calls in \strong{Sync Mode}
+#' will wait for a response from the IB app before giving up. The default value
+#' is set to 5 seconds.
 #'
 #' @param timeout
 #' Numeric, length 1, specifying the time in seconds that API
 #' calls made in SYNC mode will wait for a response from IB before giving up.
 #' The default value is 5 seconds.
 #'
-#' If not `timeout` not specified, then `sync_timeout`() will fetch the current
-#' timeout setting.
+#' If the argument \emph{timeout} is not specified in the call, then
+#' sync_timeout() will return the current timeout setting.
 #'
 #' @export
 #'
-#' @example inst/examples/global_params_ex.R
+#' @example inst/examples/sync_timeout_ex.R
 #'
 sync_timeout <- function(timeout){
   if(missing(timeout)){return(package_state$sync_time_out)}

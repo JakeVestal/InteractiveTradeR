@@ -30,3 +30,4 @@ reference:
   - create_new_connections 
   - disconnect
   - socks
+  - sync_timeout

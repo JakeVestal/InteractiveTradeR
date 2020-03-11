@@ -38,8 +38,9 @@
   <script src="../extra.js"></script>
 
 <meta property="og:title" content="Set/Get Sync Timeout — sync_timeout" />
-<meta property="og:description" content="Set or retrieve the number of seconds that API calls in SYNC mode will wait
-for a response from IB before giving up. The default value is 5 seconds." />
+<meta property="og:description" content="Set or retrieve the number of seconds that API calls in Sync Mode
+will wait for a response from the IB app before giving up. The default value
+is set to 5 seconds." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,13 +125,14 @@ for a response from IB before giving up. The default value is 5 seconds." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Set/Get Sync Timeout</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/utils-set_global_params.R'><code>R/utils-set_global_params.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/sync_timeout.R'><code>R/sync_timeout.R</code></a></small>
     <div class="hidden name"><code>sync_timeout.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set or retrieve the number of seconds that API calls in SYNC mode will wait
-for a response from IB before giving up. The default value is 5 seconds.</p>
+    <p>Set or retrieve the number of seconds that API calls in <strong>Sync Mode</strong>
+will wait for a response from the IB app before giving up. The default value
+is set to 5 seconds.</p>
     </div>
 
     <pre class="usage"><span class='fu'>sync_timeout</span>(<span class='no'>timeout</span>)</pre>
@@ -143,8 +145,8 @@ for a response from IB before giving up. The default value is 5 seconds.</p>
       <td><p>Numeric, length 1, specifying the time in seconds that API
 calls made in SYNC mode will wait for a response from IB before giving up.
 The default value is 5 seconds.</p>
-<p>If not `timeout` not specified, then `sync_timeout`() will fetch the current
-timeout setting.</p></td>
+<p>If the argument <em>timeout</em> is not specified in the call, then
+sync_timeout() will return the current timeout setting.</p></td>
     </tr>
     </table>
 
@@ -153,7 +155,10 @@ timeout setting.</p></td>
     <pre class="examples"><div class='input'><span class='co'># Fetch the current timeout setting for SYNC functions (in seconds):</span>
 <span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
 <span class='co'># Set the time out setting for SYNC functions to 10 seconds:</span>
-<span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)</div></pre>
+<span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)
+
+<span class='co'># Fetch the new setting:</span>
+<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 10</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
