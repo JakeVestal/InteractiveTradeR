@@ -142,18 +142,25 @@ is set to 5 seconds.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>timeout</th>
-      <td><p>Numeric, length 1, specifying the time in seconds that API
-calls made in SYNC mode will wait for a response from IB before giving up.
-The default value is 5 seconds.</p>
+      <td><p>Numeric, length 1, specifying the time in seconds that API calls made in SYNC
+mode will wait for a response from IB before giving up. The default value is
+5 seconds.</p>
 <p>If the argument <em>timeout</em> is not specified in the call, then
 sync_timeout() will return the current timeout setting.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other utilities: 
+<code><a href='active_connection_parameters.html'>active_connection_parameters</a>()</code>,
+<code><a href='create_new_connections.html'>create_new_connections</a>()</code>,
+<code><a href='disconnect.html'>disconnect</a>()</code>,
+<code><a href='socks.html'>socks</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch the current timeout setting for SYNC functions (in seconds):</span>
-<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
+<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 10</div><div class='input'>
 <span class='co'># Set the time out setting for SYNC functions to 10 seconds:</span>
 <span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)
 
@@ -164,6 +171,7 @@ sync_timeout() will return the current timeout setting.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

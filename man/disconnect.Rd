@@ -80,7 +80,9 @@ socks()
 create_new_connections
 
 Other utilities: 
+\code{\link{active_connection_parameters}()},
 \code{\link{create_new_connections}()},
-\code{\link{socks}()}
+\code{\link{socks}()},
+\code{\link{sync_timeout}()}
 }
 \concept{utilities}

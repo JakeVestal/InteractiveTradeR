@@ -7,9 +7,9 @@
 sync_timeout(timeout)
 }
 \arguments{
-\item{timeout}{Numeric, length 1, specifying the time in seconds that API
-calls made in SYNC mode will wait for a response from IB before giving up.
-The default value is 5 seconds.
+\item{timeout}{Numeric, length 1, specifying the time in seconds that API calls made in SYNC
+mode will wait for a response from IB before giving up. The default value is
+5 seconds.
 
 If the argument \emph{timeout} is not specified in the call, then
 sync_timeout() will return the current timeout setting.}
@@ -29,3 +29,11 @@ sync_timeout(10)
 # Fetch the new setting:
 sync_timeout()
 }
+\seealso{
+Other utilities: 
+\code{\link{active_connection_parameters}()},
+\code{\link{create_new_connections}()},
+\code{\link{disconnect}()},
+\code{\link{socks}()}
+}
+\concept{utilities}

@@ -27,6 +27,7 @@ reference:
 - title: Utilities
   desc: Functions for managing InteractiveTradeR's operation.
   contents:
+  - active_connection_parameters
   - create_new_connections 
   - disconnect
   - socks

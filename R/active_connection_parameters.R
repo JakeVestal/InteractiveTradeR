@@ -1,9 +1,14 @@
 #' Retreive Active Connection Parameters
 #'
+#' Return a \link[tibble]{tibble} that prints nicely and contains the connection
+#' info that InteractiveTradeR is currently using to to interface with the
+#' Interactive Brokers TWS / IBG application.
 #'
+#' @example inst/examples/active_connection_parameters_ex.R
+#' @family utilities
 #' @export
+#' 
 active_connection_parameters <- function(){
-  
   structure(
     tibble::tibble(
       live             = !unlist(
