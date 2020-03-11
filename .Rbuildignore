@@ -10,3 +10,4 @@
 skelly.R
 ^\.travis\.yml$
 ^vignettes
+^vignettes/Overview\.Rmd$

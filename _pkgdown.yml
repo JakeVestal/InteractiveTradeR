@@ -6,10 +6,6 @@ template:
     bootswatch: cyborg
 
 reference:
-- title: Overview
-  desc: Package description, licensing, R options set upon load, and similar.
-  contents:
-  - InteractiveTradeR
 - title: Quick Fetch
   desc: Retreive a simple piece of data; e.g., a list of all tradable 
     instruments that match a search string, the current time, news info, etc.
@@ -35,4 +31,5 @@ reference:
   - create_new_connections 
   - disconnect
   - socks
+  - start_api
   - sync_timeout

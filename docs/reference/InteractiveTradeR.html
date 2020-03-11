@@ -38,7 +38,8 @@
   <script src="../extra.js"></script>
 
 <meta property="og:title" content="InteractiveTradeR — InteractiveTradeR" />
-<meta property="og:description" content="Basic info, disclaimer, and overview" />
+<meta property="og:description" content="This package can be used to connect to Interactive Brokers' trading services
+through the Trader Workstation (TWS) and IB Gateway (IBG) apps." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,7 +129,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Basic info, disclaimer, and overview</p>
+    <p>This package can be used to connect to Interactive Brokers' trading services
+through the Trader Workstation (TWS) and IB Gateway (IBG) apps.</p>
     </div>
 
 
@@ -143,16 +145,93 @@ violating the license agreement in the instant you connect InteractiveTradeR
 to a live Interactive Brokers account without permission. Please contact Jake
 Vestal, the package author, for information on licensing.</p>
 <p>Not affiliated with Interactive Brokers, LLC in any way.</p>
-    <h2 class="hasAnchor" id="na"><a class="anchor" href="#na"></a>NA</h2>
+    <h2 class="hasAnchor" id="package-options"><a class="anchor" href="#package-options"></a>Package options</h2>
 
     
 
-<p>You can use this package for any and all purposes so long as it's connected
-to your paper trading account or Interactive Brokers' live demo. You are
-violating the license agreement in the instant you connect InteractiveTradeR
-to a live Interactive Brokers account without permission. Please contact Jake
-Vestal, the package author, for information on licensing.</p>
-<p>Not affiliated with Interactive Brokers, LLC in any way.</p>
+
+<p>InteractiveTradeR uses the following R options to configure your connections
+to Trader Workstation (TWS) and IB Gateway (IBG):</p>
+<ul>
+<li><p><code>interactivetrader.paper</code>: Set to TRUE to use options configured
+  for <strong>PAPER</strong> account; set to FALSE for <strong>LIVE</strong>. Defaults to
+  TRUE. <strong>Using InteractiveTradeR to trade real money without a license
+  violates the license agreement</strong>.</p></li>
+<li><p><code>interactivetrader.platform</code>: Set to "TWS" to use options
+  configured for <strong>Trader Workstation</strong> account; set to "IBG" for
+  <strong>IB Gateway</strong>. Defaults to TWS.</p></li>
+<li><p><code>interactivetrader.tws.paper.host</code>: Identifies its set value as
+  the host name at which InteractiveTradeR should look to connect to an
+  instance of Trader Workstation connected to a <strong>PAPER</strong> account.
+  Because most users run TWS on the same machine as InteractiveTradeR, this
+  option should usually be kept to the default setting of "localhost".</p></li>
+<li><p><code>interactivetrader.tws.paper.host</code>: Identifies its set value as
+  the host name at which InteractiveTradeR should look to connect to an
+  instance of Trader Workstation connected to a <strong>PAPER</strong> account.
+  Because most users run TWS on the same machine as InteractiveTradeR, this
+  option should usually be kept to the default setting of "localhost".</p></li>
+<li><p><code>interactivetrader.tws.paper.port</code>: Identifies the port on which
+  an instance of Trader Workstation, connected to a <strong>PAPER</strong> account,
+  has been configured to listen for API connections. Default is
+  <strong>7497</strong>, matching the default set by Interactive Brokers.</p></li>
+<li><p><code>interactivetrader.tws.paper.master</code>: To use a
+  <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client ID that you have configred within
+  TWS for a <strong>PAPER</strong> account, set this option to the value you have
+  selected for your TWS paper account's Master Client ID.</p></li>
+<li><p><code>interactivetrader.ibg.paper.host</code>: Identifies its set value as
+  the host name at which InteractiveTradeR should look to connect to an
+  instance of IB Gateway connected to a <strong>PAPER</strong> account. Because most
+  users run IBG on the same machine as InteractiveTradeR, this option should
+  usually be kept to the default setting of "localhost".</p></li>
+<li><p><code>interactivetrader.ibg.paper.port</code>: Identifies the port on which
+  an instance of IB Gateway, connected to a <strong>PAPER</strong> account, has been
+  configured to listen for API connections. Default is <strong>4002</strong>,
+  matching the default set by Interactive Brokers.</p></li>
+<li><p><code>interactivetrader.ibg.paper.master</code>: To use a
+  <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client ID that you have configred within
+  IBG for a <strong>PAPER</strong> account, set this option to the value you have
+  selected for your IBG paper account's Master Client ID.</p></li>
+<li><p><code>interactivetrader.tws.live.host</code>: Identifies its set value as
+  the host name at which InteractiveTradeR should look to connect to an
+  instance of Trader Workstation connected to a <strong>LIVE</strong> account on
+  which actual trades will be executed with real money. Because most users
+  run TWS on the same machine as InteractiveTradeR, this option should
+  usually be kept to the default setting of "localhost". <strong>Using
+  InteractiveTradeR to trade real money without a license violates the
+  license agreement</strong>.</p></li>
+<li><p><code>interactivetrader.tws.live.port</code>: Identifies the port on which
+  an instance of Trader Workstation, connected to a <strong>LIVE</strong> account,
+  has been configured to listen for API connections. Default is
+  <strong>7496</strong>, matching the default set by Interactive Brokers.
+  <strong>Using InteractiveTradeR to trade real money without a license
+  violates the license agreement</strong>.</p></li>
+<li><p><code>interactivetrader.tws.live.master</code>: To use a
+  <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client ID that you have configred within
+  TWS for a <strong>LIVE</strong> account, set this option to the value you have
+  selected for your TWS paper account's Master Client ID. <strong>Using
+  InteractiveTradeR to trade real money without a license violates the
+  license agreement</strong>.</p></li>
+<li><p><code>interactivetrader.ibg.live.host</code>: Identifies its set value as
+  the host name at which InteractiveTradeR should look to connect to an
+  instance of IB Gateway connected to a <strong>LIVE</strong> account on which actual
+  trades will be executed with real money. Because most users run IBG on the
+  same machine as InteractiveTradeR, this option should usually be kept to
+  the default setting of "localhost". <strong>Using InteractiveTradeR to
+  trade real money without a license violates the license agreement</strong>.</p></li>
+<li><p><code>interactivetrader.ibg.live.port</code>: Identifies the port on which
+  an instance of IB Gateway, connected to a <strong>LIVE</strong> account, has been
+  configured to listen for API connections. Default is <strong>4001</strong>,
+  matching the default set by Interactive Brokers. <strong>Using
+  InteractiveTradeR to trade real money without a license violates the
+  license agreement</strong>.</p></li>
+<li><p><code>interactivetrader.ibg.live.master</code>: To use a
+  <a href='tick-Master-Client-ID-tick.html'>master_client_id</a>Master Client ID that you have configred within
+  IBG for a <strong>LIVE</strong> account, set this option to the value you have
+  selected for your IBG paper account's Master Client ID. <strong>Using
+  InteractiveTradeR to trade real money without a license violates the
+  license agreement</strong>.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Useful links:</p><ul>
@@ -167,7 +246,7 @@ Vestal, the package author, for information on licensing.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#disclaimer-and-waiver">Disclaimer and Waiver</a></li>
-      <li><a href="#na">NA</a></li>
+      <li><a href="#package-options">Package options</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

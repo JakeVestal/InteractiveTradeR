@@ -2,12 +2,26 @@
 % Please edit documentation in R/start_api.R
 \name{start_api}
 \alias{start_api}
-\title{Start API}
+\title{Start API (not explicit in InteractiveTradeR)}
 \usage{
 start_api()
 }
 \description{
-In InteractiveTradeR, the API function `start_api`() is implemented
-implicitly by other functions such as \link{create_new_connections}();
-therefore, there is no need to ever call `start_api`() directly.
+Functions named "Start API" occur in the official IB APIs but in
+InteractiveTradeR, this functionality is implimented implicitly by other
+functions such as \link{create_new_connections}(). Therefore, there is no
+need to ever call start_api() in InteractiveTradeR -- doing so will produce
+an informative error message.
 }
+\examples{
+start_api()
+}
+\seealso{
+Other utilities: 
+\code{\link{active_connection_parameters}()},
+\code{\link{create_new_connections}()},
+\code{\link{disconnect}()},
+\code{\link{socks}()},
+\code{\link{sync_timeout}()}
+}
+\concept{utilities}

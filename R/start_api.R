@@ -1,9 +1,13 @@
-#' Start API
+#' Start API (not explicit in InteractiveTradeR)
 #'
-#' In InteractiveTradeR, the API function `start_api`() is implemented
-#' implicitly by other functions such as \link{create_new_connections}();
-#' therefore, there is no need to ever call `start_api`() directly.
+#' Functions named "Start API" occur in the official IB APIs but in
+#' InteractiveTradeR, this functionality is implimented implicitly by other
+#' functions such as \link{create_new_connections}(). Therefore, there is no
+#' need to ever call start_api() in InteractiveTradeR -- doing so will produce
+#' an informative error message.
 #'
+#' @example inst/examples/start_api_ex.R
+#' @family utilities
 #' @export
 #'
 start_api <- function(){

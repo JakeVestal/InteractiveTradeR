@@ -38,8 +38,8 @@
 #'   because it needs bit more time than the default 5 seconds in order to
 #'   complete. Try using \code{sync_timeout(10)} or \code{sync_timeout(15)}.
 #'   \item \strong{In Shiny apps or scripts whose execution can't/shouldn't be
-#'   held up while \code{req_contract_details}() executes, use} \link{async}
-#'   \strong{mode}. Have your script or app look for the updated data in
+#'   held up while \code{req_contract_details}() executes, use} \strong{Async
+#'   Mode}. Have your script or app look for the updated data in
 #'   \code{treasury$CONTRACT_DETAILS} at a later time.
 #'   \item \strong{Subsequent calls to \code{req_contract_details}() will
 #'   overwrite the} \code{CONTRACT_DETAILS} \strong{treasury object}. In other

@@ -26,6 +26,7 @@ Other utilities:
 \code{\link{create_new_connections}()},
 \code{\link{disconnect}()},
 \code{\link{socks}()},
+\code{\link{start_api}()},
 \code{\link{sync_timeout}()}
 }
 \concept{utilities}

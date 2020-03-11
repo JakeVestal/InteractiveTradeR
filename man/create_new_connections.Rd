@@ -105,6 +105,7 @@ Other utilities:
 \code{\link{active_connection_parameters}()},
 \code{\link{disconnect}()},
 \code{\link{socks}()},
+\code{\link{start_api}()},
 \code{\link{sync_timeout}()}
 }
 \concept{utilities}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Start API — start_api • InteractiveTradeR</title>
+<title>Start API (not explicit in InteractiveTradeR) — start_api • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,10 +37,12 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Start API — start_api" />
-<meta property="og:description" content="In InteractiveTradeR, the API function `start_api`() is implemented
-implicitly by other functions such as create_new_connections();
-therefore, there is no need to ever call `start_api`() directly." />
+<meta property="og:title" content="Start API (not explicit in InteractiveTradeR) — start_api" />
+<meta property="og:description" content="Functions named &quot;Start API&quot; occur in the official IB APIs but in
+InteractiveTradeR, this functionality is implimented implicitly by other
+functions such as create_new_connections(). Therefore, there is no
+need to ever call start_api() in InteractiveTradeR -- doing so will produce
+an informative error message." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,25 +126,41 @@ therefore, there is no need to ever call `start_api`() directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Start API</h1>
+    <h1>Start API (not explicit in InteractiveTradeR)</h1>
     <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/start_api.R'><code>R/start_api.R</code></a></small>
     <div class="hidden name"><code>start_api.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>In InteractiveTradeR, the API function `start_api`() is implemented
-implicitly by other functions such as <a href='create_new_connections.html'>create_new_connections</a>();
-therefore, there is no need to ever call `start_api`() directly.</p>
+    <p>Functions named "Start API" occur in the official IB APIs but in
+InteractiveTradeR, this functionality is implimented implicitly by other
+functions such as <a href='create_new_connections.html'>create_new_connections</a>(). Therefore, there is no
+need to ever call start_api() in InteractiveTradeR -- doing so will produce
+an informative error message.</p>
     </div>
 
     <pre class="usage"><span class='fu'>start_api</span>()</pre>
 
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p>Other utilities: 
+<code><a href='active_connection_parameters.html'>active_connection_parameters</a>()</code>,
+<code><a href='create_new_connections.html'>create_new_connections</a>()</code>,
+<code><a href='disconnect.html'>disconnect</a>()</code>,
+<code><a href='socks.html'>socks</a>()</code>,
+<code><a href='sync_timeout.html'>sync_timeout</a>()</code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>start_api</span>()</div><div class='output co'>#&gt; <span style='color: #BBBB00;'>ℹ</span><span> In </span><span style='font-weight: bold;'>InteractiveTradeR</span><span>, the API function </span><span style='font-weight: bold;'>start_api</span><span>() is implemented
+#&gt;   implicitly by other functions such as </span><span style='font-weight: bold;'>create_new_connections</span><span>;
+#&gt;   therefore, there is no need to ever call </span><span style='font-weight: bold;'>start_api</span><span>() directly.</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

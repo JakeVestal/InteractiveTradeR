@@ -195,8 +195,8 @@ three general rules of thumb, pacing should not be a problem when using
   because it needs bit more time than the default 5 seconds in order to
   complete. Try using <code><a href='sync_timeout.html'>sync_timeout(10)</a></code> or <code><a href='sync_timeout.html'>sync_timeout(15)</a></code>.</p></li>
 <li><p><strong>In Shiny apps or scripts whose execution can't/shouldn't be
-  held up while <code>req_contract_details</code>() executes, use</strong> <a href='async.html'>async</a>
-  <strong>mode</strong>. Have your script or app look for the updated data in
+  held up while <code>req_contract_details</code>() executes, use</strong> <strong>Async
+  Mode</strong>. Have your script or app look for the updated data in
   <code>treasury$CONTRACT_DETAILS</code> at a later time.</p></li>
 <li><p><strong>Subsequent calls to <code>req_contract_details</code>() will
   overwrite the</strong> <code>CONTRACT_DETAILS</code> <strong>treasury object</strong>. In other
