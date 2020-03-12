@@ -4,7 +4,9 @@
 \alias{`Master Client ID`}
 \alias{master_client_id}
 \title{Master Client ID}
-\format{integer between 1 and 65,535, inclusive}
+\format{
+integer between 1 and 65,535, inclusive
+}
 \description{
 A particular client ID that the user identifies within Trader Workstation or
 IB Gateway. Within \link{InteractiveTradeR}, a socket that connects to TWS or

@@ -131,7 +131,7 @@ tags_param <- function()(
 #'     \code{tag_value} is a monetary amount, "" otherwise.
 #' }
 #'
-#' @example inst/examples/account_summary_ex.R
+#' @inherit cancel_account_summary examples
 #' @family treasury
 #' @export
 #'

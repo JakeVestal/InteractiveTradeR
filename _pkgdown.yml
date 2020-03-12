@@ -29,6 +29,8 @@ reference:
     balances, positions, and so on. This section includes all functions that 
     update Treasury data.
   contents:
+  - treasury
+  - req_account_updates
   - req_account_summary
   - cancel_account_summary
 - title: Utilities
@@ -38,5 +40,6 @@ reference:
   - create_new_connections 
   - disconnect
   - socks
+  - subscriptions
   - start_api
   - sync_timeout

@@ -289,7 +289,8 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other treasury: 
-<code><a href='cancel_account_summary.html'>cancel_account_summary</a>()</code></p></div>
+<code><a href='cancel_account_summary.html'>cancel_account_summary</a>()</code>,
+<code><a href='req_account_updates.html'>req_account_updates</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch ACCOUNTS for all tags and groupName = "All", without creating</span>
@@ -340,16 +341,16 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 #&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267860 BuyingPower        4075034.00 USD     
 #&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267860 GrossPositionValue 5004.99    USD     
 #&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267860 TotalCashValue     1014815.02 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 BuyingPower        3873053.05 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 GrossPositionValue 204523.59  USD     
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 TotalCashValue     818115.84  USD     
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267862 BuyingPower        4075730.18 USD     
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> DU1267862 GrossPositionValue 2194.29    USD     
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> DU1267862 TotalCashValue     1021572.11 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 BuyingPower        3841209.25 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 GrossPositionValue 204544.34  USD     
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 TotalCashValue     818089.42  USD     
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267862 BuyingPower        4075719.49 USD     
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> DU1267862 GrossPositionValue 2194.49    USD     
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> DU1267862 TotalCashValue     1021571.73 USD     
 #&gt; </span><span style='color: #BCBCBC;'>13</span><span> DU1267863 BuyingPower        4082770.94 USD     
 #&gt; </span><span style='color: #BCBCBC;'>14</span><span> DU1267863 GrossPositionValue 546.50     USD     
 #&gt; </span><span style='color: #BCBCBC;'>15</span><span> DU1267863 TotalCashValue     1020092.16 USD     
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> DU1267864 BuyingPower        4087888.64 USD     
+#&gt; </span><span style='color: #BCBCBC;'>16</span><span> DU1267864 BuyingPower        4081576.62 USD     
 #&gt; </span><span style='color: #BCBCBC;'>17</span><span> DU1267864 GrossPositionValue 35513.77   USD     
 #&gt; </span><span style='color: #BCBCBC;'>18</span><span> DU1267864 TotalCashValue     997367.27  USD     </div><div class='input'>
 <span class='co'># See that the data is stored in the treasury:</span>
@@ -362,16 +363,16 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 #&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267860 BuyingPower        4075034.00 USD     
 #&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267860 GrossPositionValue 5004.99    USD     
 #&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267860 TotalCashValue     1014815.02 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 BuyingPower        3873053.05 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 GrossPositionValue 204523.59  USD     
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 TotalCashValue     818115.84  USD     
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267862 BuyingPower        4075730.18 USD     
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> DU1267862 GrossPositionValue 2194.29    USD     
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> DU1267862 TotalCashValue     1021572.11 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 BuyingPower        3841209.25 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 GrossPositionValue 204544.34  USD     
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 TotalCashValue     818089.42  USD     
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267862 BuyingPower        4075719.49 USD     
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> DU1267862 GrossPositionValue 2194.49    USD     
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> DU1267862 TotalCashValue     1021571.73 USD     
 #&gt; </span><span style='color: #BCBCBC;'>13</span><span> DU1267863 BuyingPower        4082770.94 USD     
 #&gt; </span><span style='color: #BCBCBC;'>14</span><span> DU1267863 GrossPositionValue 546.50     USD     
 #&gt; </span><span style='color: #BCBCBC;'>15</span><span> DU1267863 TotalCashValue     1020092.16 USD     
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> DU1267864 BuyingPower        4087888.64 USD     
+#&gt; </span><span style='color: #BCBCBC;'>16</span><span> DU1267864 BuyingPower        4081576.62 USD     
 #&gt; </span><span style='color: #BCBCBC;'>17</span><span> DU1267864 GrossPositionValue 35513.77   USD     
 #&gt; </span><span style='color: #BCBCBC;'>18</span><span> DU1267864 TotalCashValue     997367.27  USD     </div><div class='input'>
 <span class='co'># As above, using some example $LEDGER tags:</span>
@@ -411,10 +412,10 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 #&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DF1267859 TotalCashValue 0.00       USD     
 #&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267860 BuyingPower    4075034.00 USD     
 #&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267860 TotalCashValue 1014815.02 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 BuyingPower    3873053.05 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 TotalCashValue 818115.84  USD     
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267862 BuyingPower    4075730.18 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267862 TotalCashValue 1021572.11 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 BuyingPower    3841209.25 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 TotalCashValue 818089.42  USD     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267862 BuyingPower    4075719.49 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267862 TotalCashValue 1021571.73 USD     
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267863 BuyingPower    4082770.94 USD     
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267863 TotalCashValue 1020092.16 USD     
 #&gt; </span><span style='color: #949494;'># … with 74 more rows</span><span></div><div class='input'><span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 84 x 4</span><span>
@@ -424,10 +425,10 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 #&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DF1267859 TotalCashValue 0.00       USD     
 #&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267860 BuyingPower    4075034.00 USD     
 #&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267860 TotalCashValue 1014815.02 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 BuyingPower    3873053.05 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 TotalCashValue 818115.84  USD     
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267862 BuyingPower    4075730.18 USD     
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267862 TotalCashValue 1021572.11 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 BuyingPower    3841209.25 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 TotalCashValue 818089.42  USD     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267862 BuyingPower    4075719.49 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267862 TotalCashValue 1021571.73 USD     
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267863 BuyingPower    4082770.94 USD     
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267863 TotalCashValue 1020092.16 USD     
 #&gt; </span><span style='color: #949494;'># … with 74 more rows</span><span></div><div class='input'>
@@ -463,7 +464,7 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> DF1267859 FullExcessLiquidity 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
 #&gt; </span><span style='color: #949494;'># … with 199 more rows</span><span></div><div class='input'><span class='co'># See when it was last updated:</span>
 <span class='no'>acc_sum_update_time</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>, <span class='st'>"last_updated"</span>)
-<span class='no'>acc_sum_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 20:29:46 EDT"</div><div class='input'>
+<span class='no'>acc_sum_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 22:17:53 EDT"</div><div class='input'>
 <span class='co'># Soon after creating the subscription, try to update the ACCOUNTS</span>
 <span class='co'># object in the treasury by calling read_sock_drawer():</span>
 <span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> No socks are ready to read.</div><div class='input'>
@@ -474,7 +475,8 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>200</span>)
 
 <span class='co'># Keep calling...</span>
-<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> No socks are ready to read.</div><div class='input'>
+<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>✔</span><span> Updated the following treasury objects:
+#&gt;   "</span><span style='font-weight: bold;'>ACCOUNTS</span><span>"</div><div class='input'>
 <span class='co'># ...a few times, waiting 10 or 20 seconds in between calls. After 3 minutes</span>
 <span class='co'># have passed -- and probably before that -- you should see the</span>
 <span class='co'># ACCOUNTS object update.</span>
@@ -483,20 +485,20 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 <span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 209 x 4</span><span>
 #&gt;    account   tag                 tag_value  currency
 #&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DF1267859 AccountType         INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DF1267859 Cushion             1          </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DF1267859 LookAheadNextChange 0          </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DF1267859 AccruedCash         0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DF1267859 AvailableFunds      0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DF1267859 BuyingPower         0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DF1267859 EquityWithLoanValue 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DF1267859 ExcessLiquidity     0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DF1267859 FullAvailableFunds  0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DF1267859 FullExcessLiquidity 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267860 NetLiquidation      1020009.75 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267863 NetLiquidation      1020829.36 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267861 Cushion             0.949845   </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267861 EquityWithLoanValue 1012289.14 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 NetLiquidation      1021261.52 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 TotalCashValue      818086.19  </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 BuyingPower         3842849.83 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 GrossPositionValue  204546.88  </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 InitMarginReq       51576.69   </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267861 MaintMarginReq      51221.09   </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
 #&gt; </span><span style='color: #949494;'># … with 199 more rows</span><span></div><div class='input'>
 <span class='co'># ...and compare your old ACCOUNTS update time -- stored in the variable</span>
 <span class='co'># "acct_sum_update_time" -- with your newly updated ACCOUNTS:</span>
-<span class='no'>acc_sum_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 20:29:46 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>, <span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-11 20:29:46 EDT"</div><div class='input'>
+<span class='no'>acc_sum_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 22:17:53 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>, <span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-11 22:21:13 EDT"</div><div class='input'>
 <span class='co'># You can also take a look at the "account_summary" element of your </span>
 <span class='co'># subscriptions object:</span>
 <span class='no'>subscriptions</span>$<span class='no'>account_summary</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='no'>subscriptions</span>$<span class='no'>account_summary</span>$<span class='no'>tags</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>subscriptions</span>$<span class='no'>account_summary</span>)</div><div class='output co'>#&gt;  NULL</div><div class='input'>

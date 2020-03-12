@@ -7,7 +7,10 @@
 clean_slate(what = c("archives", "sock_drawer", "subscriptions", "treasury"))
 }
 \arguments{
-\item{what}{What would you like to clear out?}
+\item{what}{What would you like to clear out? Character vector containing any or all of
+"archives", "sock_drawer", "subscriptions", "treasury". If \emph{what} is
+left blank, the default behavior of \code{clean_slate} is to clear out
+each of the listed options.}
 }
 \description{
 Clear out the subscription environments and the sock drawer

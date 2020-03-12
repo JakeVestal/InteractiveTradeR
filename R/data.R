@@ -1,7 +1,3 @@
-#' The Functionary
-#' @keywords internal
-"functionary"
-
 mcid_format <- function(
   rox_list = list(
     "@format integer between 1 and ",
@@ -59,8 +55,7 @@ NULL
 #' Contains up-to-date data pertaining to account balances, positions, P/L, and
 #' other financials.
 #' 
-#' @name 
-#' treasury
+#' @name treasury
 #' 
 NULL
 

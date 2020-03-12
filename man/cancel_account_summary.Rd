@@ -122,6 +122,7 @@ read_sock_drawer()
 }
 \seealso{
 Other treasury: 
-\code{\link{req_account_summary}()}
+\code{\link{req_account_summary}()},
+\code{\link{req_account_updates}()}
 }
 \concept{treasury}

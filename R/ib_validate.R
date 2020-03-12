@@ -8,12 +8,14 @@ ib_validate <- function(output_obj){
   ib_func       <- rlang::call_name(sys.call(-1))
   ib_func_frame <- sys.frame(-1)
   
+  output_obj <<- output_obj
+  
   switch(
     ib_func,
-    "req_account_summary"    =  is.null(output_obj) || 
+    "req_account_summary"    = is.null(output_obj) || 
       tibble::is_tibble(output_obj),
-    "req_account_updates"    =  is.null(output_obj) ||
-      tibble::is_tibble(output_obj),
+    "req_account_updates"    = tibble::is_tibble(output_obj) ||
+      all(names(output_obj) %in% c("ACCOUNTS", "PORTFOLIO_VALUE")),
     "req_current_time"       = inherits(output_obj, "POSIXct"),
     "req_contract_details"   = is.null(output_obj) ||
       tibble::is_tibble(output_obj),

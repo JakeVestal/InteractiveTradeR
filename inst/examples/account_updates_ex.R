@@ -13,9 +13,11 @@ acct
 # Fetch account updates for the account, without starting a subscription
 req_account_updates(acct)
 
-# View the fetched data in a viewer tab
-View(treasury$ACCT_VALUE)
-View(treasury$PORTFOLIO_VALUE) # empty list if no positions
+# Print the ACCOUNTS
+treasury$ACCOUNTS
+
+# Print the PORTFOLIO_VALUE
+treasury$PORTFOLIO_VALUE # empty list if no positions
 
 ####
 #### Example 2: Fetch account update data for many accounts
@@ -23,7 +25,7 @@ View(treasury$PORTFOLIO_VALUE) # empty list if no positions
 
 clean_slate() # clean slate (optional)
 
-treasury$ACCT_VALUE      # should return NULL
+treasury$ACCOUNTS      # should return NULL
 treasury$PORTFOLIO_VALUE # should return NULL
 
 # Fetch account updates for all of your accounts using the walk() function
@@ -36,21 +38,15 @@ req_managed_accts() %>%
     }
   )
 
-# This is equivalent to:
-for(account in req_managed_accts()){
-  # Sys.sleep(1/50)
-  req_account_updates(acctCode = account)
-}
-
 # Uncomment the "Sys.sleep(1/50)" to pause execution for one fiftieth of a
 # second between each call to req_account_updates(). The reason you may want
 # to do this is that Interactive brokers only allows, at max, 50 API calls per
 # second. If you have more than 50 accounts and a fast computer & connection,
 # the "Sys.sleep(1/50)" prevents you from exceeding the limit.
 
-# Check that all accounts are represented in ACCT_VALUE:
+# Check that all accounts are represented in ACCOUNTS:
 identical(
-  sort(unique(treasury$ACCT_VALUE$account)),
+  sort(unique(treasury$ACCOUNTS$account)),
   sort(req_managed_accts())
 )
 
@@ -64,7 +60,7 @@ identical(
 
 clean_slate() # clean slate, optional
 
-treasury$ACCT_VALUE      # should return NULL
+treasury$ACCOUNTS        # should return NULL
 treasury$PORTFOLIO_VALUE # should return NULL
 
 # Open up a socket
@@ -78,11 +74,11 @@ acct2 <- sample(req_managed_accts(), 1)
 req_account_updates(acct2, channel = "async")
 
 # Within three minutes of starting the subscription, take a look at the
-# ACCT_VALUE and PORTFOLIO_VALUE objects in the treasury:
-treasury$ACCT_VALUE
+# ACCOUNTS and PORTFOLIO_VALUE objects in the treasury:
+treasury$ACCOUNTS
 treasury$PORTFOLIO_VALUE
 # See when they were last updated:
-acc_val_update_time  <- attr(treasury$ACCT_VALUE,      "last_updated")
+acc_val_update_time  <- attr(treasury$ACCOUNTS,      "last_updated")
 acc_val_update_time
 port_val_update_time <- attr(treasury$PORTFOLIO_VALUE, "last_updated")
 port_val_update_time
@@ -94,19 +90,22 @@ read_sock_drawer(verbose = TRUE)
 # If you're quick enough, you won't get any updated information because IB has
 # not sent updated data to the socket.
 
+# Wait a little over 3 minutes
+Sys.sleep(200)
+
 # Keep calling...
 read_sock_drawer(verbose = TRUE)
 # ...a few times, waiting 10 or 20 seconds in between calls. After 3 minutes
-# have passed -- and probably before that -- you should see either or both of
-# the ACCT_VALUE and PORTFOLIO_VALUE objects update.
+# have passed -- but probably before that -- you should see either or both of
+# the ACCOUNTS and PORTFOLIO_VALUE objects update.
 
 # After updating, take a look in the treasury:
-treasury$ACCT_VALUE
+treasury$ACCOUNTS
 treasury$PORTFOLIO_VALUE
 
 # And compare update times:
 acc_val_update_time
-attr(treasury$ACCT_VALUE,"last_updated")
+attr(treasury$ACCOUNTS,"last_updated")
 
 port_val_update_time
 attr(treasury$PORTFOLIO_VALUE, "last_updated")

@@ -246,6 +246,7 @@ read_sock_drawer()
 }
 \seealso{
 Other treasury: 
-\code{\link{cancel_account_summary}()}
+\code{\link{cancel_account_summary}()},
+\code{\link{req_account_updates}()}
 }
 \concept{treasury}
