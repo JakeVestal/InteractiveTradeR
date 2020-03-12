@@ -8,6 +8,8 @@ cancellator <- function(
   subscription_name = gsub("cancel_", "", fun_name)
 ){
 
+  subscriptions <- get("subscriptions")
+  
   requests <- if(is.null(requests)){
     id_or_name <- "req_name"
     unlist(subscriptions[[subscription_name]][id_or_name], use.names = FALSE)

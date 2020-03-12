@@ -4,7 +4,7 @@
 \alias{clean_slate}
 \title{Clear out the subscription environments and the sock drawer}
 \usage{
-clean_slate(what = c("archives", "sock_drawer", "subscriptions", "treasury"))
+clean_slate(what)
 }
 \arguments{
 \item{what}{What would you like to clear out? Character vector containing any or all of
@@ -13,13 +13,14 @@ left blank, the default behavior of \code{clean_slate} is to clear out
 each of the listed options.}
 }
 \description{
-Clear out the subscription environments and the sock drawer
+This function wipes out data stored in your environments -- use with care!
 }
 \seealso{
 Other utilities: 
 \code{\link{active_connection_parameters}()},
 \code{\link{create_new_connections}()},
 \code{\link{disconnect}()},
+\code{\link{read_sock_drawer}()},
 \code{\link{socks}()},
 \code{\link{start_api}()},
 \code{\link{sync_timeout}()}

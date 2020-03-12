@@ -3,19 +3,49 @@
 \name{socks}
 \alias{socks}
 \alias{sock_drawer}
-\title{Socks}
+\title{All About Socks}
 \usage{
 socks()
 }
 \description{
-Print a detailed description of all the socks that are currently open.
+When called, \code{socks}() prints a detailed description of all the socks
+in the sock_drawer.
 }
+\section{What is a "sock"?}{
+
+In InteractiveTradeR code & documentation, the term \strong{sock} -- when it
+appears in code or in print -- should be understood to mean \strong{\emph{an
+R socket connection, created by \link{socketConnection}(), that is open and
+connected to TWS or IBG}}.
+}
+
+\section{What is the "sock_drawer"?}{
+
+Socks that you have created with \link{create_new_connections}() -- for a
+market subscription, for example -- live in the \code{sock_drawer}, an
+environment in InteractiveTradeR designed to house socks. Most of the time,
+you won't have to worry about the sock drawer at all if you simply pass the
+value \emph{"async"} into a \emph{req_} function as the \emph{channel}
+argument. Doing so will instruct InteractiveTradeR to use the first sock in
+the drawer that it finds available (with a little load balancing) to service
+your request. 
+
+In this way, you can think of the sock drawer and all of the socks within it
+as a single socket \emph{"async"}, so long as you don't care which particular
+sock is used for a given request. If you \strong{do} care (for example, if
+you're working with orders and require the
+\strong{\href{master_client_id}{Master Socket}}), then you can always call
+any of the \emph{req_} functions on a particular sock by specifying that
+sock's name as the \emph{channel} argument in the call.
+}
+
 \seealso{
 Other utilities: 
 \code{\link{active_connection_parameters}()},
 \code{\link{clean_slate}()},
 \code{\link{create_new_connections}()},
 \code{\link{disconnect}()},
+\code{\link{read_sock_drawer}()},
 \code{\link{start_api}()},
 \code{\link{sync_timeout}()}
 }

@@ -44,6 +44,8 @@ unsubscribe <- function(
   id_or_name,
   channel = NULL
 ){
+  
+  subscriptions <- get("subscriptions")
 
   sock <- select_sock_for_api_fun()
 

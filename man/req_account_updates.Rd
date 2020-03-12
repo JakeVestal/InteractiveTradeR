@@ -262,7 +262,7 @@ identical(
 
 clean_slate() # clean slate, optional
 
-treasury$ACCOUNTS      # should return NULL
+treasury$ACCOUNTS        # should return NULL
 treasury$PORTFOLIO_VALUE # should return NULL
 
 # Open up a socket
@@ -287,7 +287,7 @@ port_val_update_time
 
 # Soon after creating the subscription, try to update the treasury objects by
 # calling read_sock_drawer():
-read_sock_drawer(verbose = TRUE)
+read_sock_drawer()
 
 # If you're quick enough, you won't get any updated information because IB has
 # not sent updated data to the socket.
@@ -296,7 +296,7 @@ read_sock_drawer(verbose = TRUE)
 Sys.sleep(200)
 
 # Keep calling...
-read_sock_drawer(verbose = TRUE)
+read_sock_drawer()
 # ...a few times, waiting 10 or 20 seconds in between calls. After 3 minutes
 # have passed -- but probably before that -- you should see either or both of
 # the ACCOUNTS and PORTFOLIO_VALUE objects update.
@@ -321,6 +321,8 @@ req_account_updates(acct2, subscribe = FALSE)
 \seealso{
 Other treasury: 
 \code{\link{cancel_account_summary}()},
-\code{\link{req_account_summary}()}
+\code{\link{cancel_account_updates_multi}()},
+\code{\link{req_account_summary}()},
+\code{\link{req_account_updates_multi}()}
 }
 \concept{treasury}

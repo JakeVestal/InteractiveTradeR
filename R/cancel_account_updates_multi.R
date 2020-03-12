@@ -5,21 +5,22 @@
 #' \link{req_account_updates_multi}().
 #'
 #' @param requests
-#' Either a character or a numeric vector containing the names (`req_name`s) or
-#' the IDs (`req_id`s), respectively, of the requests that you wish to cancel.
-#' Valid `req_name`s and `req_id`s may be be viewed or retrieved using the
-#' \link{subscriptions} environment.
+#' Either a character or a numeric vector containing the names
+#' (\emph{req_name}s) or the IDs (\emph{req_id`s}), respectively, of the
+#' requests that you wish to cancel. Valid \emph{req_name}s and \emph{req_id}s
+#' may be be viewed or retrieved using the \link{subscriptions} environment.
 #'
 #' @details
-#' If `requests` is not supplied, then `cancel_account_updates_multi`() will
-#' cancel **all** Account Updates Multi subscriptions.
+#' If \emph{requests} is not supplied, then
+#' \code{cancel_account_updates_multi}() will cancel \strong{all} Account
+#' Updates Multi subscriptions.
 #'
 #' @return
 #' TRUE upon success (invisible), FALSE or error otherwise.
 #'
+# #' @example inst/examples/account_updates_multi_ex.R
+#' @family treasury
 #' @export
-#'
-#' @example inst/examples/account_updates_multi_ex.R
 #'
 cancel_account_updates_multi <- function(requests = NULL){
   cancellator(

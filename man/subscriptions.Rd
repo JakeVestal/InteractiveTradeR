@@ -2,7 +2,10 @@
 % Please edit documentation in R/data.R
 \name{subscriptions}
 \alias{subscriptions}
-\title{All About Subscriptions}
+\title{Subscriptions}
 \description{
-Keeps track of what your sockets are subscribed to.
+The \code{subscriptions} object is a \link[tibble]{tibble} that keeps track
+of what your sockets are subscribed to. Once InteractiveTradeR has been
+loaded, active subscriptions can be fetched at any time simply by calling the
+object by name: \code{subscriptions}.
 }

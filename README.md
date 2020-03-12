@@ -9,7 +9,13 @@ Connect R to the world's markets.
 ## Installation
 
 #### 1. Download and install the latest version of R from the [official CRAN
-website](https://www.r-project.org/).
+website](https://www.r-project.org/). 
+The R language is maintained by the Comprehensive R Archive Network, made up of
+many copies ("mirrors") of the main website containing all of the instructions
+and files for downloading R. Each of these mirrors is hosted by volunteers. You
+can choose the mirror whose geographic location is nearest to you to minimize
+download time and network load, but really it doesn't make much difference which
+mirror you pick.
 - **Windows Users** should also install
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/installer.html).
 - If you're a **Mac User**, also install

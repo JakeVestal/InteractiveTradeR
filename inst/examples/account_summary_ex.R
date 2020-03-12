@@ -51,7 +51,7 @@ acc_sum_update_time
 
 # Soon after creating the subscription, try to update the ACCOUNTS
 # object in the treasury by calling read_sock_drawer():
-read_sock_drawer(verbose = TRUE)
+read_sock_drawer()
 
 # If you're quick enough, you won't get any updated information because IB has
 # not sent updated data to the socket.
@@ -60,7 +60,7 @@ read_sock_drawer(verbose = TRUE)
 Sys.sleep(200)
 
 # Keep calling...
-read_sock_drawer(verbose = TRUE)
+read_sock_drawer()
 
 # ...a few times, waiting 10 or 20 seconds in between calls. After 3 minutes
 # have passed -- and probably before that -- you should see the

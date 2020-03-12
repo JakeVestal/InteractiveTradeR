@@ -158,6 +158,8 @@ req_account_updates <- function(
   return_data = is.null(channel) && subscribe
 ){
   
+  subscriptions <- get("subscriptions")
+  
   if(!subscribe && is.null(subscriptions$account_updates)){
     usethis::ui_oops(
       paste0(

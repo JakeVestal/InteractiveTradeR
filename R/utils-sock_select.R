@@ -1,5 +1,7 @@
 select_sock_for_api_fun <- function(){
   
+  error_log <- get("error_log")
+  
   channel <- get0("channel", envir = parent.frame())
   
   tryCatch(
@@ -152,7 +154,8 @@ select_sock_for_api_fun <- function(){
             "call" = ib_func,
             "args" = mget(ls(ib_func_frame), envir = ib_func_frame)
           )
-        )
+        ),
+        envir = get("error_log")
       )
       
       conn_fail_msg <- paste0(

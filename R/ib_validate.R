@@ -7,8 +7,7 @@ ib_validate <- function(output_obj){
   call_time     <- Sys.time()
   ib_func       <- rlang::call_name(sys.call(-1))
   ib_func_frame <- sys.frame(-1)
-  
-  output_obj <<- output_obj
+  error_log     <- get("error_log")
   
   switch(
     ib_func,
@@ -39,7 +38,8 @@ ib_validate <- function(output_obj){
             "call" = ib_func,
             "args" = mget(ls(ib_func_frame), envir = ib_func_frame)
           )
-        )
+        ),
+        envir = get("error_log")
       )
       usethis::ui_oops(
         paste0(

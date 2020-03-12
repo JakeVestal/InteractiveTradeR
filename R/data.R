@@ -14,12 +14,9 @@ mcid_format <- function(
 #' @description
 #' A particular client ID that the user identifies within Trader Workstation or
 #' IB Gateway. Within \link{InteractiveTradeR}, a socket that connects to TWS or
-#' IBG using the Master Client ID is considered a *master socket*.
+#' IBG using the Master Client ID is considered a \strong{master socket}.
 #'
-#' The Master Client ID is special becayse any call made \strong{LIST CALLS HERE} , if
-#' made on a master socket, will ---, whereas for a normal one, ---.
-#'
-#' @name `Master Client ID`
+#' @name Master Client ID
 #' 
 #' @aliases master_client_id
 #'
@@ -34,16 +31,19 @@ NULL
 #' socket*. TWS sockets have the unique property of being able to view orders
 #' placed within the TWS app itself.
 #'
-#' @name `Client ID 0`
+#' @name Client ID 0
 #' 
 #' @aliases client_id_0
 #' 
 NULL
 
-#' All About Subscriptions
+#' Subscriptions
 #'
 #' @description
-#' Keeps track of what your sockets are subscribed to.
+#' The \code{subscriptions} object is a \link[tibble]{tibble} that keeps track
+#' of what your sockets are subscribed to. Once InteractiveTradeR has been
+#' loaded, active subscriptions can be fetched at any time simply by calling the
+#' object by name: \code{subscriptions}.
 #'
 #' @name subscriptions
 #' 
@@ -56,6 +56,33 @@ NULL
 #' other financials.
 #' 
 #' @name treasury
+#' 
+NULL
+
+#' The Archives
+#' 
+#' @description 
+#' Historical data is stored in the archives.
+#' 
+#' @name archives
+#' 
+NULL
+
+#' The Error Log
+#' 
+#' @description 
+#' Where to go to find out what went wrong.
+#' 
+#' @name error_log
+#' 
+NULL
+
+#' mkt_data
+#' 
+#' @description 
+#' Where live market data is kept
+#' 
+#' @name mkt_data
 #' 
 NULL
 

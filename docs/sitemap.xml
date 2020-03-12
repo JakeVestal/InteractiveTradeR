@@ -7,13 +7,22 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/InteractiveTradeR-package.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/Master-Client-ID.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/active_connection_parameters.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/archives.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancel_account_summary.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancel_account_updates_multi.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancel_mkt_data.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/cancellator.html</loc>
@@ -31,6 +40,9 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/disconnect.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/error_log.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_collate.html</loc>
   </url>
   <url>
@@ -44,6 +56,9 @@
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/ib_validate.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/mkt_data.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/order_obj.html</loc>
@@ -76,10 +91,19 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_family_codes.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_ids.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_managed_accts.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_market_data_type.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_matching_symbols.html</loc>
+  </url>
+  <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_mkt_data.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/req_sec_def_opt_params.html</loc>
@@ -98,9 +122,6 @@
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tick-Client-ID-0-tick.html</loc>
-  </url>
-  <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tick-Master-Client-ID-tick.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tidyeval.html</loc>

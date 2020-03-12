@@ -258,8 +258,8 @@ three general rules of thumb, pacing should not be a problem when using
 #&gt; $ category         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "Computers"
 #&gt; $ subcategory      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "Computer Services"
 #&gt; $ timeZoneId       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "EST (Eastern Standard Time)"
-#&gt; $ tradingHours     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "20200311:0400-20200311:2000;20200312:0400-20200312:…
-#&gt; $ liquidHours      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "20200311:0930-20200311:1600;20200312:0930-20200312:…
+#&gt; $ tradingHours     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "20200313:0400-20200313:2000;20200314:CLOSED;2020031…
+#&gt; $ liquidHours      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "20200313:0930-20200313:1600;20200314:CLOSED;2020031…
 #&gt; $ aggGroup         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1
 #&gt; $ stockType        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "COMMON"
 #&gt; $ exchange_info    </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span> [&lt;tbl_df[21 x 2]&gt;]</div><div class='input'>
@@ -268,7 +268,8 @@ three general rules of thumb, pacing should not be a problem when using
 <span class='co'># 2) You could try to get IBM's contract details by symbol only, but because</span>
 <span class='co'># there are many securities across many exchanges that have the symbol "IBM"</span>
 <span class='co'># this query won't work -- IB responds by asking for more info.</span>
-<span class='no'>contract_details_1</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>))</div><div class='output co'>#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> Error validating request:-'bQ' : cause - The symbol or the local-symbol or the security id must be entered</div><div class='input'>
+<span class='no'>contract_details_1</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(<span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>))
+
 <span class='co'># 3) So, try providing a valid security type:</span>
 <span class='no'>contract_details_2</span> <span class='kw'>&lt;-</span> <span class='fu'>req_contract_details</span>(
   <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"IBM"</span>, <span class='kw'>secType</span>  <span class='kw'>=</span> <span class='st'>"STK"</span>)
@@ -277,8 +278,8 @@ three general rules of thumb, pacing should not be a problem when using
 #&gt;    symbol secType exchange currency localSymbol marketName tradingClass  conId
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> IBM    STK     SMART    USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> IBM    STK     SMART    EUR      IBM         XETRA      XETRA        1.41</span><span style='color: #949494;'>e</span><span>6
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> IBM    STK     AMEX     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> IBM    STK     AMEX     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> IBM    STK     SMART    EUR      IBM         XETRA      XETRA        1.41</span><span style='color: #949494;'>e</span><span>6
 #&gt; </span><span style='color: #BCBCBC;'> 4</span><span> IBM    STK     NYSE     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
 #&gt; </span><span style='color: #BCBCBC;'> 5</span><span> IBM    STK     CBOE     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3
 #&gt; </span><span style='color: #BCBCBC;'> 6</span><span> IBM    STK     PHLX     USD      IBM         IBM        IBM          8.31</span><span style='color: #949494;'>e</span><span>3

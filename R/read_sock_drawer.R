@@ -1,37 +1,31 @@
 #' Read Sock Drawer
 #'
-#' Read the whole sock drawer.
-#' 
-#' @param verbose (Boolean, default FALSE): If set to TRUE, `read_sock_drawer`()
-#'   will print informative messages to the terminal.
+#' Read the every sock that currently exists in the \link{sock_drawer}.
 #'
+#' @family utilities
 #' @export
 #'
-read_sock_drawer <- function(verbose = FALSE){
-
+read_sock_drawer <- function(){
+  
   if(identical(ls(sock_drawer), character(0))){
-    if(verbose){
-      usethis::ui_oops("Empty sock drawer: No connections are currently open.")
-    }
+    usethis::ui_oops("Empty sock drawer: No connections are currently open.")
     return(invisible(FALSE))
   }
-
+  
   socks <- mget(ls(sock_drawer), envir = sock_drawer)
-
+  
   ready_to_read <- which(socketSelect(socks, timeout = 0.1))
-
+  
   if(identical(ready_to_read, integer(0))){
-    if(verbose){
-      usethis::ui_oops("No socks are ready to read.")
-    }
+    usethis::ui_info("No socks are ready to read.")
     return(invisible(FALSE))
   }
-
+  
   raw_response_env <- new.env(parent = emptyenv())
   index_name       <- 1
-
+  
   while(!identical(ready_to_read, integer(0))){
-
+    
     purrr::walk(
       ready_to_read,
       function(ready_sock){
@@ -51,16 +45,15 @@ read_sock_drawer <- function(verbose = FALSE){
         }
       }
     )
-
+    
     ready_to_read <- which(socketSelect(socks, timeout = 0.1))
-
+    
   }
-
+  
   if(isTRUE(all.equal(raw_response_env, emptyenv()))){
-    if(verbose){usethis::ui_done("Sock drawer read")}
     return(invisible(FALSE))
   }
-
+  
   tryCatch(
     mget(
       as.character(sort(as.numeric(ls(raw_response_env)))),
@@ -71,17 +64,7 @@ read_sock_drawer <- function(verbose = FALSE){
       ib_collate() %>%
       purrr::compact() %>% {
         if(length(.) == 0 || is.na(.)){
-          if(verbose){usethis::ui_done("Sock drawer read")}
           return(invisible(FALSE))
-        }
-        if(verbose){
-          usethis::ui_done(
-            paste0(
-              "Updated the following treasury objects:\n\"",
-              paste(crayon::bold(unique(names(.))), collapse = "\", \""),
-              "\""
-            )
-          )
         }
         ib_update(.)
       },
@@ -94,5 +77,5 @@ read_sock_drawer <- function(verbose = FALSE){
       invisible(TRUE)
     }
   }
-
+  
 }

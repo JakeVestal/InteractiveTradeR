@@ -27,6 +27,8 @@ disconnect <- function(
   disconnect_tws       = FALSE
 ){
   
+  subscriptions <- get("subscriptions")
+  
   length_1 <- length(ls(sock_drawer))
   
   if(identical(number_to_disconnect, "all")){

@@ -221,26 +221,27 @@ in the <a href='contracts.html'>contract</a> documentation.</p></td>
 <span class='no'>ibm_opt_params</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   exchange underlyingConId tradingClass multiplier expirations strikes   
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> NASDAQOM            </span><span style='text-decoration: underline;'>8</span><span>314 IBM                 100 </span><span style='color: #949494;'>&lt;date [15]&gt;</span><span> </span><span style='color: #949494;'>&lt;dbl [98]&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> NASDAQOM            </span><span style='text-decoration: underline;'>8</span><span>314 IBM                 100 </span><span style='color: #949494;'>&lt;date [16]&gt;</span><span> </span><span style='color: #949494;'>&lt;dbl [99]&gt;</span><span></div><div class='input'>
 <span class='co'># Print just the strike prices:</span>
 <span class='no'>ibm_opt_params</span>$<span class='no'>strikes</span></div><div class='output co'>#&gt; [[1]]
-#&gt;  [1]  60.0  65.0  70.0  75.0  80.0  81.0  82.0  83.0  84.0  85.0  86.0  87.0
-#&gt; [13]  88.0  89.0  90.0  91.0  92.0  93.0  94.0  95.0  96.0  97.0  98.0  99.0
-#&gt; [25] 100.0 101.0 102.0 103.0 104.0 105.0 106.0 107.0 108.0 109.0 110.0 111.0
-#&gt; [37] 112.0 113.0 114.0 115.0 116.0 117.0 118.0 119.0 120.0 121.0 122.0 123.0
-#&gt; [49] 124.0 125.0 126.0 127.0 128.0 129.0 130.0 131.0 132.0 133.0 134.0 135.0
-#&gt; [61] 136.0 137.0 138.0 139.0 140.0 141.0 142.0 143.0 144.0 145.0 146.0 147.0
-#&gt; [73] 148.0 149.0 150.0 152.5 155.0 157.5 160.0 162.5 165.0 167.5 170.0 172.5
-#&gt; [85] 175.0 177.5 180.0 182.5 185.0 187.5 190.0 195.0 200.0 205.0 210.0 215.0
-#&gt; [97] 220.0 225.0
+#&gt;  [1]  55.0  60.0  65.0  70.0  75.0  80.0  81.0  82.0  83.0  84.0  85.0  86.0
+#&gt; [13]  87.0  88.0  89.0  90.0  91.0  92.0  93.0  94.0  95.0  96.0  97.0  98.0
+#&gt; [25]  99.0 100.0 101.0 102.0 103.0 104.0 105.0 106.0 107.0 108.0 109.0 110.0
+#&gt; [37] 111.0 112.0 113.0 114.0 115.0 116.0 117.0 118.0 119.0 120.0 121.0 122.0
+#&gt; [49] 123.0 124.0 125.0 126.0 127.0 128.0 129.0 130.0 131.0 132.0 133.0 134.0
+#&gt; [61] 135.0 136.0 137.0 138.0 139.0 140.0 141.0 142.0 143.0 144.0 145.0 146.0
+#&gt; [73] 147.0 148.0 149.0 150.0 152.5 155.0 157.5 160.0 162.5 165.0 167.5 170.0
+#&gt; [85] 172.5 175.0 177.5 180.0 182.5 185.0 187.5 190.0 195.0 200.0 205.0 210.0
+#&gt; [97] 215.0 220.0 225.0
 #&gt; </div><div class='input'>
 <span class='co'># median strike price:</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span>(<span class='no'>ibm_opt_params</span>$<span class='no'>strikes</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] 124.5</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span>(<span class='no'>ibm_opt_params</span>$<span class='no'>strikes</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] 124</div><div class='input'>
 <span class='co'># Print just the expirations:</span>
 <span class='no'>ibm_opt_params</span>$<span class='no'>expirations</span></div><div class='output co'>#&gt; [[1]]
 #&gt;  [1] "2020-03-13" "2020-03-20" "2020-03-27" "2020-04-03" "2020-04-09"
-#&gt;  [6] "2020-04-17" "2020-04-24" "2020-05-15" "2020-06-19" "2020-07-17"
-#&gt; [11] "2020-09-18" "2020-10-16" "2020-12-18" "2021-01-15" "2022-01-21"
+#&gt;  [6] "2020-04-17" "2020-04-24" "2020-05-01" "2020-05-15" "2020-06-19"
+#&gt; [11] "2020-07-17" "2020-09-18" "2020-10-16" "2020-12-18" "2021-01-15"
+#&gt; [16] "2022-01-21"
 #&gt; </div><div class='input'>
 <span class='co'># Find latest expiration:</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>ibm_opt_params</span>$<span class='no'>expirations</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] "2022-01-21"</div></span></pre>

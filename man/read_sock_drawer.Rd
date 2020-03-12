@@ -4,12 +4,19 @@
 \alias{read_sock_drawer}
 \title{Read Sock Drawer}
 \usage{
-read_sock_drawer(verbose = FALSE)
-}
-\arguments{
-\item{verbose}{(Boolean, default FALSE): If set to TRUE, `read_sock_drawer`()
-will print informative messages to the terminal.}
+read_sock_drawer()
 }
 \description{
-Read the whole sock drawer.
+Read the every sock that currently exists in the \link{sock_drawer}.
 }
+\seealso{
+Other utilities: 
+\code{\link{active_connection_parameters}()},
+\code{\link{clean_slate}()},
+\code{\link{create_new_connections}()},
+\code{\link{disconnect}()},
+\code{\link{socks}()},
+\code{\link{start_api}()},
+\code{\link{sync_timeout}()}
+}
+\concept{utilities}

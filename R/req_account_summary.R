@@ -142,6 +142,8 @@ req_account_summary <- function(
   return_data = is.null(channel)
 ){
   
+  subscriptions <- get("subscriptions")
+  
   if(
     isTRUE(nrow(subscriptions$account_summary) >= 2) &&
     any(subscriptions$account_summary == groupName)

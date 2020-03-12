@@ -41,9 +41,9 @@
 <meta property="og:description" content="This function either fetches or sets up a subscription to receive the data
 that appear in the
 Account
-Window window of Trader Workstation. `req_account_updates_multi`() may be
-used to set up multiple simultaneous subscriptions to many accounts / model
-codes. IB's documentation may be found on the
+Window window of Trader Workstation. req_account_updates_multi() may
+be used to set up multiple simultaneous subscriptions to many accounts /
+model codes. IB's documentation may be found on the
 Account
 Updates page." />
 <meta name="twitter:card" content="summary" />
@@ -138,9 +138,9 @@ Updates page." />
     <p>This function either fetches or sets up a subscription to receive the data
 that appear in the
 <a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/realtimeactivitymonitoring/the_account_window.htm'>Account
-Window</a> window of Trader Workstation. `req_account_updates_multi`() may be
-used to set up multiple simultaneous subscriptions to many accounts / model
-codes. IB's documentation may be found on the
+Window</a> window of Trader Workstation. <code>req_account_updates_multi</code>() may
+be used to set up multiple simultaneous subscriptions to many accounts /
+model codes. IB's documentation may be found on the
 <a href='https://interactivebrokers.github.io/tws-api/account_updates.html'>Account
 Updates</a> page.</p>
     </div>
@@ -158,15 +158,15 @@ Updates</a> page.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>account</th>
-      <td><p>Character vector of length 1 containing a valid **account code**.</p></td>
+      <td><p>Character vector of length 1 containing a valid <strong>account code</strong>.</p></td>
     </tr>
     <tr>
       <th>modelCode</th>
-      <td><p>Character vector of length 1 containing a valid **model code**.</p></td>
+      <td><p>Character vector of length 1 containing a valid <strong>model code</strong>.</p></td>
     </tr>
     <tr>
       <th>ledgerAndNLV</th>
-      <td><p>Boolean of length 1, defaults to `FALSE`. If TRUE, then the created
+      <td><p>Boolean of length 1, defaults to FALSE. If TRUE, then the created
 subscriptions are treated as "lightweight requests", meaning that the data
 returned for the account or model codes supplied will include only currency
 positions (as opposed to both account values and currency positions).</p></td>
@@ -219,21 +219,22 @@ Additionally, the function's return value depends upon the value passed in as
 <p><em>return_data</em> defaults to TRUE unless <em>channel</em> is specified.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>**"All" Option**: If `account` is not specified,
-`req_account_updates_multi`() will default to `account = "All"`, which will
-return data for all accounts accessible by the signed-in user. This option is
-not available for users who manage more than 50 accounts.</p>
-<p>**Models**: Model Portfolios, or "Models" for short, can be though of as
+    <p><strong>"All" Option</strong>: If <em>account</em> is not specified,
+<code>req_account_updates_multi</code>() will default to <code>account = "All"</code>,
+which will return data for all accounts accessible by the signed-in user.
+This option is not available for users who manage more than 50 accounts.</p>
+<p><strong>Models</strong>: Model Portfolios, or "Models" for short, can be though of as
 named templates that will allocate funds across investment products in a
-specified manner. When passed to `req_account_updates_multi`() as
-`model_code`, they behave like stocks -- they have postions, market prices,
-values, etc. To use Model Portfolios you need to have a Financial Advisor
-account, and the Model Portfolios feature needs to be activated. Learn more
-on <a href='https://www.interactivebrokers.com/en/index.php?f=20917'>Interactive
+specified manner. When passed to <code>req_account_updates_multi</code>() as
+<em>model_code</em>, they behave like stocks -- they have postions, market
+prices, values, etc. To use Model Portfolios you need to have a Financial
+Advisor account, and the Model Portfolios feature needs to be activated.
+Learn more on
+<a href='https://www.interactivebrokers.com/en/index.php?f=20917'>Interactive
 Brokers' Model Portfolios page</a>.</p>
-<p>**No Positions**: If you call `req_account_updates_multi`() on an account
-that has cash but no positions, then data will be sent to the socket once
-initially, but will not update thereafter.</p>
+<p><strong>No Positions</strong>: If you call <code>req_account_updates_multi</code>() on an
+account that has cash but no positions, then data will be sent to the socket
+once initially, but will not update thereafter.</p>
     <h2 class="hasAnchor" id="accounts-treasury-object"><a class="anchor" href="#accounts-treasury-object"></a>ACCOUNTS Treasury Object</h2>
 
     
@@ -250,148 +251,12 @@ parameter pertaining to a particular account. Has the following columns:</p><ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>* <a href='cancel_account_updates_multi.html'>cancel_account_updates_multi</a>() for cancelling existing account
-updates subscriptions.</p></div>
+    <div class='dont-index'><p>Other treasury: 
+<code><a href='cancel_account_summary.html'>cancel_account_summary</a>()</code>,
+<code><a href='cancel_account_updates_multi.html'>cancel_account_updates_multi</a>()</code>,
+<code><a href='req_account_summary.html'>req_account_summary</a>()</code>,
+<code><a href='req_account_updates.html'>req_account_updates</a>()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># # The difference between ledgerAndNLV == TRUE vs. FALSE Fetch an update for
-# # default group "All" with default ledgerAndNLV (TRUE)
-# req_account_updates_multi()
-# # Save the treasury object in a variable to use for comparing later:
-# aum_true <- treasury$ACCOUNTS
-# 
-# # Clear out the treasury so that the two aum_* vars are easier to compare
-# clean_slate()
-# 
-# # Do the same thing again, but with ledgerAndNLV = FALSE:
-# req_account_updates_multi(ledgerAndNLV = FALSE)
-# aum_false <- treasury$ACCOUNTS
-# 
-# # Compare the two:
-# #   3.1) Same account:
-# unique(aum_true$account)
-# unique(aum_false$account)
-# #   3.2) ledger_and_NLV = FALSE includes more parameters:
-# unique(aum_true$tag)
-# unique(aum_false$tag)
-# 
-# 
-# ####
-# #### Subscriptions
-# ####
-# 
-# # Clean slate
-# clean_slate()
-# 
-# # Open a socket
-# create_new_connections()
-# 
-# # Fetch the account IDs of your six paper trading accounts and use walk() from
-# # the purrr package to subscribe to each one
-# req_managed_accts() %>%
-#   purrr::walk(
-#     req_account_updates_multi,
-#     channel = "async"
-#   )
-# 
-# # Verify that you're now subscribed to the six paper trading accounts:
-# view_subscriptions("account_updates_multi")
-# 
-# # Print the retrieved updates to the console, or use View():
-# treasury$ACCOUNTS
-# View(treasury$ACCOUNTS)
-# 
-# # You should have all six paper account codes represented in the "account"
-# # column of the ACCOUNTS treasury object.
-# 
-# # This information will update every 3 minutes -- and probably more frequently
-# # than that in practice -- for those accounts that have positions in financial
-# # instruments. You can wait for at least one cycle and call read_sock_drawer()
-# # again to see this for yourself.
-# 
-# # Save the treasury object to use for comparing later
-# before_cancel <- treasury$ACCOUNTS
-# 
-# # When you're ready, cancel a subscription or two: how about the 1st and 3rd?
-# cancel_accounts <- subscriptions$account_updates_multi$req_name[c(1,3)]
-# cancel_account_updates_multi(cancel_accounts)
-# 
-# # Check that the two accounts are indeed removed from subscriptions:
-# view_subscriptions("account_updates_multi")
-# any(cancel_accounts %in% subscriptions$account_updates_multi$req_name)
-# 
-# # From this point on, the sock drawer will no longer get updated data for the
-# # two accounts that were unsubscribed.
-# 
-# # To convince yourself, first read off any data that might have gotten sent
-# # in the time between the last read and the call to cancel:
-# read_sock_drawer()
-# 
-# # From this point on, the canceled accounts' treasury data -- which can be
-# # selected using the following code:
-# treasury$ACCOUNTS %>%
-#   dplyr::filter(account %in% cancel_accounts)
-# # -- will not update, no matter how many times you call read_sock_drawer(),
-# # unless you subscribe to them again.
-# 
-# ####
-# #### CANCELLING accounts_multi Subscriptions
-# ####
-# 
-# # Clear out the treasury & subscriptions for this example
-# clean_slate(c("treasury", "subscriptions"))
-# 
-# # Open a socket
-# create_new_connections()
-# 
-# # Fetch the account IDs of your six paper trading accounts and use walk() from
-# # the purrr package to subscribe to each one
-# req_managed_accts() %>%
-#   purrr::walk(
-#     req_account_updates_multi,
-#     channel = "async"
-#   )
-# 
-# # Verify that you're now subscribed to the six paper trading accounts:
-# view_subscriptions("account_updates_multi")
-# 
-# # Print the retrieved updates to the console, or use View():
-# treasury$ACCOUNTS
-# View(treasury$ACCOUNTS)
-# 
-# # You should have all six paper account codes represented in the "account"
-# # column of the ACCOUNTS treasury object.
-# 
-# # This information will update every 3 minutes -- and probably more frequently
-# # than that in practice -- for those accounts that have positions in financial
-# # instruments. You can wait for at least one cycle and call read_sock_drawer()
-# # again to see this for yourself.
-# 
-# # Save the treasury object to use for comparing later
-# before_cancel <- treasury$ACCOUNTS
-# 
-# # When you're ready, cancel a subscription or two: how about the 1st and 3rd?
-# cancel_accounts <- subscriptions$account_updates_multi$req_name[c(1,3)]
-# cancel_account_updates_multi(cancel_accounts)
-# 
-# # Check that the two accounts are indeed removed from subscriptions:
-# view_subscriptions("account_updates_multi")
-# any(cancel_accounts %in% subscriptions$account_updates_multi$req_name)
-# 
-# # From this point on, the sock drawer will no longer get updated data for the
-# # two accounts that were unsubscribed.
-# 
-# # To convince yourself, first read off any data that might have gotten sent
-# # in the time between the last read and the call to cancel:
-# read_sock_drawer()
-# 
-# # From this point on, the canceled accounts' treasury data -- which can be
-# # selected using the following code:
-# treasury$ACCOUNTS %>%
-#   dplyr::filter(account %in% cancel_accounts)
-# # -- will not update, no matter how many times you call read_sock_drawer(),
-# # unless you subscribe to them again.
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -401,7 +266,6 @@ updates subscriptions.</p></div>
       <li><a href="#details">Details</a></li>
       <li><a href="#accounts-treasury-object">ACCOUNTS Treasury Object</a></li>
       <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Socks — socks • InteractiveTradeR</title>
+<title>All About Socks — socks • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,9 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Socks — socks" />
-<meta property="og:description" content="Print a detailed description of all the socks that are currently open." />
+<meta property="og:title" content="All About Socks — socks" />
+<meta property="og:description" content="When called, socks() prints a detailed description of all the socks
+in the sock_drawer." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,18 +123,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Socks</h1>
+    <h1>All About Socks</h1>
     <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/socks.R'><code>R/socks.R</code></a></small>
     <div class="hidden name"><code>socks.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Print a detailed description of all the socks that are currently open.</p>
+    <p>When called, <code>socks</code>() prints a detailed description of all the socks
+in the sock_drawer.</p>
     </div>
 
     <pre class="usage"><span class='fu'>socks</span>()</pre>
 
 
+    <h2 class="hasAnchor" id="what-is-a-sock-"><a class="anchor" href="#what-is-a-sock-"></a>What is a "sock"?</h2>
+
+    
+
+<p>In InteractiveTradeR code &amp; documentation, the term <strong>sock</strong> -- when it
+appears in code or in print -- should be understood to mean <strong><em>an
+R socket connection, created by <a href='https://rdrr.io/r/base/connections.html'>socketConnection</a>(), that is open and
+connected to TWS or IBG</em></strong>.</p>
+    <h2 class="hasAnchor" id="what-is-the-sock-drawer-"><a class="anchor" href="#what-is-the-sock-drawer-"></a>What is the "sock_drawer"?</h2>
+
+    
+
+<p>Socks that you have created with <a href='create_new_connections.html'>create_new_connections</a>() -- for a
+market subscription, for example -- live in the <code>sock_drawer</code>, an
+environment in InteractiveTradeR designed to house socks. Most of the time,
+you won't have to worry about the sock drawer at all if you simply pass the
+value <em>"async"</em> into a <em>req_</em> function as the <em>channel</em>
+argument. Doing so will instruct InteractiveTradeR to use the first sock in
+the drawer that it finds available (with a little load balancing) to service
+your request.</p>
+<p>In this way, you can think of the sock drawer and all of the socks within it
+as a single socket <em>"async"</em>, so long as you don't care which particular
+sock is used for a given request. If you <strong>do</strong> care (for example, if
+you're working with orders and require the
+<strong><a href='master_client_id'>Master Socket</a></strong>), then you can always call
+any of the <em>req_</em> functions on a particular sock by specifying that
+sock's name as the <em>channel</em> argument in the call.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other utilities: 
@@ -141,6 +170,7 @@
 <code><a href='clean_slate.html'>clean_slate</a>()</code>,
 <code><a href='create_new_connections.html'>create_new_connections</a>()</code>,
 <code><a href='disconnect.html'>disconnect</a>()</code>,
+<code><a href='read_sock_drawer.html'>read_sock_drawer</a>()</code>,
 <code><a href='start_api.html'>start_api</a>()</code>,
 <code><a href='sync_timeout.html'>sync_timeout</a>()</code></p></div>
 
@@ -148,6 +178,8 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#what-is-a-sock-">What is a "sock"?</a></li>
+      <li><a href="#what-is-the-sock-drawer-">What is the "sock_drawer"?</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

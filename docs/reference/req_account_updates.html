@@ -334,7 +334,9 @@ held in an account. Has the following columns:</p><ul>
 
     <div class='dont-index'><p>Other treasury: 
 <code><a href='cancel_account_summary.html'>cancel_account_summary</a>()</code>,
-<code><a href='req_account_summary.html'>req_account_summary</a>()</code></p></div>
+<code><a href='cancel_account_updates_multi.html'>cancel_account_updates_multi</a>()</code>,
+<code><a href='req_account_summary.html'>req_account_summary</a>()</code>,
+<code><a href='req_account_updates_multi.html'>req_account_updates_multi</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Clear out the treasury, sock drawer, and subscriptions</span>
@@ -439,7 +441,7 @@ held in an account. Has the following columns:</p><ul>
 
 <span class='fu'><a href='clean_slate.html'>clean_slate</a></span>() <span class='co'># clean slate, optional</span>
 
-<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>      <span class='co'># should return NULL</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span> <span class='co'># should return NULL</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>        <span class='co'># should return NULL</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span> <span class='co'># should return NULL</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
 <span class='co'># Open up a socket</span>
 <span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>(<span class='fl'>1</span>)
 
@@ -458,7 +460,7 @@ held in an account. Has the following columns:</p><ul>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267863 AccountType           INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
 #&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267863 AccountCode           DU1267863  </span><span style='color: #949494;'>""</span><span>      
 #&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267863 AccountReady          TRUE       </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267863 Cushion               0.999866   </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267863 Cushion               0.999877   </span><span style='color: #949494;'>""</span><span>      
 #&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267863 DayTradesRemaining    -1         </span><span style='color: #949494;'>""</span><span>      
 #&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267863 DayTradesRemainingT+1 -1         </span><span style='color: #949494;'>""</span><span>      
 #&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267863 DayTradesRemainingT+2 -1         </span><span style='color: #949494;'>""</span><span>      
@@ -474,11 +476,11 @@ held in an account. Has the following columns:</p><ul>
 #&gt; #   market_price </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, market_value </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, average_cost </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
 #&gt; #   unrealized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, realized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'><span class='co'># See when they were last updated:</span>
 <span class='no'>acc_val_update_time</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>,      <span class='st'>"last_updated"</span>)
-<span class='no'>acc_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 22:21:19 EDT"</div><div class='input'><span class='no'>port_val_update_time</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)
-<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 22:21:19 EDT"</div><div class='input'>
+<span class='no'>acc_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-13 13:08:17 EDT"</div><div class='input'><span class='no'>port_val_update_time</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)
+<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-13 13:08:17 EDT"</div><div class='input'>
 <span class='co'># Soon after creating the subscription, try to update the treasury objects by</span>
 <span class='co'># calling read_sock_drawer():</span>
-<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> No socks are ready to read.</div><div class='input'>
+<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>()</div><div class='output co'>#&gt; </span><span style='color: #BBBB00;'>ℹ</span><span> No socks are ready to read.</div><div class='input'>
 <span class='co'># If you're quick enough, you won't get any updated information because IB has</span>
 <span class='co'># not sent updated data to the socket.</span>
 
@@ -486,8 +488,8 @@ held in an account. Has the following columns:</p><ul>
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>200</span>)
 
 <span class='co'># Keep calling...</span>
-<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>✔</span><span> Updated the following treasury objects:
-#&gt;   "</span><span style='font-weight: bold;'>PORTFOLIO_VALUE</span><span>"</div><div class='input'><span class='co'># ...a few times, waiting 10 or 20 seconds in between calls. After 3 minutes</span>
+<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>()
+<span class='co'># ...a few times, waiting 10 or 20 seconds in between calls. After 3 minutes</span>
 <span class='co'># have passed -- but probably before that -- you should see either or both of</span>
 <span class='co'># the ACCOUNTS and PORTFOLIO_VALUE objects update.</span>
 
@@ -495,16 +497,16 @@ held in an account. Has the following columns:</p><ul>
 <span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 147 x 4</span><span>
 #&gt;    account   tag                   tag_value  currency
 #&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267863 AccountType           INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267863 AccountCode           DU1267863  </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267863 AccountReady          TRUE       </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267863 Cushion               0.999866   </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267863 DayTradesRemaining    -1         </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267863 DayTradesRemainingT+1 -1         </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267863 DayTradesRemainingT+2 -1         </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267863 DayTradesRemainingT+3 -1         </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267863 DayTradesRemainingT+4 -1         </span><span style='color: #949494;'>""</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267863 Leverage-S            0.00       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267863 EquityWithLoanValue-S 1020785.99 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267863 NetLiquidation-S      1020785.99 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267863 GrossPositionValue-S  503.13     USD     
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267863 EquityWithLoanValue   1020785.99 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267863 NetLiquidation        1020785.99 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267863 BuyingPower           4082640.84 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267863 RegTEquity-S          1020785.99 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267863 RegTEquity            1020785.99 USD     
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267863 RegTMargin-S          251.57     USD     
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267863 RegTMargin            251.57     USD     
 #&gt; </span><span style='color: #949494;'># … with 137 more rows</span><span></div><div class='input'><span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 14</span><span>
 #&gt;   account con_id symbol sec_type primary_exchange currency local_symbol
 #&gt; </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
@@ -514,8 +516,8 @@ held in an account. Has the following columns:</p><ul>
 #&gt; #   market_price </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, market_value </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, average_cost </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
 #&gt; #   unrealized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, realized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># And compare update times:</span>
-<span class='no'>acc_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 22:21:19 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>,<span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-11 22:21:19 EDT"</div><div class='input'>
-<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 22:21:19 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-11 22:24:40 EDT"</div><div class='input'>
+<span class='no'>acc_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-13 13:08:17 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>,<span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-13 13:11:37 EDT"</div><div class='input'>
+<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-13 13:08:17 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-13 13:11:37 EDT"</div><div class='input'>
 <span class='co'>#### Example 4: Cancelling Subscriptions</span>
 
 <span class='co'># Cancel the subscription created in Example 3 with:</span>

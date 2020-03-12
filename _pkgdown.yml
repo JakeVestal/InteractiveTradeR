@@ -24,6 +24,8 @@ reference:
   desc: Explainations of important elements used by InteractiveTradeR.
   contents:
   - contracts
+  - Master Client ID
+  - Client ID 0
 - title: The Treasury
   desc: The Treasury environment contains updated financials -- P/L, account 
     balances, positions, and so on. This section includes all functions that 
@@ -33,12 +35,22 @@ reference:
   - req_account_updates
   - req_account_summary
   - cancel_account_summary
+- title: Market Data
+  desc: All the functions that have to do with fetching live market data
+  contents:
+  - req_market_data_type
+- title: Orders
+  desc: Functions that fetch, modify, and otherwise deal with trade orders.
+  contents:
+  - req_ids
 - title: Utilities
   desc: Functions for managing InteractiveTradeR's operation.
   contents:
   - active_connection_parameters
+  - clean_slate
   - create_new_connections 
   - disconnect
+  - read_sock_drawer
   - socks
   - subscriptions
   - start_api

@@ -22,6 +22,8 @@
 #'
 cancel_account_summary <- function(groupNames){
   
+  subscriptions <- get("subscriptions")
+  
   if(all(subscriptions$account_summary$req_name == "")){
     usethis::ui_info(
       "There are no active account summary subscriptions to cancel."
