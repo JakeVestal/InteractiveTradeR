@@ -223,8 +223,8 @@ Orders</a></p>
     <span class='kw'>totalQuantity</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>lmtPrice</span>      <span class='kw'>=</span> <span class='fl'>45</span>,
     <span class='kw'>account</span>       <span class='kw'>=</span> <span class='fu'><a href='req_account_summary.html'>req_account_summary</a></span>(<span class='kw'>tags</span> <span class='kw'>=</span> <span class='st'>"AvailableFunds"</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>)
   )
@@ -243,8 +243,8 @@ Orders</a></p>
     <span class='kw'>totalQuantity</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>lmtPrice</span>      <span class='kw'>=</span> <span class='fl'>45</span>,
     <span class='kw'>account</span>       <span class='kw'>=</span> <span class='fu'><a href='req_account_summary.html'>req_account_summary</a></span>(<span class='kw'>tags</span> <span class='kw'>=</span> <span class='st'>"AvailableFunds"</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>)
   )
@@ -268,8 +268,8 @@ Orders</a></p>
     <span class='kw'>orderType</span>     <span class='kw'>=</span> <span class='st'>"MKT"</span>,
     <span class='kw'>totalQuantity</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>account</span>       <span class='kw'>=</span> <span class='fu'><a href='req_account_summary.html'>req_account_summary</a></span>(<span class='kw'>tags</span> <span class='kw'>=</span> <span class='st'>"AvailableFunds"</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>),
     <span class='kw'>smartComboRoutingParams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>NonGuaranteed</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -295,8 +295,8 @@ Orders</a></p>
     <span class='kw'>lmtPrice</span>      <span class='kw'>=</span> <span class='fl'>150</span>,
     <span class='kw'>totalQuantity</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>account</span>       <span class='kw'>=</span> <span class='fu'><a href='req_account_summary.html'>req_account_summary</a></span>(<span class='kw'>tags</span> <span class='kw'>=</span> <span class='st'>"AvailableFunds"</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>),
     <span class='kw'>smartComboRoutingParams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>NonGuaranteed</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -322,8 +322,8 @@ Orders</a></p>
     <span class='kw'>orderComboLegs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>45</span>,<span class='fl'>210</span>),
     <span class='kw'>totalQuantity</span>  <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>account</span>        <span class='kw'>=</span> <span class='fu'><a href='req_account_summary.html'>req_account_summary</a></span>(<span class='kw'>tags</span> <span class='kw'>=</span> <span class='st'>"AvailableFunds"</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>),
     <span class='kw'>smartComboRoutingParams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>NonGuaranteed</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -345,8 +345,8 @@ Orders</a></p>
     <span class='kw'>orderType</span>      <span class='kw'>=</span> <span class='st'>"MKT"</span>,
     <span class='kw'>totalQuantity</span>  <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>account</span>        <span class='kw'>=</span> <span class='fu'><a href='req_account_summary.html'>req_account_summary</a></span>(<span class='kw'>tags</span> <span class='kw'>=</span> <span class='st'>"AvailableFunds"</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>tag_value</span>) <span class='kw'>&gt;</span> <span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
+      <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>account</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>)
   )

@@ -424,7 +424,7 @@ after writing to the socket as directed.</p>
 #&gt; #   unrealized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, realized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'><span class='co'># See when they were last updated:</span>
 <span class='no'>acc_val_update_time</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCT_VALUE</span>,      <span class='st'>"last_updated"</span>)
 <span class='no'>acc_val_update_time</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='no'>port_val_update_time</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)
-<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 20:10:56 EDT"</div><div class='input'>
+<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 20:33:10 EDT"</div><div class='input'>
 <span class='co'># Soon after creating the subscription, try to update the treasury objects by</span>
 <span class='co'># calling read_sock_drawer():</span>
 <span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> No socks are ready to read.</div><div class='input'>
@@ -447,7 +447,7 @@ after writing to the socket as directed.</p>
 #&gt; #   unrealized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, realized_PNL </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># And compare update times:</span>
 <span class='no'>acc_val_update_time</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>ACCT_VALUE</span>,<span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
-<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 20:10:56 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-11 20:10:56 EDT"</div><div class='input'>
+<span class='no'>port_val_update_time</span></div><div class='output co'>#&gt; [1] "2020-03-11 20:33:10 EDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>treasury</span>$<span class='no'>PORTFOLIO_VALUE</span>, <span class='st'>"last_updated"</span>)</div><div class='output co'>#&gt; [1] "2020-03-11 20:33:10 EDT"</div><div class='input'>
 <span class='co'>#### Example 4: Cancelling Subscriptions</span>
 
 <span class='co'># Cancel the subscription created in Example 3 with:</span>

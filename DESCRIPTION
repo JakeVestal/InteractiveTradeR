@@ -29,7 +29,7 @@ Imports:
     usethis
 Suggests: 
     roxygen2,
-    testthat,
+    testthat (>= 2.1.0),
     knitr,
     rmarkdown
 Encoding: UTF-8

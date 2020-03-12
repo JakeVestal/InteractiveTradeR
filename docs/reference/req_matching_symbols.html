@@ -257,8 +257,8 @@ telling you that IB is busy processing the request for a different client.</p>
 <span class='co'># "IBM". You could pipe the output of req_matching_symbols() to a series of</span>
 <span class='co'># functions with the end result of returning only the info you want:</span>
 <span class='fu'>req_matching_symbols</span>(<span class='st'>"ibm"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='no'>symbol</span> <span class='kw'>==</span> <span class='st'>"IBM"</span> <span class='kw'>&amp;</span> <span class='no'>primary_exchange</span> <span class='kw'>==</span> <span class='st'>"NYSE"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span>(<span class='no'>asset_types</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>symbol</span> <span class='kw'>==</span> <span class='st'>"IBM"</span> <span class='kw'>&amp;</span> <span class='no'>primary_exchange</span> <span class='kw'>==</span> <span class='st'>"NYSE"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>asset_types</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='kw'>use.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "CFD"  "OPT"  "IOPT" "WAR"  "FUT"  "BAG" </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
