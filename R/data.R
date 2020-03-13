@@ -261,3 +261,13 @@ NULL
 #' @aliases contract
 #'
 NULL
+
+#' The Order Object
+#' 
+#' describe
+#' 
+#' @name order_obj
+#' 
+#' @aliases order orders
+#' 
+NULL

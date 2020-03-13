@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retreive Active Connection Parameters — active_connection_parameters • InteractiveTradeR</title>
+<title>Client ID 0: The Trader Workstation Client — Client ID 0 • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,10 +37,10 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Retreive Active Connection Parameters — active_connection_parameters" />
-<meta property="og:description" content="Return a tibble that prints nicely and contains the connection
-info that InteractiveTradeR is currently using to to interface with the
-Interactive Brokers TWS / IBG application." />
+<meta property="og:title" content="Client ID 0: The Trader Workstation Client — Client ID 0" />
+<meta property="og:description" content="A socket that connects to TWS or IBG using Client ID = 0 is considered a *TWS
+socket*. TWS sockets have the unique property of being able to view orders
+placed within the TWS app itself." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,45 +124,24 @@ Interactive Brokers TWS / IBG application." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retreive Active Connection Parameters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/active_connection_parameters.R'><code>R/active_connection_parameters.R</code></a></small>
-    <div class="hidden name"><code>active_connection_parameters.Rd</code></div>
+    <h1>Client ID 0: The Trader Workstation Client</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>Client-ID-0.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Return a <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> that prints nicely and contains the connection
-info that InteractiveTradeR is currently using to to interface with the
-Interactive Brokers TWS / IBG application.</p>
+    <p>A socket that connects to TWS or IBG using Client ID = 0 is considered a *TWS
+socket*. TWS sockets have the unique property of being able to view orders
+placed within the TWS app itself.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>active_connection_parameters</span>()</pre>
 
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other utilities: 
-<code><a href='clean_slate.html'>clean_slate</a>()</code>,
-<code><a href='create_new_connections.html'>create_new_connections</a>()</code>,
-<code><a href='disconnect.html'>disconnect</a>()</code>,
-<code><a href='read_sock_drawer.html'>read_sock_drawer</a>()</code>,
-<code><a href='socks.html'>socks</a>()</code>,
-<code><a href='start_api.html'>start_api</a>()</code>,
-<code><a href='sync_timeout.html'>sync_timeout</a>()</code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Fetch the current timeout setting for SYNC functions (in seconds):</span>
-<span class='fu'><a href='sync_timeout.html'>sync_timeout</a></span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
-<span class='co'># Set the time out setting for SYNC functions to 10 seconds:</span>
-<span class='fu'><a href='sync_timeout.html'>sync_timeout</a></span>(<span class='fl'>10</span>)
-
-<span class='co'># Fetch the new setting:</span>
-<span class='fu'><a href='sync_timeout.html'>sync_timeout</a></span>()</div><div class='output co'>#&gt; [1] 10</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

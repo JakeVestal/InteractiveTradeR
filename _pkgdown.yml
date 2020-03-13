@@ -38,10 +38,16 @@ reference:
 - title: Market Data
   desc: All the functions that have to do with fetching live market data
   contents:
+  - mkt_data
   - req_market_data_type
+- title: Historical Data
+  desc: Functions dealing with retrieving historical market data
+  contents:
+  - archives
 - title: Orders
   desc: Functions that fetch, modify, and otherwise deal with trade orders.
   contents:
+  - order_obj
   - req_ids
 - title: Utilities
   desc: Functions for managing InteractiveTradeR's operation.
@@ -50,6 +56,7 @@ reference:
   - clean_slate
   - create_new_connections 
   - disconnect
+  - error_log
   - read_sock_drawer
   - socks
   - subscriptions

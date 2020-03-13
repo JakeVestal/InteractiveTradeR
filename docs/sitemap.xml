@@ -4,6 +4,9 @@
     <loc>https://jakevestal.github.io/InteractiveTradeR//index.html</loc>
   </url>
   <url>
+    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/Client-ID-0.html</loc>
+  </url>
+  <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/InteractiveTradeR-package.html</loc>
   </url>
   <url>
@@ -119,9 +122,6 @@
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/sync_timeout.html</loc>
-  </url>
-  <url>
-    <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tick-Client-ID-0-tick.html</loc>
   </url>
   <url>
     <loc>https://jakevestal.github.io/InteractiveTradeR//reference/tidyeval.html</loc>

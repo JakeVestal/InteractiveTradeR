@@ -61,33 +61,26 @@ used as an order ID by any user on a particular client, and therefore may be
 utilized as the ID for a new order  to be placed on that socket.
 }
 \examples{
-\dontrun{
-  # This example assumes that you're connected to a default PAPER Account
-  # having five (5) trading accounts (prefix "DU") and an admin (prefix "DF"),
-  # for six (6) accounts total.
+# Create some socket connections
+create_new_connections(5, include_master = TRUE, include_tws = TRUE)
 
-  # Create some socket connections
-  create_new_connections(5, include_master = TRUE, include_tws = TRUE)
+# Fetch the next valid ID on the master socket:
+req_ids("master")
 
-  # Fetch the next valid ID on the master socket:
-  req_ids("master")
+# Fetch the next valid ID on the TWS socket:
+req_ids("tws")
 
-  # Fetch the next valid ID on the TWS socket:
-  req_ids("tws")
+# Note that opening orders within TWS itself does not affect the next valid TWS
+# id -- only orders submitted via the API will cause it to increment.
 
-  # Note that opening orders within TWS itself does not affect the next valid
-  # TWS id -- only orders submitted via the API will cause it to increment.
+# Repeat for the other sockets:
+req_ids("sock_1")
+req_ids("sock_2")
+req_ids("sock_3")
 
-  # Repeat for the other sockets:
-  req_ids("sock_1")
-  req_ids("sock_2")
-  req_ids("sock_3")
-
-  # Calling req_ids() in sync mode will work, but isn't of much use because
-  # because, by definition, the socket isn't specified:
-  req_ids()
-
-}
+# Calling req_ids() in sync mode will work, but isn't of much use because
+# because, by definition, the socket isn't specified:
+req_ids()
 }
 \seealso{
 Other orders: 

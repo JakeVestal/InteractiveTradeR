@@ -3,6 +3,7 @@
 #' API for Interactive Brokers TWS & IBG
 #' 
 #' @docType package
+#' @keywords internal
 "_PACKAGE"
 
 # Define "." for R CMD Check:

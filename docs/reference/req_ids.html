@@ -195,33 +195,21 @@ utilized as the ID for a new order  to be placed on that socket.</p>
 <code><a href='place_order.html'>place_order</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='co'># This example assumes that you're connected to a default PAPER Account</span>
-  <span class='co'># having five (5) trading accounts (prefix "DU") and an admin (prefix "DF"),</span>
-  <span class='co'># for six (6) accounts total.</span>
+    <pre class="examples"><div class='input'><span class='co'># Create some socket connections</span>
+<span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>(<span class='fl'>5</span>, <span class='kw'>include_master</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_tws</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-  <span class='co'># Create some socket connections</span>
-  <span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>(<span class='fl'>5</span>, <span class='kw'>include_master</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_tws</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># Fetch the next valid ID on the master socket:</span>
+<span class='fu'>req_ids</span>(<span class='st'>"master"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='co'># Fetch the next valid ID on the TWS socket:</span>
+<span class='fu'>req_ids</span>(<span class='st'>"tws"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='co'># Note that opening orders within TWS itself does not affect the next valid TWS</span>
+<span class='co'># id -- only orders submitted via the API will cause it to increment.</span>
 
-  <span class='co'># Fetch the next valid ID on the master socket:</span>
-  <span class='fu'>req_ids</span>(<span class='st'>"master"</span>)
-
-  <span class='co'># Fetch the next valid ID on the TWS socket:</span>
-  <span class='fu'>req_ids</span>(<span class='st'>"tws"</span>)
-
-  <span class='co'># Note that opening orders within TWS itself does not affect the next valid</span>
-  <span class='co'># TWS id -- only orders submitted via the API will cause it to increment.</span>
-
-  <span class='co'># Repeat for the other sockets:</span>
-  <span class='fu'>req_ids</span>(<span class='st'>"sock_1"</span>)
-  <span class='fu'>req_ids</span>(<span class='st'>"sock_2"</span>)
-  <span class='fu'>req_ids</span>(<span class='st'>"sock_3"</span>)
-
-  <span class='co'># Calling req_ids() in sync mode will work, but isn't of much use because</span>
-  <span class='co'># because, by definition, the socket isn't specified:</span>
-  <span class='fu'>req_ids</span>()
-
-}</div></pre>
+<span class='co'># Repeat for the other sockets:</span>
+<span class='fu'>req_ids</span>(<span class='st'>"sock_1"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_2"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_3"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='co'># Calling req_ids() in sync mode will work, but isn't of much use because</span>
+<span class='co'># because, by definition, the socket isn't specified:</span>
+<span class='fu'>req_ids</span>()</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

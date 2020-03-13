@@ -20,3 +20,4 @@ Useful links:
 \strong{Maintainer}: Jake Vestal \email{jmvestal@gmail.com} (\href{https://orcid.org/0000-0002-2970-4795}{ORCID})
 
 }
+\keyword{internal}
