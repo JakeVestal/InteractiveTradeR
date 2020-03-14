@@ -230,8 +230,6 @@ req_account_updates <- function(
     )
   }
   
-  account_updates <<- account_updates
-  
   if(any(names(account_updates) == "PORTFOLIO_VALUE")){
     assign(
       "PORTFOLIO_VALUE",

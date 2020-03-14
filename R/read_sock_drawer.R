@@ -7,17 +7,13 @@
 #'
 read_sock_drawer <- function(){
   
-  if(identical(ls(sock_drawer), character(0))){
-    usethis::ui_oops("Empty sock drawer: No connections are currently open.")
-    return(invisible(FALSE))
-  }
+  if(identical(ls(sock_drawer), character(0))) return(invisible(FALSE))
   
   socks <- mget(ls(sock_drawer), envir = sock_drawer)
   
   ready_to_read <- which(socketSelect(socks, timeout = 0.1))
   
   if(identical(ready_to_read, integer(0))){
-    usethis::ui_info("No socks are ready to read.")
     return(invisible(FALSE))
   }
   

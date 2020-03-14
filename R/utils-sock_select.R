@@ -1,7 +1,5 @@
 select_sock_for_api_fun <- function(){
   
-  error_log <- get("error_log")
-  
   channel <- get0("channel", envir = parent.frame())
   
   tryCatch(
@@ -142,26 +140,25 @@ select_sock_for_api_fun <- function(){
     error = function(e){
       
       call_time     <- Sys.time()
-      ib_func       <- as.character(sys.call(-5))
-      ib_func_frame <- sys.frame(-5)
+      ib_func       <- sys.call(-5)
       
       assign(
         "ib_connect_failure",
         value = dplyr::bind_rows(
-          error_log$ib_connect_failure,
+          get0("ib_connect_failure", envir = get("error_log")),
           tibble::tibble(
             "time" = call_time,
-            "call" = ib_func,
-            "args" = mget(ls(ib_func_frame), envir = ib_func_frame)
+            "call" = rlang::call_name(ib_func),
+            "args" = list(rlang::call_args(ib_func))
           )
         ),
         envir = get("error_log")
       )
       
       conn_fail_msg <- paste0(
-        crayon::bold(ib_func),
+        crayon::bold(rlang::call_name(ib_func)),
         ": Could not connect to IB.\nSee ",
-        crayon::bold("error_log$data_retrieval_errors"),
+        crayon::bold("error_log$ib_connection_failure"),
         " for details."
       )
       

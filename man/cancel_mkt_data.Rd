@@ -18,6 +18,178 @@ TRUE upon success (invisible), FALSE or error otherwise.
 \description{
 Cancel an existing market data subscription.
 }
+\examples{
+# Fetch a delayed market data snapshot for Exxon (XOM) in Sync mode
+req_mkt_data(
+  contract = c(
+    symbol = "XOM",
+    secType = "STK", 
+    currency = "USD", 
+    exchange = "SMART"
+  ),
+  data_name = "Exxon_delayed",
+  mktDataType = "DELAYED"
+) 
+
+# This data is now stored in your mkt_data environment. You can access it with
+# the "$" operator, for example:
+mkt_data$Exxon_delayed$TICK_PRICE
+
+# Sync mode is great when you don't mind waiting a few seconds or so to fetch a
+# market data snapshot. Most of the time, however, you'll want to get market
+# data by creating a subscription in Async Mode, and updating the mkt_data
+# environment by calling read_sock_drawer().
+
+# To do this, first create a sock for yourself:
+create_new_connections()
+
+# Now, set up market data subscriptions to Exxon, Tesla, Apple, Facebook, 3M,
+# and whever else you want to follow. Below, the walk() function from package
+# "purrr" is used to call req_mkt_data on each stock symbol.
+c("XOM", "TSLA", "AAPL", "FB", "MMM") \%>\%
+  purrr::walk(
+    function(stock_symbol){
+      req_mkt_data(
+        contract = c(
+          symbol   = stock_symbol,
+          secType  = "STK",
+          currency = "USD",
+          exchange = "SMART"
+        ),
+        mktDataType = "DELAYED",
+        snapshot    = FALSE,
+        channel     = "async"
+      ) 
+    }
+  )
+
+# Note that the mkt_data subscriptions you just created appear in the
+# subscriptions variable:
+subscriptions$mkt_data
+
+# Wait a bit for the data to come through. Because program control is returned
+# after setting up the subscription, an app would be doing other tasks during
+# this time and the market data, when it arrives, would show up after the next
+# call to read_sock_drawer().
+Sys.sleep(3)
+
+# Read the sock drawer
+#    --> This example may be run on a paper trading account with no market data
+#    feed. This will be the case if you start up a new IB account without
+#    purchasing a subscription. In that case, you'll see a "Market Data not
+#    subscribed..." message, which means everything is operating normally. If
+#    you purchase a data subscription, this message will not appear.
+read_sock_drawer()
+
+# You can call req_mkt_data on just about any kind of contract object, including
+# combos and news feeds
+
+#1) Google Combo
+req_mkt_data(
+  contract  = list(
+    symbol    = "GOOG",
+    secType   = "BAG",
+    currency  = "USD",
+    exchange  = "SMART",
+    comboLegs = tibble::tibble(
+      conId    = c(208813720, 107113386),
+      ratio    = c(1,3),
+      action   = c("BUY","SELL"),
+      exchange = c("SMART", "SMART")
+    )
+  )
+)
+
+#2: IBKR & MCD Stock Combo
+ibkr_mcd_contract <- c(
+  symbol   = "IBKR,MCD",
+  secType  = "BAG",
+  currency = "USD"
+)
+ibkr_mcd_combo <- tibble::tibble(
+  conId = c(43645865, 9408),
+  ratio = c(1,1),
+  action = c("BUY","SELL"),
+  exchange = c("SMART", "SMART")
+)
+req_mkt_data(contract = ibkr_mcd_contract, combo = ibkr_mcd_combo)
+
+#3: Future Combo Contract
+future_combo_contract <- c(
+  symbol = "VIX", secType = "BAG", currency = "USD", exchange = "CFE"
+)
+future_combo <- tibble::tibble(
+  # Use req_contract_details() to pick three random VIX futures:
+  conId = req_contract_details(
+    contract = c(
+      symbol = "VIX", exchange = "CFE", currency = "USD", secType = "FUT"
+    )
+  )$conId \%>\%
+    sample(3),
+  ratio    = c(1,1,2),
+  action   = c("BUY","SELL", "BUY"),
+  exchange = c("CFE", "CFE", "CFE")
+)
+req_mkt_data(contract = future_combo_contract, combo = future_combo)
+
+#4: Smart Future Combo Contract
+smart_future_combo_contract <- c(
+  symbol = "WTI", secType = "BAG", currency = "USD", exchange = "SMART"
+)
+smart_future_combo <- tibble::tibble(
+  # Use req_contract_details() with vapply() to pick a random WTI and and a
+  # random COIL future conId.
+  conId = vapply(
+    c("WTI", "COIL"),
+    function(symb){
+      req_contract_details(
+        contract = c(
+          symbol = symb, exchange = "IPE", currency = "USD", secType = "FUT"
+        )
+      )$conId \%>\%
+        sample(1)
+    },
+    character(1)
+  ),
+  ratio    = c(1,1),
+  action   = c("BUY","SELL"),
+  exchange = c("CFE", "CFE")
+)
+req_mkt_data(contract = future_combo_contract, combo = future_combo)
+ 
+#5: Inter Commodity Futures Contract
+inter_cmdty_futures_contract <- c(
+  symbol = "CL.BZ", secType = "BAG", currency = "USD", exchange = "NYMEX"
+)
+inter_cmdty_futures_combo <- tibble::tibble(
+  # Use req_contract_details() with vapply() to pick a random WTI and and a
+  # random COIL future conId.
+  conId = vapply(
+    c("CL", "BZ"),
+    function(symb){
+      req_contract_details(
+        contract = c(
+          symbol = symb, exchange = "NYMEX", currency = "USD", secType = "FUT"
+        )
+      )$conId \%>\%
+        sample(1)
+    },
+    character(1)
+  ),
+  ratio    = c(1,1),
+  action   = c("BUY","SELL"),
+  exchange = c("NYMEX", "NYMEX")
+)
+req_mkt_data(
+  contract = inter_cmdty_futures_contract,
+  combo    = inter_cmdty_futures_combo
+)
+
+#6) News Feed for Query
+req_mkt_data(
+  contract = c(symbol = "BRFG:BRFG_ALL", secType = "NEWS", exchange = "BRFG")
+)
+}
 \seealso{
 Other market data: 
 \code{\link{req_market_data_type}()},

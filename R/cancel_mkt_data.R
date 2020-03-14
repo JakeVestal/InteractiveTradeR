@@ -13,7 +13,7 @@
 #'
 #' @export
 #'
-# #' @example inst/examples/mkt_data_ex.R
+#' @example inst/examples/mkt_data_ex.R
 #' @family market data
 #' @export
 #'

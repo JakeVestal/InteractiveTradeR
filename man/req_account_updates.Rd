@@ -268,19 +268,25 @@ treasury$PORTFOLIO_VALUE # should return NULL
 # Open up a socket
 create_new_connections(1)
 
-# Pick another random account, or replace the "sample()" with an account code
-# (e.g., "DU7654321") as desired
-acct2 <- sample(req_managed_accts(), 1)
+# Pick pick two random accounts, or replace the "sample()" with an account code
+# (e.g., "DU7654321") as desired.
+acct2 <- sample(req_managed_accts(), 2)
 
 # Make the call, this time with channel = "async"
-req_account_updates(acct2, channel = "async")
+acct2 \%>\%
+  purrr::walk(
+    function(account){
+      req_account_updates(account, channel = "async")   
+    }
+  )
+
 
 # Within three minutes of starting the subscription, take a look at the
 # ACCOUNTS and PORTFOLIO_VALUE objects in the treasury:
 treasury$ACCOUNTS
 treasury$PORTFOLIO_VALUE
 # See when they were last updated:
-acc_val_update_time  <- attr(treasury$ACCOUNTS,      "last_updated")
+acc_val_update_time  <- attr(treasury$ACCOUNTS, "last_updated")
 acc_val_update_time
 port_val_update_time <- attr(treasury$PORTFOLIO_VALUE, "last_updated")
 port_val_update_time
@@ -291,6 +297,10 @@ read_sock_drawer()
 
 # If you're quick enough, you won't get any updated information because IB has
 # not sent updated data to the socket.
+
+# Note that you now have an "account_updates" entry in subscriptions for the
+# account you're now following:
+subscriptions$account_updates
 
 # Wait a little over 3 minutes
 Sys.sleep(200)

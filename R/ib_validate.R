@@ -6,8 +6,6 @@ ib_validate <- function(output_obj){
   
   call_time     <- Sys.time()
   ib_func       <- rlang::call_name(sys.call(-1))
-  ib_func_frame <- sys.frame(-1)
-  error_log     <- get("error_log")
   
   switch(
     ib_func,
@@ -32,11 +30,11 @@ ib_validate <- function(output_obj){
       assign(
         "data_retrieval_errors",
         value = dplyr::bind_rows(
-          error_log$data_retrieval_errors,
+          get0("data_retrieval_errors", envir = get("error_log")),
           tibble::tibble(
             "time" = call_time,
-            "call" = ib_func,
-            "args" = mget(ls(ib_func_frame), envir = ib_func_frame)
+            "call" = rlang::call_name(ib_func),
+            "args" = list(rlang::call_args(ib_func))
           )
         ),
         envir = get("error_log")
@@ -44,7 +42,7 @@ ib_validate <- function(output_obj){
       usethis::ui_oops(
         paste0(
           "Data retrieval failure in ",
-          crayon::bold(ib_func),
+          crayon::bold(rlang::call_name(ib_func)),
           "().\nSee ",
           crayon::bold("error_log$data_retrieval_errors"),
           " for details."

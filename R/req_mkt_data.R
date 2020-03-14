@@ -4,9 +4,9 @@
 #' Fetch live (or 15-minute delayed) market data.
 #'
 #' @details 
-#' attributes `canAutoExecute`, `pastLimit`, `preOpen` are unnecessary in
-#' InteractiveTradeR because you can easily create your own flags that accept
-#' the `trading_floor$pit` data as input. The aren't that much use anyway, and
+#' The attributes \emph{canAutoExecute}, \emph{pastLimit}, and \emph{preOpen}
+#' are unnecessary in InteractiveTradeR because you can easily create your own
+#' flags that accept market data as input. The aren't that much use anyway, and
 #' are mostly holdovers from earlier versions & systems.
 #'
 #' @param data_name
@@ -21,15 +21,18 @@
 #' @inheritParams place_order
 #'
 #' @param snapshot
-#' some biz
+#' If set to TRUE, you'll get a one-time "snapshot" of the contract's market
+#' data. If FALSE, then \code{req_mkt_data} will set up an ongoing subscription
+#' that will update the data in the \code{mkt_data} environment every time
+#' \link{read_sock_drawer}() is called.
 #'
 #' @param regulatorySnapshot
-#' some other biz
+#' Not yet implemented, stay tuned
 #' 
 #' @param genericTickList
-#' moar biz
+#' Not yet implemented, stay tuned
 #'
-# #' @inherit cancel_mkt_data examples
+#' @inherit cancel_mkt_data examples
 #' @family market data
 #' @export
 #'
@@ -58,30 +61,35 @@ req_mkt_data <- function(
     )
     return(invisible())
   }
-
+  
   sock             <- select_sock_for_api_fun()
   market_data_type <- format_market_data_type()
-  subscriptions    <- get("subscriptions")
   
   if(!identical(attr(sock, "mktDataType"), market_data_type)){
     req_market_data_type(market_data_type, sock)
   }
-
+  
   req_id <- fetch_and_bump("mkt_data")
-
+  
+  subscriptions <- get("subscriptions")
+  
   if(missing(data_name)){
     if(any(names(contract) == "symbol")){
-      data_name <- paste0(req_id, "_", contract["symbol"])
+      data_name <- paste0(
+        nrow(subscriptions$mkt_data) + 1, 
+        "_", 
+        contract["symbol"]
+      )
     } else {
       data_name <- as.character(req_id)
     }
   }
-
+  
   if(any(subscriptions$mkt_data$req_name == data_name)){
     usethis::ui_oops("An identical subscription already exists!")
     return(invisible(FALSE))
   }
-
+  
   req_mkt_data_msg <- mget(
     setdiff(
       functionary$big_function_args$contract_args$
@@ -115,7 +123,7 @@ req_mkt_data <- function(
           c(
             nrow(get("comboLegs")),
             trimws(c(t(get("comboLegs"))))
-            )
+          )
         },
         if(get("deltaNeutralContract") == 0){
           0
@@ -134,7 +142,7 @@ req_mkt_data <- function(
       )
     } %>%
     ib_encode_raw_msg()
-
+  
   mkt_data <- get("mkt_data")
   
   if(!any(data_name == ls(mkt_data))){
@@ -144,13 +152,13 @@ req_mkt_data <- function(
       envir = mkt_data
     )
   }
-
+  
   writeBin(
     object = req_mkt_data_msg,
     con    = sock,
     endian = "big"
   )
-
+  
   subscribe(
     fun_name = "mkt_data",
     req_name = data_name,
@@ -164,23 +172,24 @@ req_mkt_data <- function(
     sock     = sock,
     req_id   = req_id
   )
-
+  
   if(snapshot){
-    sock_seek(
-      element_names   = "",
-      socket          = sock,
-      success_element = simple_encode(
-        functionary$incoming_msg_codes$TICK_SNAPSHOT_END
-      )
-    )
     if(is.null(channel)){
+      sock_seek(
+        element_names   = "",
+        socket          = sock,
+        success_element = simple_encode(
+          functionary$incoming_msg_codes$TICK_SNAPSHOT_END
+        )
+      )
       cancel_mkt_data(data_name)
       return(mkt_data[[data_name]] %>% mget(ls(.), envir = .))
     }
+    cancel_mkt_data(data_name)
   } else if(regulatorySnapshot){
     usethis::ui_oops("Regulatory Snapshot not yet enabled")
   }
-
+  
   return(invisible())
-
+  
 }

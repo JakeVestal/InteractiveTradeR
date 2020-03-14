@@ -14,6 +14,7 @@ cancellator <- function(
     id_or_name <- "req_name"
     unlist(subscriptions[[subscription_name]][id_or_name], use.names = FALSE)
   } else if(any(is.na(suppressWarnings(as.numeric(requests))))){
+    print(requests)
     id_or_name <- "req_name"
     match.arg(
       arg        = requests,
