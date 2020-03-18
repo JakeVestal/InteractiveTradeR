@@ -40,6 +40,8 @@ reference:
   contents:
   - mkt_data
   - req_market_data_type
+  - req_mkt_data
+  - cancel_mkt_data
 - title: Historical Data
   desc: Functions dealing with retrieving historical market data
   contents:

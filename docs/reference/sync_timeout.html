@@ -142,11 +142,11 @@ is set to 5 seconds.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>timeout</th>
-      <td><p>Numeric, length 1, specifying the time in seconds that API calls made in SYNC
-mode will wait for a response from IB before giving up. The default value is
-5 seconds.</p>
-<p>If the argument <em>timeout</em> is not specified in the call, then
-sync_timeout() will return the current timeout setting.</p></td>
+      <td><p>Numeric, length 1, specifying the time in seconds that API calls made in Sync
+Mode will wait for a response from IB before giving up. The default value is
+5 seconds. <code>sync_timeout()</code> is called with argument <em>timeout</em> is
+not specified in the call, then <code>sync_timeout()</code> will return the current
+timeout setting (in seconds) as a numeric.</p></td>
     </tr>
     </table>
 
@@ -163,12 +163,11 @@ sync_timeout() will return the current timeout setting.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch the current timeout setting for SYNC functions (in seconds):</span>
-<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 10</div><div class='input'>
+<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
 <span class='co'># Set the time out setting for SYNC functions to 10 seconds:</span>
-<span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)
-
+<span class='fu'>sync_timeout</span>(<span class='fl'>10</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>✔</span><span> </span><span style='font-weight: bold;'>sync timeout</span><span>set to: 10 secs.</div><div class='input'>
 <span class='co'># Fetch the new setting:</span>
-<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 10</div></pre>
+<span class='fu'>sync_timeout</span>()</div><div class='output co'>#&gt; [1] 10</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

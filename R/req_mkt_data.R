@@ -10,27 +10,56 @@
 #' are mostly holdovers from earlier versions & systems.
 #'
 #' @param data_name
-#' Character vector of length 1. An identifier for the market data subscription.
-#' Good choices could be the contract's symbol, conId, or description (if
-#' combo). All market data received by a mkt_data subscription will be stored in
-#' the \strong{mkt_data} environment under the name \emph{data_name}. Therefore,
-#' no two mkt_data subscriptions may have identical \emph{data_name}s.
+#' Character vector of length 1. 
+#' \strong{If not supplied}, \code{req_mkt_data()} will use the data name
+#' "\strong{\emph{X}_{symbol}}" where \emph{X} is a simple counting integer and
+#' \emph{symbol} is the value of the \emph{symbol} parameter in the
+#' \emph{contract} object.
+#' \strong{If supplied}, \code{data_name} becomes Your own personal identifier
+#' for the market data subscription. Good choices might be the contract's
+#' symbol, conId, or description (if combo). All market data received by a
+#' mkt_data subscription will be stored in the \strong{mkt_data} environment
+#' under the name \emph{data_name}. Therefore, no two mkt_data subscriptions may
+#' have identical \emph{data_name}s.
 #'
 #' @inheritParams req_account_summary
 #' @inheritParams req_market_data_type
 #' @inheritParams place_order
 #'
 #' @param snapshot
-#' If set to TRUE, you'll get a one-time "snapshot" of the contract's market
-#' data. If FALSE, then \code{req_mkt_data} will set up an ongoing subscription
-#' that will update the data in the \code{mkt_data} environment every time
-#' \link{read_sock_drawer}() is called.
+#' If set to TRUE, the subscription created by \code{req_mkt_data()} will be
+#' destroyed after a complete "snapshot" of market data is obtained for the
+#' \emph{contract}. The default is \code{snapshot = FALSE}, which will cause the
+#' subscription to stay opened until cancelled by the user making a call to
+#' \link{cancel_mkt_data}().
 #'
 #' @param regulatorySnapshot
 #' Not yet implemented, stay tuned
 #' 
 #' @param genericTickList
 #' Not yet implemented, stay tuned
+#' 
+#' @section No Sync Mode:
+#' \code{req_mkt_data()} can't be called in Sync Mode. Instead, this function
+#' must be implimented as follows:
+#' \enumerate{
+#'   \item Create a connection to Interactive Brokers with 
+#'     \link{create_new_connections}() if a connection doesn't already exist
+#'   \item Call \code{req_mkt_data()} to start a market data subscription
+#'   \item Call \link{read_sock_drawer}() to refresh the \link{mkt_data} slate. 
+#'     Do this as often as you need to keep \link{mkt_data} up-to-date.
+#'   \item Call \link{cancel_mkt_data}() when you're finished 
+#' }
+#' 
+#' If \code{snapshot = TRUE}, then the subscription will destroy itself once a 
+#' full market data snapshot has been obtained by \link{read_sock_drawer}(), so 
+#' there's no need to call \link{cancel_mkt_data}().
+#' 
+#' 
+#' @section The \link{mkt_data} Slate: 
+#' Data fetched by \code{req_mkt_data()} is stored in the \link{mkt_data} slate
+#' under the name specified in the \emph{data_name} argument (or the default
+#' data name "\strong{\emph{X}_{symbol}}" if no \emph{data_name} not supplied).
 #'
 #' @inherit cancel_mkt_data examples
 #' @family market data
@@ -39,24 +68,18 @@
 req_mkt_data <- function(
   contract,
   data_name,
+  channel            = "async",
   mktDataType        = "REALTIME",
   genericTickList    = NULL,
-  snapshot           = TRUE,
-  regulatorySnapshot = FALSE,
-  channel            = NULL
+  snapshot           = FALSE,
+  regulatorySnapshot = FALSE
 ){
   
-  if(is.null(channel) && !(snapshot || regulatorySnapshot)){
+  if(is.null(channel)){
     usethis::ui_oops(
       paste0(
         crayon::bold("req_mkt_data"),
-        "() may not be called in SYNC mode (",
-        crayon::italic("channel"),
-        " = NULL) unless\n",
-        crayon::italic("snapshot"),
-        " or ",
-        crayon::italic("regulatorySnapshot"),
-        " is TRUE."
+        "() may not be called in SYNC mode."
       )
     )
     return(invisible())
@@ -76,7 +99,13 @@ req_mkt_data <- function(
   if(missing(data_name)){
     if(any(names(contract) == "symbol")){
       data_name <- paste0(
-        nrow(subscriptions$mkt_data) + 1, 
+        nrow(subscriptions$mkt_data) %>% {
+          if(is.null(.)){
+            1
+          } else {
+            . + 1
+          }
+        }, 
         "_", 
         contract["symbol"]
       )
@@ -182,10 +211,8 @@ req_mkt_data <- function(
           functionary$incoming_msg_codes$TICK_SNAPSHOT_END
         )
       )
-      cancel_mkt_data(data_name)
       return(mkt_data[[data_name]] %>% mget(ls(.), envir = .))
     }
-    cancel_mkt_data(data_name)
   } else if(regulatorySnapshot){
     usethis::ui_oops("Regulatory Snapshot not yet enabled")
   }

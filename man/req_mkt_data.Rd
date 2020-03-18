@@ -7,39 +7,27 @@
 req_mkt_data(
   contract,
   data_name,
+  channel = "async",
   mktDataType = "REALTIME",
   genericTickList = NULL,
-  snapshot = TRUE,
-  regulatorySnapshot = FALSE,
-  channel = NULL
+  snapshot = FALSE,
+  regulatorySnapshot = FALSE
 )
 }
 \arguments{
 \item{contract}{Named character vector of contract parameter(s). The name of each element identifies the parameter -- for example, \code{secType}, \code{symbol}, \code{exchange}... -- and each element itself gives the set value (e.g., "STK", "IBM", "SMART"). \cr \cr \strong{The `contract` parameters that may be used with} \code{place_order}() \strong{are}:\cr\code{deltaNeutralContract}, \code{secId}, \code{conId}, \code{comboLegs}, \code{secType}, \code{tradingClass}, \code{symbol}, \code{lastTradeDateOrContractMonth}, \code{strike}, \code{right}, \code{multiplier}, \code{exchange}, \code{primaryExchange}, \code{currency}, \code{localSymbol}, \code{secIdType}\cr \cr See \link{contract} for detailed information on all \code{contract} parameters.}
 
-\item{data_name}{Character vector of length 1. An identifier for the market data subscription.
-Good choices could be the contract's symbol, conId, or description (if
-combo). All market data received by a mkt_data subscription will be stored in
-the \strong{mkt_data} environment under the name \emph{data_name}. Therefore,
-no two mkt_data subscriptions may have identical \emph{data_name}s.}
-
-\item{mktDataType}{Either:
-\enumerate{
-  \item String having one of the following values: "\strong{REALTIME}",
-  "\strong{FROZEN}", "\strong{DELAYED}", or "\strong{DELAYED_FROZEN}".
-  \item Integer from 1 to 4, inclusive, corresponding respectively to each of
-  the above choices (e.g., \code{mktDataType = 3} will set the market data
-  type to "\strong{DELAYED}").
-}}
-
-\item{genericTickList}{Not yet implemented, stay tuned}
-
-\item{snapshot}{If set to TRUE, you'll get a one-time "snapshot" of the contract's market
-data. If FALSE, then \code{req_mkt_data} will set up an ongoing subscription
-that will update the data in the \code{mkt_data} environment every time
-\link{read_sock_drawer}() is called.}
-
-\item{regulatorySnapshot}{Not yet implemented, stay tuned}
+\item{data_name}{Character vector of length 1. 
+\strong{If not supplied}, \code{req_mkt_data()} will use the data name
+"\strong{\emph{X}_{symbol}}" where \emph{X} is a simple counting integer and
+\emph{symbol} is the value of the \emph{symbol} parameter in the
+\emph{contract} object.
+\strong{If supplied}, \code{data_name} becomes Your own personal identifier
+for the market data subscription. Good choices might be the contract's
+symbol, conId, or description (if combo). All market data received by a
+mkt_data subscription will be stored in the \strong{mkt_data} environment
+under the name \emph{data_name}. Therefore, no two mkt_data subscriptions may
+have identical \emph{data_name}s.}
 
 \item{channel}{One of the following:
 
@@ -57,6 +45,25 @@ that will update the data in the \code{mkt_data} environment every time
   \item \strong{A \code{sockconn} Connection}: An open connection object of
   class "sockconn", connected to the IB API; e.g., \code{sock_drawer$tws}
 }}
+
+\item{mktDataType}{Either:
+\enumerate{
+  \item String having one of the following values: "\strong{REALTIME}",
+  "\strong{FROZEN}", "\strong{DELAYED}", or "\strong{DELAYED_FROZEN}".
+  \item Integer from 1 to 4, inclusive, corresponding respectively to each of
+  the above choices (e.g., \code{mktDataType = 3} will set the market data
+  type to "\strong{DELAYED}").
+}}
+
+\item{genericTickList}{Not yet implemented, stay tuned}
+
+\item{snapshot}{If set to TRUE, the subscription created by \code{req_mkt_data()} will be
+destroyed after a complete "snapshot" of market data is obtained for the
+\emph{contract}. The default is \code{snapshot = FALSE}, which will cause the
+subscription to stay opened until cancelled by the user making a call to
+\link{cancel_mkt_data}().}
+
+\item{regulatorySnapshot}{Not yet implemented, stay tuned}
 }
 \description{
 Fetch live (or 15-minute delayed) market data.
@@ -67,35 +74,94 @@ are unnecessary in InteractiveTradeR because you can easily create your own
 flags that accept market data as input. The aren't that much use anyway, and
 are mostly holdovers from earlier versions & systems.
 }
+\section{No Sync Mode}{
+
+\code{req_mkt_data()} can't be called in Sync Mode. Instead, this function
+must be implimented as follows:
+\enumerate{
+  \item Create a connection to Interactive Brokers with 
+    \link{create_new_connections}() if a connection doesn't already exist
+  \item Call \code{req_mkt_data()} to start a market data subscription
+  \item Call \link{read_sock_drawer}() to refresh the \link{mkt_data} slate. 
+    Do this as often as you need to keep \link{mkt_data} up-to-date.
+  \item Call \link{cancel_mkt_data}() when you're finished 
+}
+
+If \code{snapshot = TRUE}, then the subscription will destroy itself once a 
+full market data snapshot has been obtained by \link{read_sock_drawer}(), so 
+there's no need to call \link{cancel_mkt_data}().
+}
+
+\section{The \link{mkt_data} Slate}{
+ 
+Data fetched by \code{req_mkt_data()} is stored in the \link{mkt_data} slate
+under the name specified in the \emph{data_name} argument (or the default
+data name "\strong{\emph{X}_{symbol}}" if no \emph{data_name} not supplied).
+}
+
 \examples{
-# Fetch a delayed market data snapshot for Exxon (XOM) in Sync mode
+# --> This example may be run on a paper trading account with no market data
+# feed. This will be the case if you start up a new IB account without
+# purchasing a subscription. In that case, you'll see a "Market Data not
+# subscribed..." message, which means everything is operating normally. If you
+# purchase a data subscription, this message will not appear.
+
+# Create a connection to IB
+create_new_connections()
+
+#### Snapshot Example: Exxon stock
+################################################################################
+# Fetch a delayed market data snapshot for Exxon (XOM)
 req_mkt_data(
   contract = c(
-    symbol = "XOM",
-    secType = "STK", 
+    symbol   = "XOM",
+    secType  = "STK", 
     currency = "USD", 
     exchange = "SMART"
   ),
-  data_name = "Exxon_delayed",
+  snapshot    = TRUE,
+  data_name   = "Exxon_delayed",
   mktDataType = "DELAYED"
 ) 
 
-# This data is now stored in your mkt_data environment. You can access it with
-# the "$" operator, for example:
+# Note that a "mkt_data" subscription now appears:
+subscriptions$mkt_data
+
+# For the sake of this example, wait 3 seconds or so to be sure that the data
+# has time to arrive.
+Sys.sleep(3)
+
+# Read the data off the sock and update "mkt_data"
+read_sock_drawer()
+
+# Now you have a market data snapshot in your mkt_data slate! You can access it
+# with the "$" operator, like this:
 mkt_data$Exxon_delayed$TICK_PRICE
+mkt_data$Exxon_delayed$TICK_SIZE
+mkt_data$Exxon_delayed$`Delayed Last Timestamp`
+mkt_data$Exxon_delayed$TICK_REQ_PARAMS
+# ...etc
 
-# Sync mode is great when you don't mind waiting a few seconds or so to fetch a
-# market data snapshot. Most of the time, however, you'll want to get market
-# data by creating a subscription in Async Mode, and updating the mkt_data
-# environment by calling read_sock_drawer().
+# Note that the mkt_data subscription has been destroyed. This is because you 
+# set snapshot to TRUE -- when read_sock_drawer() finds a completed snapshot,
+# it automatically updates the subscription.
+subscriptions$mkt_data 
 
-# To do this, first create a sock for yourself:
+
+#### Subscription Example: Five stocks
+################################################################################
+# Snapshots are great if you just want to quickly fetch market data for a
+# contract and move on. Often, however, you'll want to stay up-to-date on market
+# data by creating a persistent subscription, causing the data in the mkt_data
+# slate to update every time read_sock_drawer() is called.
+
+# To do this, first create a sock for yourself (if you didn't already):
 create_new_connections()
 
-# Now, set up market data subscriptions to Exxon, Tesla, Apple, Facebook, 3M,
-# and whever else you want to follow. Below, the walk() function from package
-# "purrr" is used to call req_mkt_data on each stock symbol.
-c("XOM", "TSLA", "AAPL", "FB", "MMM") \%>\%
+# Now, set up market data subscriptions to Tesla, Apple, Facebook, 3M,
+# Interactive Brokers and whatever else you want to follow. Below, the walk()
+# function from package "purrr" is used to call req_mkt_data on each stock.
+c("TSLA", "AAPL", "FB", "MMM", "IBKR") \%>\%
   purrr::walk(
     function(stock_symbol){
       req_mkt_data(
@@ -116,128 +182,23 @@ c("XOM", "TSLA", "AAPL", "FB", "MMM") \%>\%
 # subscriptions variable:
 subscriptions$mkt_data
 
-# Wait a bit for the data to come through. Because program control is returned
-# after setting up the subscription, an app would be doing other tasks during
-# this time and the market data, when it arrives, would show up after the next
-# call to read_sock_drawer().
+# Wait a bit for the data to come through for example's sake...
 Sys.sleep(3)
 
-# Read the sock drawer
-#    --> This example may be run on a paper trading account with no market data
-#    feed. This will be the case if you start up a new IB account without
-#    purchasing a subscription. In that case, you'll see a "Market Data not
-#    subscribed..." message, which means everything is operating normally. If
-#    you purchase a data subscription, this message will not appear.
+# Read the sock drawer as many times as you want
 read_sock_drawer()
 
-# You can call req_mkt_data on just about any kind of contract object, including
-# combos and news feeds
+# Access your data:
+mkt_data$`1_TSLA`$TICK_PRICE
+mkt_data$`4_MMM`$TICK_PRICE
+# ...etc
 
-#1) Google Combo
-req_mkt_data(
-  contract  = list(
-    symbol    = "GOOG",
-    secType   = "BAG",
-    currency  = "USD",
-    exchange  = "SMART",
-    comboLegs = tibble::tibble(
-      conId    = c(208813720, 107113386),
-      ratio    = c(1,3),
-      action   = c("BUY","SELL"),
-      exchange = c("SMART", "SMART")
-    )
-  )
-)
+# Because these subscriptions aren't for snapshots, they'll stay active until
+# cancelled. When you're ready, cancel any/all of your subscriptions:
+cancel_mkt_data()
 
-#2: IBKR & MCD Stock Combo
-ibkr_mcd_contract <- c(
-  symbol   = "IBKR,MCD",
-  secType  = "BAG",
-  currency = "USD"
-)
-ibkr_mcd_combo <- tibble::tibble(
-  conId = c(43645865, 9408),
-  ratio = c(1,1),
-  action = c("BUY","SELL"),
-  exchange = c("SMART", "SMART")
-)
-req_mkt_data(contract = ibkr_mcd_contract, combo = ibkr_mcd_combo)
-
-#3: Future Combo Contract
-future_combo_contract <- c(
-  symbol = "VIX", secType = "BAG", currency = "USD", exchange = "CFE"
-)
-future_combo <- tibble::tibble(
-  # Use req_contract_details() to pick three random VIX futures:
-  conId = req_contract_details(
-    contract = c(
-      symbol = "VIX", exchange = "CFE", currency = "USD", secType = "FUT"
-    )
-  )$conId \%>\%
-    sample(3),
-  ratio    = c(1,1,2),
-  action   = c("BUY","SELL", "BUY"),
-  exchange = c("CFE", "CFE", "CFE")
-)
-req_mkt_data(contract = future_combo_contract, combo = future_combo)
-
-#4: Smart Future Combo Contract
-smart_future_combo_contract <- c(
-  symbol = "WTI", secType = "BAG", currency = "USD", exchange = "SMART"
-)
-smart_future_combo <- tibble::tibble(
-  # Use req_contract_details() with vapply() to pick a random WTI and and a
-  # random COIL future conId.
-  conId = vapply(
-    c("WTI", "COIL"),
-    function(symb){
-      req_contract_details(
-        contract = c(
-          symbol = symb, exchange = "IPE", currency = "USD", secType = "FUT"
-        )
-      )$conId \%>\%
-        sample(1)
-    },
-    character(1)
-  ),
-  ratio    = c(1,1),
-  action   = c("BUY","SELL"),
-  exchange = c("CFE", "CFE")
-)
-req_mkt_data(contract = future_combo_contract, combo = future_combo)
- 
-#5: Inter Commodity Futures Contract
-inter_cmdty_futures_contract <- c(
-  symbol = "CL.BZ", secType = "BAG", currency = "USD", exchange = "NYMEX"
-)
-inter_cmdty_futures_combo <- tibble::tibble(
-  # Use req_contract_details() with vapply() to pick a random WTI and and a
-  # random COIL future conId.
-  conId = vapply(
-    c("CL", "BZ"),
-    function(symb){
-      req_contract_details(
-        contract = c(
-          symbol = symb, exchange = "NYMEX", currency = "USD", secType = "FUT"
-        )
-      )$conId \%>\%
-        sample(1)
-    },
-    character(1)
-  ),
-  ratio    = c(1,1),
-  action   = c("BUY","SELL"),
-  exchange = c("NYMEX", "NYMEX")
-)
-req_mkt_data(
-  contract = inter_cmdty_futures_contract,
-  combo    = inter_cmdty_futures_combo
-)
-
-#6) News Feed for Query
-req_mkt_data(
-  contract = c(symbol = "BRFG:BRFG_ALL", secType = "NEWS", exchange = "BRFG")
-)
+# Subscriptions are gone! 
+subscriptions$mkt_data
 }
 \seealso{
 Other market data: 

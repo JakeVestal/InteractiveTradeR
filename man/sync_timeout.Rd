@@ -7,12 +7,11 @@
 sync_timeout(timeout)
 }
 \arguments{
-\item{timeout}{Numeric, length 1, specifying the time in seconds that API calls made in SYNC
-mode will wait for a response from IB before giving up. The default value is
-5 seconds.
-
-If the argument \emph{timeout} is not specified in the call, then
-sync_timeout() will return the current timeout setting.}
+\item{timeout}{Numeric, length 1, specifying the time in seconds that API calls made in Sync
+Mode will wait for a response from IB before giving up. The default value is
+5 seconds. \code{sync_timeout()} is called with argument \emph{timeout} is
+not specified in the call, then \code{sync_timeout()} will return the current
+timeout setting (in seconds) as a numeric.}
 }
 \description{
 Set or retrieve the number of seconds that API calls in \strong{Sync Mode}
