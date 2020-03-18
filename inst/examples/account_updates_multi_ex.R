@@ -29,8 +29,7 @@ aum_false <- treasury$ACCOUNTS
 unique(aum_true$account)
 unique(aum_false$account)
 #   3.2) See that ledger_and_NLV = FALSE includes more parameters:
-unique(aum_true$tag)
-unique(aum_false$tag)
+setdiff(unique(aum_false$tag), unique(aum_true$tag))
 
 ################################################################################
 #### Subscriptions #############################################################
@@ -51,11 +50,10 @@ req_managed_accts() %>%
   )
 
 # Verify that you're now subscribed to the six paper trading accounts:
-view_subscriptions("account_updates_multi")
+subscriptions$account_updates_multi
 
-# Print the retrieved updates to the console, or use View():
+# Access the retrieved updates:
 treasury$ACCOUNTS
-View(treasury$ACCOUNTS)
 
 # You should have all six paper account codes represented in the "account"
 # column of the ACCOUNTS treasury object.
@@ -73,7 +71,7 @@ cancel_accounts <- subscriptions$account_updates_multi$req_name[c(1,3)]
 cancel_account_updates_multi(cancel_accounts)
 
 # Check that the two accounts are indeed removed from subscriptions:
-view_subscriptions("account_updates_multi")
+subscriptions$account_updates_multi
 any(cancel_accounts %in% subscriptions$account_updates_multi$req_name)
 
 # From this point on, the sock drawer will no longer get updated data for the
@@ -109,19 +107,20 @@ req_managed_accts() %>%
   )
 
 # Verify that you're now subscribed to the six paper trading accounts:
-view_subscriptions("account_updates_multi")
+subscriptions$account_updates_multi
 
-# Print the retrieved updates to the console, or use View():
+# Access the retrieved updates:
 treasury$ACCOUNTS
-View(treasury$ACCOUNTS)
 
 # You should have all six paper account codes represented in the "account"
 # column of the ACCOUNTS treasury object.
 
-# This information will update every 3 minutes -- and probably more frequently
-# than that in practice -- for those accounts that have positions in financial
-# instruments. You can wait for at least one cycle and call read_sock_drawer()
-# again to see this for yourself.
+# This information will become available every 3 minutes -- and probably more
+# frequently than that in practice -- for those accounts that have positions in
+# financial instruments. 
+
+# You can wait for at least one cycle and see this for yourself; just call
+# read_sock_drawer() as many times as you'd like to refresh the data.
 
 # Save the treasury object to use for comparing later
 before_cancel <- treasury$ACCOUNTS
@@ -131,7 +130,7 @@ cancel_accounts <- subscriptions$account_updates_multi$req_name[c(1,3)]
 cancel_account_updates_multi(cancel_accounts)
 
 # Check that the two accounts are indeed removed from subscriptions:
-view_subscriptions("account_updates_multi")
+subscriptions$account_updates_multi
 any(cancel_accounts %in% subscriptions$account_updates_multi$req_name)
 
 # From this point on, the sock drawer will no longer get updated data for the

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Place Order — place_order • InteractiveTradeR</title>
+<title>Cancel Specified Orders — cancel_order • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Place Order — place_order" />
-<meta property="og:description" content="Sends an order to IB's servers to buy or sell a financial instrument." />
+<meta property="og:title" content="Cancel Specified Orders — cancel_order" />
+<meta property="og:description" content="Describe" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,95 +122,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Place Order</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/place_order.R'><code>R/place_order.R</code></a></small>
-    <div class="hidden name"><code>place_order.Rd</code></div>
+    <h1>Cancel Specified Orders</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/cancel_order.R'><code>R/cancel_order.R</code></a></small>
+    <div class="hidden name"><code>cancel_order.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Sends an order to IB's servers to buy or sell a financial instrument.</p>
+    <p>Describe</p>
     </div>
 
-    <pre class="usage"><span class='fu'>place_order</span>(
-  <span class='no'>contract</span>,
-  <span class='no'>order</span>,
-  <span class='kw'>deltaNeutralContract</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>softDollarTier</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>non_master_override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cancel_order</span>(<span class='no'>orders</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>contract</th>
-      <td><p>Named character vector of contract parameter(s). The name of each element identifies the parameter -- for example, <code>secType</code>, <code>symbol</code>, <code>exchange</code>... -- and each element itself gives the set value (e.g., "STK", "IBM", "SMART"). <br /> <br /> <strong>The `contract` parameters that may be used with</strong> <code>place_order</code>() <strong>are</strong>:<br /><code>deltaNeutralContract</code>, <code>secId</code>, <code>conId</code>, <code>comboLegs</code>, <code>secType</code>, <code>tradingClass</code>, <code>symbol</code>, <code>lastTradeDateOrContractMonth</code>, <code>strike</code>, <code>right</code>, <code>multiplier</code>, <code>exchange</code>, <code>primaryExchange</code>, <code>currency</code>, <code>localSymbol</code>, <code>secIdType</code><br /> <br /> See <a href='contracts.html'>contract</a> for detailed information on all <code>contract</code> parameters.</p></td>
-    </tr>
-    <tr>
-      <th>order</th>
-      <td><p>describe that</p></td>
-    </tr>
-    <tr>
-      <th>deltaNeutralContract</th>
-      <td><p>that too</p></td>
-    </tr>
-    <tr>
-      <th>softDollarTier</th>
-      <td><p>and that</p></td>
-    </tr>
-    <tr>
-      <th>channel</th>
-      <td><p>One of the following:</p>
-<ul>
-<li><p><strong>Not Specified</strong> (Default): Opens a new connection to IB, uses
-  it to issue the request and retrieve the response, and closes connection
-  behind itself upon completion.</p></li>
-<li><p><strong>The Name of a Sock</strong>: Character vector, length 1. The name of
-  an open, connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws",
-  or "sock_123"</p></li>
-<li><p><strong>Numeric Client ID</strong>: Numeric, length 1. The client ID for
-  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
-  passed, and no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID,
-  then a new socket will be opened on that ID, and closed upon function exit.</p></li>
-<li><p><strong>A <code>sockconn</code> Connection</strong>: An open connection object of
-  class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>non_master_override</th>
-      <td><p>finally that</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="conditional-orders"><a class="anchor" href="#conditional-orders"></a>Conditional Orders</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<p><a href='https://www.interactivebrokers.com/en/index.php?f=584'>Conditional
-Orders</a></p>
-    <h2 class="hasAnchor" id="bracket-orders"><a class="anchor" href="#bracket-orders"></a>Bracket Orders</h2>
-
-    
-
-<p><a href='https://www.interactivebrokers.com/en/index.php?f=583'>Bracket Orders</a></p>
-    <h2 class="hasAnchor" id="attaching-hedging-orders"><a class="anchor" href="#attaching-hedging-orders"></a>Attaching (Hedging) Orders</h2>
-
-    
-
-<ul>
-<li><p><a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/ordertypes/attach_a_beta_hedge_order.htm'>Beta Hedge</a>:</p></li>
-<li><p><a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/ordertypes/attach_a_delta_hedge_order.htm'>Delta Hedge</a>:</p></li>
-<li><p><a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/ordertypes/attach_an_fx_order.htm'>FX Order</a>:</p></li>
-<li><p><a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/ordertypes/attach_a_pair_trade.htm'>Pair Trade</a>:</p></li>
-<li><p><a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/ordertypes/autocombolimit.htm'>Combo Limit</a>:</p></li>
-<li><p><a href='https://www.interactivebrokers.com/en/software/tws/usersguidebook/ordertypes/autocombomarket.htm'>Combo Market</a>:</p></li>
-</ul>
-
+    <p>* **If SYNC  mode** (`channel` *not specified*)**:**
+* **If ASYNC mode** (*specified* `channel`)**:**</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other orders: 
-<code><a href='cancel_order.html'>cancel_order</a>()</code>,
+<code><a href='place_order.html'>place_order</a>()</code>,
 <code><a href='req_all_open_orders.html'>req_all_open_orders</a>()</code>,
 <code><a href='req_auto_open_orders.html'>req_auto_open_orders</a>()</code>,
 <code><a href='req_completed_orders.html'>req_completed_orders</a>()</code>,
@@ -221,10 +152,7 @@ Orders</a></p>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#conditional-orders">Conditional Orders</a></li>
-      <li><a href="#bracket-orders">Bracket Orders</a></li>
-      <li><a href="#attaching-hedging-orders">Attaching (Hedging) Orders</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

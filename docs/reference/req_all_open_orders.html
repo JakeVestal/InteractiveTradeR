@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request IDs — req_ids • InteractiveTradeR</title>
+<title>Request All Open Orders — req_all_open_orders • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,12 +37,13 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Request IDs — req_ids" />
-<meta property="og:description" content="Fetch the next valid order ID available for the socket specified by
-channel. In InteractiveTradeR, the need for req_ids() is
-largely abstracted away and it is unlikely that the user will need this
-function. However, it is used by other functions in the package and is
-included here for completeness." />
+<meta property="og:title" content="Request All Open Orders — req_all_open_orders" />
+<meta property="og:description" content="Update the treasury's ORDER_STATUSES and OPEN_ORDERS
+objects and, optionally, receive list of two tibbles
+containing the updated ORDER_STATUS and OPEN_ORDERS objects.
+req_all_open_orders() retreives information about every open order
+accessible by your username, regardless of the order's client ID (socket) or
+whether it was placed via the API or within the Trader Workstation (TWS)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,20 +127,21 @@ included here for completeness." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request IDs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_ids.R'><code>R/req_ids.R</code></a></small>
-    <div class="hidden name"><code>req_ids.Rd</code></div>
+    <h1>Request All Open Orders</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_all_open_orders.R'><code>R/req_all_open_orders.R</code></a></small>
+    <div class="hidden name"><code>req_all_open_orders.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fetch the next valid order ID available for the socket specified by
-<em>channel</em>. In InteractiveTradeR, the need for <code>req_ids</code>() is
-largely abstracted away and it is unlikely that the user will need this
-function. However, it is used by other functions in the package and is
-included here for completeness.</p>
+    <p>Update the <a href='treasury.html'>treasury</a>'s <strong>ORDER_STATUSES</strong> and <strong>OPEN_ORDERS</strong>
+objects and, optionally, receive list of two <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a>s
+containing the updated ORDER_STATUS and OPEN_ORDERS objects.
+<code>req_all_open_orders</code>() retreives information about every open order
+accessible by your username, regardless of the order's client ID (socket) or
+whether it was placed via the API or within the Trader Workstation (TWS).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>req_ids</span>(<span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>req_all_open_orders</span>(<span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='no'>channel</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,68 +164,70 @@ included here for completeness.</p>
   class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
 </ul></td>
     </tr>
+    <tr>
+      <th>return_data</th>
+      <td><p>Boolean of length 1. Defaults to TRUE unless argument <em>channel</em> is
+specified. If FALSE, data retrieved by the function will be returned as the
+funciton's output. If TRUE, then a Boolean succeses flag will be returned as
+the function's output indicating the success (TRUE) or failure (FALSE) of the
+function's attempt to transceive data to/from IB. Data in the
+<strong><code>treasury</code></strong> is always updated regardless of the value passed as
+<em>return_data</em> in the function call.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Integer. The next valid order ID available on the specified socket.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>This function is called for its side effect of updating the
+<strong><code>treasury</code></strong>, which takes place every time the function executes.
+Additionally, the function's return value depends upon the value passed in as
+<em>return_data</em> as follows:</p>
+<ul>
+<li><p><strong>If <code>return_data == FALSE</code></strong>: A Boolean success flag,
+  returned invisibly, indicating that the function executed correctly and
+  updated the <strong><code>treasury</code></strong> with any new data retrieved.</p></li>
+<li><p><strong>If <code>return_data == TRUE</code></strong>: Any new data retrieved will
+  be returned in a <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> in addition to being added to the
+  <strong><code>treasury</code></strong>. If no new data is available, returns NULL.</p></li>
+</ul>
 
-    <p>More information can be found in IB's documentation here:
-<a href='https://interactivebrokers.github.io/tws-api/order_submission.html'>Next
-Valid Identifier</a></p>
-<p>Unlike orders placed using the TWS graphical user interface -- which all use
-<code>orderId = 0</code> -- every order placed by an API <em>on a particular
-socket</em> must have a unique integer order identifier. This identifier is the
-"ID" meant by the function's name "Request IDs".</p>
-<p>Keeping track of order IDs is necessary because in practice, any number of
-different users may need to submit orders -- each requiring a unique order ID
--- to a given account or account structure. Although each user may keep track
-of order IDs locally, there is no way to be sure that some other user hasn't
-already used the ID without querying the IB servers.</p>
-<p><code>req_ids</code>() should, perhaps, really be named "<code>req_id</code>", without
-the "s", because it only returns the emphnext valid id -- a single integer.
-The plural form of the function's name is due to historical reasons arising
-from older versions of the IB API system.</p>
-<p>The function <code>req_ids()</code> fulfills this role by querying IB and returning
-the <strong>next valid ID</strong>: the lowest-valued integer that hasn't yet been
-used as an order ID by any user on a particular client, and therefore may be
-utilized as the ID for a new order  to be placed on that socket.</p>
+<p><em>return_data</em> defaults to TRUE unless <em>channel</em> is specified.</p>
+    <h2 class="hasAnchor" id="open-orders-and-order-statuses-treasury-objects"><a class="anchor" href="#open-orders-and-order-statuses-treasury-objects"></a>OPEN_ORDERS and ORDER_STATUSES Treasury Objects</h2>
+
+    
+
+<p>This function updates the following <a href='treasury.html'>treasury</a> objects:</p>
+<p><strong>OPEN_ORDERS</strong> A <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> in which each row represents an
+order that, at the time it was last updated, had not fully filled. The column
+names are described in the
+<a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1Contract.html'>Contract</a>,
+<a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1Order.html'>Order</a>,
+and
+<a href='https://interactivebrokers.github.io/tws-api/classIBApi_1_1OrderState.html'>OrderState</a>
+sections of IB's documentation.</p>
+<p><strong>ORDER_STATUSES</strong> A <a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a> in which each row represents
+an order that, at the time it was last updated, had not fully filled. The
+column names are described in the
+<a href='https://interactivebrokers.github.io/tws-api/interfaceIBApi_1_1EWrapper.html#a17f2a02d6449710b6394d0266a353313'>Order
+Status</a> section of IB's documentation.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other orders: 
 <code><a href='cancel_order.html'>cancel_order</a>()</code>,
 <code><a href='place_order.html'>place_order</a>()</code>,
-<code><a href='req_all_open_orders.html'>req_all_open_orders</a>()</code>,
 <code><a href='req_auto_open_orders.html'>req_auto_open_orders</a>()</code>,
 <code><a href='req_completed_orders.html'>req_completed_orders</a>()</code>,
+<code><a href='req_ids.html'>req_ids</a>()</code>,
 <code><a href='req_open_orders.html'>req_open_orders</a>()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create some socket connections</span>
-<span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>(<span class='fl'>5</span>, <span class='kw'>include_master</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_tws</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># Fetch the next valid ID on the master socket:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"master"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Fetch the next valid ID on the TWS socket:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"tws"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Note that opening orders within TWS itself does not affect the next valid TWS</span>
-<span class='co'># id -- only orders submitted via the API will cause it to increment.</span>
-
-<span class='co'># Repeat for the other sockets:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"sock_1"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_2"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_3"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Calling req_ids() in sync mode will work, but isn't of much use because</span>
-<span class='co'># because, by definition, the socket isn't specified:</span>
-<span class='fu'>req_ids</span>()</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
+      <li><a href="#open-orders-and-order-statuses-treasury-objects">OPEN_ORDERS and ORDER_STATUSES Treasury Objects</a></li>
       <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

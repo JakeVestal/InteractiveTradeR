@@ -69,6 +69,11 @@ Orders}
 
 \seealso{
 Other orders: 
-\code{\link{req_ids}()}
+\code{\link{cancel_order}()},
+\code{\link{req_all_open_orders}()},
+\code{\link{req_auto_open_orders}()},
+\code{\link{req_completed_orders}()},
+\code{\link{req_ids}()},
+\code{\link{req_open_orders}()}
 }
 \concept{orders}

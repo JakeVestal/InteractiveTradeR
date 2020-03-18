@@ -165,6 +165,245 @@ Updates Multi subscriptions.</p>
 <code><a href='req_account_updates_multi.html'>req_account_updates_multi</a>()</code>,
 <code><a href='req_account_updates.html'>req_account_updates</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>################################################################################</span>
+<span class='co'>#### Effect of ledgerAndNLV ####################################################</span>
+<span class='co'>################################################################################</span>
+
+<span class='co'># Let's look at the difference between calling req_account_updates_multi with</span>
+<span class='co'>#  ledgerAndNLV = TRUE vs. setting it to FALSE.</span>
+
+<span class='co'>#1) Fetch an update using req_account_updates_multi()'s default values for </span>
+<span class='co'>#   for account and ledgerAndNLV ("ALL" and TRUE, respectively).</span>
+<span class='fu'><a href='req_account_updates_multi.html'>req_account_updates_multi</a></span>()</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 166 x 4</span><span>
+#&gt;    account    tag               tag_value  currency
+#&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DF1267859A AccountCode       DF1267859A </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DF1267859A AccountReady      TRUE       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DF1267859A AccountType       UNIVERSAL  </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DF1267859A AccruedCash       1350.39    </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DF1267859A AccruedCash-C     0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DF1267859A AccruedCash-S     1350.39    </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DF1267859A AccruedDividend   0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DF1267859A AccruedDividend-C 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DF1267859A AccruedDividend-S 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DF1267859A AvailableFunds    5007628.56 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #949494;'># … with 156 more rows</span><span></div><div class='input'>
+<span class='co'># The update printed to screen but it's not lost -- it's in the treasury. </span>
+
+<span class='co'># 2) Save the treasury object in a variable to use for comparing later:</span>
+<span class='no'>aum_true</span> <span class='kw'>&lt;-</span> <span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>
+
+<span class='co'># 3) Clear out the treasury. Without this step, InteractiveTradeR would update</span>
+<span class='co'># the new ACCOUNTS object when we call req_account_updates_multi() again with</span>
+<span class='co'># ledgerAndNLV = FALSE, making it hard to tell exactly what effect our changing</span>
+<span class='co'># of the value of ledgerAndNLV had.</span>
+<span class='fu'><a href='clean_slate.html'>clean_slate</a></span>()
+
+<span class='co'># Call req_account_updates_multi() again, but with ledgerAndNLV = FALSE:</span>
+<span class='fu'><a href='req_account_updates_multi.html'>req_account_updates_multi</a></span>(<span class='kw'>ledgerAndNLV</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 166 x 4</span><span>
+#&gt;    account    tag               tag_value  currency
+#&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DF1267859A AccountCode       DF1267859A </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DF1267859A AccountReady      TRUE       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DF1267859A AccountType       UNIVERSAL  </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DF1267859A AccruedCash       1350.39    </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DF1267859A AccruedCash-C     0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DF1267859A AccruedCash-S     1350.39    </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DF1267859A AccruedDividend   0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DF1267859A AccruedDividend-C 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DF1267859A AccruedDividend-S 0.00       </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DF1267859A AvailableFunds    5007628.56 </span><span style='color: #949494;'>"</span><span>USD</span><span style='color: #949494;'>"</span><span>   
+#&gt; </span><span style='color: #949494;'># … with 156 more rows</span><span></div><div class='input'><span class='no'>aum_false</span> <span class='kw'>&lt;-</span> <span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>
+
+<span class='co'># Compare the two:</span>
+<span class='co'>#   3.1) Same account:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>aum_true</span>$<span class='no'>account</span>)</div><div class='output co'>#&gt; [1] "DF1267859A"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>aum_false</span>$<span class='no'>account</span>)</div><div class='output co'>#&gt; [1] "DF1267859A"</div><div class='input'><span class='co'>#   3.2) See that ledger_and_NLV = FALSE includes more parameters:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sets.html'>setdiff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>aum_false</span>$<span class='no'>tag</span>), <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>aum_true</span>$<span class='no'>tag</span>))</div><div class='output co'>#&gt; character(0)</div><div class='input'>
+<span class='co'>################################################################################</span>
+<span class='co'>#### Subscriptions #############################################################</span>
+<span class='co'>################################################################################</span>
+
+<span class='co'># Clean slate</span>
+<span class='fu'><a href='clean_slate.html'>clean_slate</a></span>()
+
+<span class='co'># Open a socket</span>
+<span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>()
+
+<span class='co'># Fetch the account IDs of your six paper trading accounts and use walk() from</span>
+<span class='co'># the purrr package to subscribe to each one</span>
+<span class='fu'><a href='req_managed_accts.html'>req_managed_accts</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>walk</a></span>(
+    <span class='no'>req_account_updates_multi</span>,
+    <span class='kw'>channel</span> <span class='kw'>=</span> <span class='st'>"async"</span>
+  )
+
+<span class='co'># Verify that you're now subscribed to the six paper trading accounts:</span>
+<span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 6</span><span>
+#&gt;   req_name  account   ledgerAndNLV req_id conn_row client_id
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> DF1267859 DF1267859 FALSE             2        4         1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> DU1267860 DU1267860 FALSE             3        4         1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> DU1267861 DU1267861 FALSE             4        4         1
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> DU1267862 DU1267862 FALSE             5        4         1
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> DU1267863 DU1267863 FALSE             6        4         1
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> DU1267864 DU1267864 FALSE             7        4         1</div><div class='input'>
+<span class='co'># Access the retrieved updates:</span>
+<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 925 x 4</span><span>
+#&gt;    account   tag                   tag_value  currency
+#&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267864 AccountType           INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267864 AccountCode           DU1267864  </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267864 AccountReady          TRUE       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267864 Cushion               0.992283   </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267864 DayTradesRemaining    -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267864 DayTradesRemainingT+1 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267864 DayTradesRemainingT+2 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267864 DayTradesRemainingT+3 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267864 DayTradesRemainingT+4 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267864 Leverage-S            0.03       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #949494;'># … with 915 more rows</span><span></div><div class='input'>
+<span class='co'># You should have all six paper account codes represented in the "account"</span>
+<span class='co'># column of the ACCOUNTS treasury object.</span>
+
+<span class='co'># This information will update every 3 minutes -- and probably more frequently</span>
+<span class='co'># than that in practice -- for those accounts that have positions in financial</span>
+<span class='co'># instruments. You can wait for at least one cycle and call read_sock_drawer()</span>
+<span class='co'># again to see this for yourself.</span>
+
+<span class='co'># Save the treasury object to use for comparing later</span>
+<span class='no'>before_cancel</span> <span class='kw'>&lt;-</span> <span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>
+
+<span class='co'># When you're ready, cancel a subscription or two: how about the 1st and 3rd?</span>
+<span class='no'>cancel_accounts</span> <span class='kw'>&lt;-</span> <span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span>$<span class='no'>req_name</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>)]
+<span class='fu'>cancel_account_updates_multi</span>(<span class='no'>cancel_accounts</span>)</div><div class='output co'>#&gt; [1] "DF1267859" "DU1267861"</div><div class='input'>
+<span class='co'># Check that the two accounts are indeed removed from subscriptions:</span>
+<span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 6</span><span>
+#&gt;   req_name  account   ledgerAndNLV req_id conn_row client_id
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> DU1267860 DU1267860 FALSE             3        4         1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> DU1267862 DU1267862 FALSE             5        4         1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> DU1267863 DU1267863 FALSE             6        4         1
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> DU1267864 DU1267864 FALSE             7        4         1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span>(<span class='no'>cancel_accounts</span> <span class='kw'>%in%</span> <span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span>$<span class='no'>req_name</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='co'># From this point on, the sock drawer will no longer get updated data for the</span>
+<span class='co'># two accounts that were unsubscribed.</span>
+
+<span class='co'># To convince yourself, first read off any data that might have gotten sent</span>
+<span class='co'># in the time between the last read and the call to cancel:</span>
+<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>()
+
+<span class='co'># From this point on, the canceled accounts' treasury data -- which can be</span>
+<span class='co'># selected using the following code:</span>
+<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>account</span> <span class='kw'>%in%</span> <span class='no'>cancel_accounts</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 313 x 4</span><span>
+#&gt;    account   tag                   tag_value  currency
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267861 AccountType           INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267861 AccountCode           DU1267861  </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267861 AccountReady          TRUE       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267861 Cushion               0.956605   </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 DayTradesRemaining    -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 DayTradesRemainingT+1 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 DayTradesRemainingT+2 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 DayTradesRemainingT+3 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 DayTradesRemainingT+4 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267861 Leverage-S            0.17       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #949494;'># … with 303 more rows</span><span></div><div class='input'><span class='co'># -- will not update, no matter how many times you call read_sock_drawer(),</span>
+<span class='co'># unless you subscribe to them again.</span>
+
+<span class='co'>################################################################################</span>
+<span class='co'>#### CANCELLING Subscriptions ##################################################</span>
+<span class='co'>################################################################################</span>
+
+<span class='co'># Clear out the treasury &amp; subscriptions for this example</span>
+<span class='fu'><a href='clean_slate.html'>clean_slate</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"treasury"</span>, <span class='st'>"subscriptions"</span>))
+
+<span class='co'># Open a socket</span>
+<span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>()
+
+<span class='co'># Fetch the account IDs of your six paper trading accounts and use walk() from</span>
+<span class='co'># the purrr package to subscribe to each one</span>
+<span class='fu'><a href='req_managed_accts.html'>req_managed_accts</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>walk</a></span>(
+    <span class='no'>req_account_updates_multi</span>,
+    <span class='kw'>channel</span> <span class='kw'>=</span> <span class='st'>"async"</span>
+  )
+
+<span class='co'># Verify that you're now subscribed to the six paper trading accounts:</span>
+<span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 6</span><span>
+#&gt;   req_name  account   ledgerAndNLV req_id conn_row client_id
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> DF1267859 DF1267859 FALSE             8        4         1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> DU1267860 DU1267860 FALSE             9        4         1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> DU1267861 DU1267861 FALSE            10        4         1
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> DU1267862 DU1267862 FALSE            11        5         2
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> DU1267863 DU1267863 FALSE            12        5         2
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> DU1267864 DU1267864 FALSE            13        4         1</div><div class='input'>
+<span class='co'># Access the retrieved updates:</span>
+<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 489 x 4</span><span>
+#&gt;    account   tag                   tag_value  currency
+#&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267861 AccountType           INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267861 AccountCode           DU1267861  </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267861 AccountReady          TRUE       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267861 Cushion               0.956605   </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 DayTradesRemaining    -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 DayTradesRemainingT+1 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 DayTradesRemainingT+2 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 DayTradesRemainingT+3 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 DayTradesRemainingT+4 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267861 Leverage-S            0.17       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #949494;'># … with 479 more rows</span><span></div><div class='input'>
+<span class='co'># You should have all six paper account codes represented in the "account"</span>
+<span class='co'># column of the ACCOUNTS treasury object.</span>
+
+<span class='co'># This information will become available every 3 minutes -- and probably more</span>
+<span class='co'># frequently than that in practice -- for those accounts that have positions in</span>
+<span class='co'># financial instruments. </span>
+
+<span class='co'># You can wait for at least one cycle and see this for yourself; just call</span>
+<span class='co'># read_sock_drawer() as many times as you'd like to refresh the data.</span>
+
+<span class='co'># Save the treasury object to use for comparing later</span>
+<span class='no'>before_cancel</span> <span class='kw'>&lt;-</span> <span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span>
+
+<span class='co'># When you're ready, cancel a subscription or two: how about the 1st and 3rd?</span>
+<span class='no'>cancel_accounts</span> <span class='kw'>&lt;-</span> <span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span>$<span class='no'>req_name</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>)]
+<span class='fu'>cancel_account_updates_multi</span>(<span class='no'>cancel_accounts</span>)</div><div class='output co'>#&gt; [1] "DF1267859" "DU1267861"</div><div class='input'>
+<span class='co'># Check that the two accounts are indeed removed from subscriptions:</span>
+<span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 6</span><span>
+#&gt;   req_name  account   ledgerAndNLV req_id conn_row client_id
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> DU1267860 DU1267860 FALSE             9        4         1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> DU1267862 DU1267862 FALSE            11        5         2
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> DU1267863 DU1267863 FALSE            12        5         2
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> DU1267864 DU1267864 FALSE            13        4         1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span>(<span class='no'>cancel_accounts</span> <span class='kw'>%in%</span> <span class='no'>subscriptions</span>$<span class='no'>account_updates_multi</span>$<span class='no'>req_name</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='co'># From this point on, the sock drawer will no longer get updated data for the</span>
+<span class='co'># two accounts that were unsubscribed.</span>
+
+<span class='co'># To convince yourself, first read off any data that might have gotten sent</span>
+<span class='co'># in the time between the last read and the call to cancel:</span>
+<span class='fu'><a href='read_sock_drawer.html'>read_sock_drawer</a></span>()
+
+<span class='co'># From this point on, the canceled accounts' treasury data -- which can be</span>
+<span class='co'># selected using the following code:</span>
+<span class='no'>treasury</span>$<span class='no'>ACCOUNTS</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>account</span> <span class='kw'>%in%</span> <span class='no'>cancel_accounts</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 171 x 4</span><span>
+#&gt;    account   tag                   tag_value  currency
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> DU1267861 AccountType           INDIVIDUAL </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> DU1267861 AccountCode           DU1267861  </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> DU1267861 AccountReady          TRUE       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> DU1267861 Cushion               0.956605   </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> DU1267861 DayTradesRemaining    -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> DU1267861 DayTradesRemainingT+1 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> DU1267861 DayTradesRemainingT+2 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> DU1267861 DayTradesRemainingT+3 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> DU1267861 DayTradesRemainingT+4 -1         </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> DU1267861 Leverage-S            0.17       </span><span style='color: #949494;'>""</span><span>      
+#&gt; </span><span style='color: #949494;'># … with 161 more rows</span><span></div><div class='input'># -- will not update, no matter how many times you call read_sock_drawer(),
+# unless you subscribe to them again.
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -173,6 +412,7 @@ Updates Multi subscriptions.</p>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request IDs — req_ids • InteractiveTradeR</title>
+<title>Request Auto Open Orders — req_auto_open_orders • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,12 +37,24 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Request IDs — req_ids" />
-<meta property="og:description" content="Fetch the next valid order ID available for the socket specified by
-channel. In InteractiveTradeR, the need for req_ids() is
-largely abstracted away and it is unlikely that the user will need this
-function. However, it is used by other functions in the package and is
-included here for completeness." />
+<meta property="og:title" content="Request Auto Open Orders — req_auto_open_orders" />
+<meta property="og:description" content="By default, orders placed within the TWS user interface are &quot;unbound&quot;,
+meaning that they have no order ID. req_auto_open_orders() toggles
+this behavior, allowing the user to configure TWS to assign IDs to new orders
+cretaed from within the TWS or not.
+req_auto_open_orders() cannot be used on orders that are
+already placed from the TWS. In other words, if you submit an order within
+the TWS without having first called req_auto_open_orders(), then that
+order is mostly inaccessable by anything other than TWS.
+Any API script or app that needs to access all orders placed -- whether
+within the TWS, via the API, or any other source -- should call
+req_auto_open_orders() during initiation (or, if a script, near the
+beginning) so that orders created by users in the TWS have an order ID, and
+can therefore be accessible to be modified by place_order() and
+canceled with cancel_order().
+IB's documentation may be found on the
+Open
+Orders page." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,95 +138,67 @@ included here for completeness." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request IDs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_ids.R'><code>R/req_ids.R</code></a></small>
-    <div class="hidden name"><code>req_ids.Rd</code></div>
+    <h1>Request Auto Open Orders</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_auto_open_orders.R'><code>R/req_auto_open_orders.R</code></a></small>
+    <div class="hidden name"><code>req_auto_open_orders.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fetch the next valid order ID available for the socket specified by
-<em>channel</em>. In InteractiveTradeR, the need for <code>req_ids</code>() is
-largely abstracted away and it is unlikely that the user will need this
-function. However, it is used by other functions in the package and is
-included here for completeness.</p>
+    <p>By default, orders placed within the TWS user interface are "unbound",
+meaning that they have no order ID. <code>req_auto_open_orders()</code> toggles
+this behavior, allowing the user to configure TWS to assign IDs to new orders
+cretaed from within the TWS or not.</p>
+<p><code>req_auto_open_orders()</code> <strong>cannot</strong> be used on orders that are
+already placed from the TWS. In other words, if you submit an order within
+the TWS without having first called <code>req_auto_open_orders()</code>, then that
+order is mostly inaccessable by anything other than TWS.</p>
+<p>Any API script or app that needs to access all orders placed -- whether
+within the TWS, via the API, or any other source -- should call
+<code>req_auto_open_orders()</code> during initiation (or, if a script, near the
+beginning) so that orders created by users in the TWS have an order ID, and
+can therefore be accessible to be modified by <a href='place_order.html'>place_order</a>() and
+canceled with <a href='cancel_order.html'>cancel_order</a>().</p>
+<p>IB's documentation may be found on the
+<a href='https://interactivebrokers.github.io/tws-api/open_orders.html'>Open
+Orders</a> page.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>req_ids</span>(<span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>req_auto_open_orders</span>(<span class='kw'>bAutoBind</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>channel</th>
-      <td><p>One of the following:</p>
-<ul>
-<li><p><strong>Not Specified</strong> (Default): Opens a new connection to IB, uses
-  it to issue the request and retrieve the response, and closes connection
-  behind itself upon completion.</p></li>
-<li><p><strong>The Name of a Sock</strong>: Character vector, length 1. The name of
-  an open, connected socket in the <a href='socks.html'>sock_drawer</a>; e.g., "master", "tws",
-  or "sock_123"</p></li>
-<li><p><strong>Numeric Client ID</strong>: Numeric, length 1. The client ID for
-  which open orders are to be retrieved; e.g., 0, 874, 123. If a client ID is
-  passed, and no socket in the <a href='socks.html'>sock_drawer</a> is connected on that ID,
-  then a new socket will be opened on that ID, and closed upon function exit.</p></li>
-<li><p><strong>A <code>sockconn</code> Connection</strong>: An open connection object of
-  class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
-</ul></td>
+      <th>bAutoBind</th>
+      <td><p>Logical, length 1, default TRUE. If TRUE, all subsequent orders created from
+within TWS will have an order ID (IB refers to orders having an ID as being
+"bound" in the documentation). If set to FALSE, future orders will not have
+an order ID ("unbound").</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Integer. The next valid order ID available on the specified socket.</p>
+    <p>NULL, invisibly</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>More information can be found in IB's documentation here:
-<a href='https://interactivebrokers.github.io/tws-api/order_submission.html'>Next
-Valid Identifier</a></p>
-<p>Unlike orders placed using the TWS graphical user interface -- which all use
-<code>orderId = 0</code> -- every order placed by an API <em>on a particular
-socket</em> must have a unique integer order identifier. This identifier is the
-"ID" meant by the function's name "Request IDs".</p>
-<p>Keeping track of order IDs is necessary because in practice, any number of
-different users may need to submit orders -- each requiring a unique order ID
--- to a given account or account structure. Although each user may keep track
-of order IDs locally, there is no way to be sure that some other user hasn't
-already used the ID without querying the IB servers.</p>
-<p><code>req_ids</code>() should, perhaps, really be named "<code>req_id</code>", without
-the "s", because it only returns the emphnext valid id -- a single integer.
-The plural form of the function's name is due to historical reasons arising
-from older versions of the IB API system.</p>
-<p>The function <code>req_ids()</code> fulfills this role by querying IB and returning
-the <strong>next valid ID</strong>: the lowest-valued integer that hasn't yet been
-used as an order ID by any user on a particular client, and therefore may be
-utilized as the ID for a new order  to be placed on that socket.</p>
+    <p><strong>TWS client required</strong>: TWS will only bind newly opened orders so long
+as the socket connected on <code>clientId = 0</code> continues to be open. Closing
+the TWS socket is equivalent to calling <code>req_auto_open_orders(FALSE)</code>.</p>
+<p><strong><code>orderId =x= permId</code></strong>: Although by default, orders created in
+TWS have no <em>orderId</em>, they do have a <em>permId</em>. <em>permId</em> can
+be used to identify an order, but cannot be used by the API to cancel or
+modify it.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other orders: 
 <code><a href='cancel_order.html'>cancel_order</a>()</code>,
 <code><a href='place_order.html'>place_order</a>()</code>,
 <code><a href='req_all_open_orders.html'>req_all_open_orders</a>()</code>,
-<code><a href='req_auto_open_orders.html'>req_auto_open_orders</a>()</code>,
 <code><a href='req_completed_orders.html'>req_completed_orders</a>()</code>,
+<code><a href='req_ids.html'>req_ids</a>()</code>,
 <code><a href='req_open_orders.html'>req_open_orders</a>()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create some socket connections</span>
-<span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>(<span class='fl'>5</span>, <span class='kw'>include_master</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_tws</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># Fetch the next valid ID on the master socket:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"master"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Fetch the next valid ID on the TWS socket:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"tws"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Note that opening orders within TWS itself does not affect the next valid TWS</span>
-<span class='co'># id -- only orders submitted via the API will cause it to increment.</span>
-
-<span class='co'># Repeat for the other sockets:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"sock_1"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_2"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_3"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Calling req_ids() in sync mode will work, but isn't of much use because</span>
-<span class='co'># because, by definition, the socket isn't specified:</span>
-<span class='fu'>req_ids</span>()</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -223,7 +207,6 @@ utilized as the ID for a new order  to be placed on that socket.</p>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

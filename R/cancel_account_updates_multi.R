@@ -18,7 +18,7 @@
 #' @return
 #' TRUE upon success (invisible), FALSE or error otherwise.
 #'
-# #' @example inst/examples/account_updates_multi_ex.R
+#' @example inst/examples/account_updates_multi_ex.R
 #' @family treasury
 #' @export
 #'

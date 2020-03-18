@@ -26,7 +26,8 @@ Imports:
     purrr,
     rprojroot,
     tibble,
-    usethis
+    usethis,
+    tidyr
 Suggests: 
     roxygen2,
     testthat (>= 2.1.0),

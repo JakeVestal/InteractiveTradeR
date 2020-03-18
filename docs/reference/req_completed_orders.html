@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request IDs — req_ids • InteractiveTradeR</title>
+<title>Request Completed Orders — req_completed_orders • InteractiveTradeR</title>
 
 
 <!-- jquery -->
@@ -37,12 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Request IDs — req_ids" />
-<meta property="og:description" content="Fetch the next valid order ID available for the socket specified by
-channel. In InteractiveTradeR, the need for req_ids() is
-largely abstracted away and it is unlikely that the user will need this
-function. However, it is used by other functions in the package and is
-included here for completeness." />
+<meta property="og:title" content="Request Completed Orders — req_completed_orders" />
+<meta property="og:description" content="Fetch the orders completed (if any) in the current trading day." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,24 +122,24 @@ included here for completeness." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request IDs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_ids.R'><code>R/req_ids.R</code></a></small>
-    <div class="hidden name"><code>req_ids.Rd</code></div>
+    <h1>Request Completed Orders</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JakeVestal/InteractiveTradeR/blob/master/R/req_completed_orders.R'><code>R/req_completed_orders.R</code></a></small>
+    <div class="hidden name"><code>req_completed_orders.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fetch the next valid order ID available for the socket specified by
-<em>channel</em>. In InteractiveTradeR, the need for <code>req_ids</code>() is
-largely abstracted away and it is unlikely that the user will need this
-function. However, it is used by other functions in the package and is
-included here for completeness.</p>
+    <p>Fetch the orders completed (if any) in the current trading day.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>req_ids</span>(<span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>req_completed_orders</span>(<span class='kw'>apiOnly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>apiOnly</th>
+      <td><p>Wat it do</p></td>
+    </tr>
     <tr>
       <th>channel</th>
       <td><p>One of the following:</p>
@@ -162,33 +158,18 @@ included here for completeness.</p>
   class "sockconn", connected to the IB API; e.g., <code>sock_drawer$tws</code></p></li>
 </ul></td>
     </tr>
+    <tr>
+      <th>api_only</th>
+      <td><p>Logical, length 1, default FALSE. If FALSE, result will include completed
+orders submitted via the TWS; if TRUE, then only orders submitted through the
+API will be included.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Integer. The next valid order ID available on the specified socket.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>More information can be found in IB's documentation here:
-<a href='https://interactivebrokers.github.io/tws-api/order_submission.html'>Next
-Valid Identifier</a></p>
-<p>Unlike orders placed using the TWS graphical user interface -- which all use
-<code>orderId = 0</code> -- every order placed by an API <em>on a particular
-socket</em> must have a unique integer order identifier. This identifier is the
-"ID" meant by the function's name "Request IDs".</p>
-<p>Keeping track of order IDs is necessary because in practice, any number of
-different users may need to submit orders -- each requiring a unique order ID
--- to a given account or account structure. Although each user may keep track
-of order IDs locally, there is no way to be sure that some other user hasn't
-already used the ID without querying the IB servers.</p>
-<p><code>req_ids</code>() should, perhaps, really be named "<code>req_id</code>", without
-the "s", because it only returns the emphnext valid id -- a single integer.
-The plural form of the function's name is due to historical reasons arising
-from older versions of the IB API system.</p>
-<p>The function <code>req_ids()</code> fulfills this role by querying IB and returning
-the <strong>next valid ID</strong>: the lowest-valued integer that hasn't yet been
-used as an order ID by any user on a particular client, and therefore may be
-utilized as the ID for a new order  to be placed on that socket.</p>
+    <p>* **If SYNC  mode** (`channel` *not specified*)**:**
+* **If ASYNC mode** (*specified* `channel`)**:**</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other orders: 
@@ -196,34 +177,16 @@ utilized as the ID for a new order  to be placed on that socket.</p>
 <code><a href='place_order.html'>place_order</a>()</code>,
 <code><a href='req_all_open_orders.html'>req_all_open_orders</a>()</code>,
 <code><a href='req_auto_open_orders.html'>req_auto_open_orders</a>()</code>,
-<code><a href='req_completed_orders.html'>req_completed_orders</a>()</code>,
+<code><a href='req_ids.html'>req_ids</a>()</code>,
 <code><a href='req_open_orders.html'>req_open_orders</a>()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create some socket connections</span>
-<span class='fu'><a href='create_new_connections.html'>create_new_connections</a></span>(<span class='fl'>5</span>, <span class='kw'>include_master</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_tws</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># Fetch the next valid ID on the master socket:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"master"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Fetch the next valid ID on the TWS socket:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"tws"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Note that opening orders within TWS itself does not affect the next valid TWS</span>
-<span class='co'># id -- only orders submitted via the API will cause it to increment.</span>
-
-<span class='co'># Repeat for the other sockets:</span>
-<span class='fu'>req_ids</span>(<span class='st'>"sock_1"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_2"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>req_ids</span>(<span class='st'>"sock_3"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Calling req_ids() in sync mode will work, but isn't of much use because</span>
-<span class='co'># because, by definition, the socket isn't specified:</span>
-<span class='fu'>req_ids</span>()</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

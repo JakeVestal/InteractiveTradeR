@@ -49,7 +49,7 @@
 #'
 #' @inherit req_account_summary return
 #'
-# #' @inherit cancel_account_updates_multi examples
+#' @inherit cancel_account_updates_multi examples
 #' @family treasury
 #' @export
 #'

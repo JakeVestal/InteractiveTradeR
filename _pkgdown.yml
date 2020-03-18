@@ -28,13 +28,14 @@ reference:
   - Client ID 0
 - title: The Treasury
   desc: The Treasury environment contains updated financials -- P/L, account 
-    balances, positions, and so on. This section includes all functions that 
-    update Treasury data.
+    balances, positions, and so on. 
   contents:
   - treasury
   - req_account_updates
   - req_account_summary
   - cancel_account_summary
+  - req_account_updates_multi
+  - cancel_account_updates_multi
 - title: Market Data
   desc: All the functions that have to do with fetching live market data
   contents:
